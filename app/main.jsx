@@ -4,7 +4,7 @@ var __REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK_
 
 var mountNode = document.getElementsByTagName('root')[0];
 
-var App = require('./components/App');
+var App = require('./components/app');
 
 React.render(
   <App mountNode={mountNode} />,
