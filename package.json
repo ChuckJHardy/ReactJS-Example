@@ -1,0 +1,29 @@
+{
+  "name": "Washington",
+  "version": "1.0.0",
+  "description": "Smart Pickings UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/InsertCoffee/washington"
+  },
+  "author": "Chuck J Hardy",
+  "license": "MIT",
+  "devDependencies": {
+    "file-loader": "^0.8.1",
+    "jsx-loader": "^0.13.1",
+    "jsxhint-loader": "^0.2.0",
+    "node-sass": "^2.1.1",
+    "sass-loader": "^0.6.0",
+    "style-loader": "^0.10.1",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.8.4",
+    "webpack-dev-server": "^1.8.0"
+  },
+  "dependencies": {
+    "react": "^0.13.1"
+  }
+}
