@@ -1,0 +1,99 @@
+#!/usr/bin/env sh
+
+blue="\033[34m"
+reset="\033[0m"
+red="\033[31m"
+green="\033[32m"
+
+function warn {
+  echo "$1" > /dev/stderr
+}
+
+function alert {
+  warn "$red$1$reset"
+}
+
+function info {
+  warn "$green$1$reset"
+}
+
+function notice {
+  warn "$blue$1$reset"
+}
+
+notice "
+------------------------------------
+* Installation Instructions
+------------------------------------
+Ensure all required Environment Configurations are set...
+
+    $ vi .envrc
+      export SOMETHING=ELSE
+
+This setup script will...
+
+1. Check NodeJS and NPM are installed correctly
+2. Check Environment Configuration
+3. Install Dependencies
+4. Build
+5. Run Tests"
+
+which node &> /dev/null
+if [ $? -ne 0 ]; then
+  warn "NodeJS Missing: http://nodejs.org"
+  exit 69
+fi
+
+which npm &> /dev/null
+if [ $? -ne 0 ]; then
+  warn "NPM Missing: https://www.npmjs.com"
+  exit 69
+fi
+
+set -e
+
+any_variable_missing=false
+
+info "
+------------------------------------
+* Checking Environment Configuration
+------------------------------------"
+
+env_file="./ENV"
+
+if [[ -e "$env_file" ]]; then
+  while read line; do
+    var_name=$(echo "$line" | cut -d' ' -f 1)
+    var_value="${!var_name}"
+
+    if [[ -z "$var_value" ]]; then
+      any_variable_missing=true
+      alert "export $var_name=?"
+    else
+      warn "$var_name=$var_value"
+    fi
+
+  done < "$env_file"
+else
+  warn "No ENV file for project ${name}"
+fi
+
+if [[ "$any_variable_missing" == true ]]; then
+  alert "Some required environment variables are not set"
+  exit 78
+fi
+
+info "
+------------------------------------
+* Install Dependencies
+------------------------------------"
+
+npm install webpack webpack-dev-server -g
+npm install
+
+info "
+------------------------------------
+* Building Project
+------------------------------------"
+
+webpack
