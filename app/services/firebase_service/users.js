@@ -1,6 +1,6 @@
 'use strict';
 
-var create = function() {
+var create = function(email, password) {
   return 'test';
 };
 

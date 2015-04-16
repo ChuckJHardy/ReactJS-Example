@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Router = require('react-router');
+var Firebase = require('firebase');
 
 var Cards = require('./cards');
 
@@ -10,6 +11,10 @@ var RouteHandler = Router.RouteHandler;
 
 module.exports = React.createClass({
   displayName: 'Application',
+
+  statics: {
+    firebase: new Firebase(__FIREBASE_URL__)
+  },
 
   render: function() {
     return (

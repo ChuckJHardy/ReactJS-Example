@@ -35,7 +35,7 @@ You will need the following things properly installed on your computer.
 
 ### Deploying
 
-Set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+Set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` within `env.js`
 
 Develoment
 

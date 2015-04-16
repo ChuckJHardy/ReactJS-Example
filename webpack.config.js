@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var env = require('./env');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -35,6 +36,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       VERSION: JSON.stringify('0.0.1'),
+      __FIREBASE_URL__: JSON.stringify(env.FIREBASE_URL),
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       }
