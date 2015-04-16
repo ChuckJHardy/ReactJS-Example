@@ -1,9 +1,9 @@
 'use strict';
 
+jest.dontMock('../login');
+
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
-
-jest.dontMock('../login');
 
 describe('Login', function () {
   var Login = require('../login');

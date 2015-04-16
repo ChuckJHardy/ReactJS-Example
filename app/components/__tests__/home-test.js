@@ -1,9 +1,9 @@
 'use strict';
 
+jest.dontMock('../home');
+
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
-
-jest.dontMock('../home');
 
 describe('Home', function () {
   var Home = require('../home');

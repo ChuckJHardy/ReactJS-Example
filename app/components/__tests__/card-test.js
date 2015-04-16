@@ -1,10 +1,10 @@
 'use strict';
 
+jest.dontMock('../card');
+
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
 var Assign = require('react/lib/Object.assign');
-
-jest.dontMock('../card');
 
 describe('Card', function () {
   var Card = require('../card');
