@@ -1,0 +1,63 @@
+lgrid-filter {
+	text-align: center;
+
+	.filter {
+		@include rounded-corners;
+		display: inline-block;
+		font-size: 13px;
+		border: $border-size solid $subtle-border-color;
+		padding: 5px 15px;
+		margin: 0 5px;
+
+		&:hover {
+			background-color: $subtle-color;
+			text-decoration: none;
+		}
+	}
+}
+
+.grid {
+	padding: 10px;
+
+	&:after {
+		@include clearfix;
+	}
+}
+
+.grid-element {
+	float: left;
+	width: 25%;
+}
+
+.grid-element-inner {
+	display: block;
+	margin: 10px;
+}
+
+.grid-element-image img {
+	@include top-rounded-corners;
+	display: block;
+}
+
+.grid-element-content {
+	@include bottom-rounded-corners;
+	border: $border-size solid $subtle-border-color;
+	border-top: 0;
+	padding: 30px 20px;
+}
+
+.grid-element-heading {
+	@include text-overflow;
+	color: $link-color;
+	font-size: 18px;
+}
+
+.grid-element-heading2 {
+	font-size: 13px;
+	margin-bottom: 10px;
+}
+
+.grid-element-heading3 {
+	font-size: 24px;
+	font-weight: bold;
+}
