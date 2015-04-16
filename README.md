@@ -26,6 +26,8 @@ You will need the following things properly installed on your computer.
 
 * `npm test`
 
+[Test Coverage](./coverage/lcov-report/index.html)
+
 ### Building
 
 * `webpack` (development)

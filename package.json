@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --colors --content-base dist/",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "webpack-dev-server": "^1.8.0"
   },
   "dependencies": {
+    "normalize.css": "^3.0.3",
     "react": "^0.13.1",
     "react-router": "^0.13.2"
   },

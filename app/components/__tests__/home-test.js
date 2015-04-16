@@ -3,19 +3,19 @@
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
 
-jest.dontMock('../register');
+jest.dontMock('../home');
 
-describe('Register', function () {
-  var Register = require('../register');
+describe('Home', function () {
+  var Home = require('../home');
 
   var subject = function() {
     return TestUtils.renderIntoDocument(
-      <Register />
+      <Home />
     );
   };
 
   it('renders', function() {
     expect(subject().getDOMNode().textContent)
-      .toContain('Email');
+      .toContain('Unsecure Home Page');
   });
 });

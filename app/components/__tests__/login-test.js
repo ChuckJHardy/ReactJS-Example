@@ -3,14 +3,14 @@
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
 
-jest.dontMock('../register');
+jest.dontMock('../login');
 
-describe('Register', function () {
-  var Register = require('../register');
+describe('Login', function () {
+  var Login = require('../login');
 
   var subject = function() {
     return TestUtils.renderIntoDocument(
-      <Register />
+      <Login />
     );
   };
 
