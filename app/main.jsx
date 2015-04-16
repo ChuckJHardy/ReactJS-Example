@@ -1,15 +1,15 @@
 'use strict';
 
 import React from 'react';
-import App from './components/app';
+import Router from 'react-router';
+
+import Routes from './config/routes';
 
 window.React = React;
 
-var __REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-
-var mountNode = document.getElementsByTagName('root')[0];
-
-React.render(
-  <App mountNode={mountNode} />,
-  mountNode
-);
+Router.run(Routes, Router.HistoryLocation, function (Handler) {
+  React.render(
+    <Handler/>, 
+    document.getElementsByTagName('root')[0]
+  );
+});
