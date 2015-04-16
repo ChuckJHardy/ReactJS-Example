@@ -14,17 +14,10 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        loader: 'jsxhint-loader'
-      }
-    ],
     loaders: [
       {
         test: /\.(jsx|js)?$/,
-        loaders: ['jsx?harmony']
+        loaders: ['babel-loader']
       },
       {
         test: /\.scss$/,

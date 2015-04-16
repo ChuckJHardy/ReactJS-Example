@@ -14,9 +14,10 @@
   "author": "Chuck J Hardy",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^5.1.9",
+    "babel-loader": "^5.0.0",
     "file-loader": "^0.8.1",
     "jsx-loader": "^0.13.1",
-    "jsxhint-loader": "^0.2.0",
     "node-sass": "^2.1.1",
     "sass-loader": "^0.6.0",
     "style-loader": "^0.10.1",
