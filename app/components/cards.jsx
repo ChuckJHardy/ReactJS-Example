@@ -10,11 +10,11 @@ var records = [
 ];
 
 export default class Cards extends React.Component {
-  _renderCard(record) {
+  _renderCard (record) {
     return <Card key={record.id} record={record} />;
   }
 
-  render() {
+  render () {
     return (
       <ul>
         {records.map(this._renderCard)}

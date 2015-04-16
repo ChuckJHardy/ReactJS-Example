@@ -16,9 +16,11 @@
   "devDependencies": {
     "babel-core": "^5.1.9",
     "babel-loader": "^5.0.0",
+    "css-loader": "^0.10.1",
     "file-loader": "^0.8.1",
     "jsx-loader": "^0.13.1",
     "node-sass": "^2.1.1",
+    "react-tools": "^0.13.1",
     "sass-loader": "^0.6.0",
     "style-loader": "^0.10.1",
     "url-loader": "^0.5.5",
@@ -26,6 +28,7 @@
     "webpack-dev-server": "^1.8.0"
   },
   "dependencies": {
-    "react": "^0.13.1"
+    "react": "^0.13.1",
+    "react-router": "^0.13.2"
   }
 }

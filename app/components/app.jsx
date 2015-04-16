@@ -1,35 +1,32 @@
 'use strict';
 
 import React from 'react';
+import Router from 'react-router';
+
 import Cards from './cards';
+
+var Link = Router.Link;
+var RouteHandler = Router.RouteHandler;
 
 export default class App extends React.Component {
   constructor (props) {
     super(props);
   }
 
-  render() {
+  render () {
     return (
       <div>
-        <header>
-          <h1>Smart Pickings</h1>
-          <button>Add Property</button>
-        </header>
-        <nav>
-          Nav Bar
-        </nav>
-        <section>
-          Map
-        </section>
-        <main>
-          <Cards />
-        </main>
-        <aside>
-          Filters
-        </aside>
-        <footer>
-          Footer
-        </footer>
+        <div className='header'>
+          <Link to='home' className='header-text'>
+            <h1 className='header-logo'>Smart Pickings</h1>
+          </Link>
+          <div className='header-nav'>
+            <Link to='register' className='header-text'>Already have an account?</Link><Link to='login' className='btn'>Login</Link>
+          </div>
+        </div>
+        <div className='hero-container'>
+          <RouteHandler />
+        </div>
       </div>
     );
   }
