@@ -19,7 +19,7 @@ module.exports = {
     loaders: [
       {
         test: /\.(jsx|js)?$/,
-        loaders: ['babel-loader']
+        loaders: ['jsx?harmony']
       },
       {
         test: /\.(scss|css)?$/,

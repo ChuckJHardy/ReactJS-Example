@@ -1,9 +1,15 @@
 'use strict';
 
-import React from 'react';
+var React = require('react');
 
-export default class Card extends React.Component {
-  render () {
+module.exports = React.createClass({
+  displayName: 'Card',
+
+  propTypes: {
+    record: React.PropTypes.object.isRequired,
+  },
+
+  render: function() {
     return (
       <ul>
         <li>
@@ -14,9 +20,4 @@ export default class Card extends React.Component {
       </ul>
     );
   }
-}
-
-Card.displayName = 'Card';
-Card.propTypes = {
-  record: React.PropTypes.object.isRequired,
-};
+});

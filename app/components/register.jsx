@@ -1,11 +1,13 @@
 'use strict';
 
-import React from 'react';
+var React = require('react');
 
 var logoImage = require('../assets/images/logo-big.png');
 
-export default class Register extends React.Component {
-  render () {
+module.exports = React.createClass({
+  displayName: 'Register',
+
+  render: function() {
     return (
       <div>
         <img src={logoImage} alt='' className='hero-logo' />
@@ -26,6 +28,4 @@ export default class Register extends React.Component {
       </div>
     );
   }
-}
-
-Register.displayName = 'Register';
+});

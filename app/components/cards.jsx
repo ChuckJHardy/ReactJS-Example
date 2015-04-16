@@ -1,7 +1,7 @@
 'use strict';
 
-import React from 'react';
-import Card from './card';
+var React = require('react');
+var Card = require('./card');
 
 var records = [
   { id: 1, town: 'Falmouth', price: '£500,000' },
@@ -9,18 +9,18 @@ var records = [
   { id: 3, town: 'London', price: '£918,000' },
 ];
 
-export default class Cards extends React.Component {
-  _renderCard (record) {
-    return <Card key={record.id} record={record} />;
-  }
+module.exports = React.createClass({
+  displayName: 'Cards',
 
-  render () {
+  _renderCard: function(record) {
+    return <Card key={record.id} record={record} />;
+  },
+
+  render: function() {
     return (
       <ul>
         {records.map(this._renderCard)}
       </ul>
     );
   }
-}
-
-Cards.displayName = 'Cards';
+});

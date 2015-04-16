@@ -1,15 +1,16 @@
 'use strict';
 
-import React from 'react';
+var React = require('react');
 
-export default class Home extends React.Component {
-  render () {
+module.exports = React.createClass({
+  displayName: 'Name',
+
+  render: function() {
     return (
       <div>
         Unsecure Home Page
       </div>
     );
   }
-}
+});
 
-Home.displayName = 'Home';

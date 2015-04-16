@@ -1,14 +1,14 @@
 'use strict';
 
-import React from 'react';
-import Router from 'react-router';
+var React = require('react');
+var Router = require('react-router');
 
-import Routes from './config/routes';
+var Routes = require('./config/routes');
 
 window.React = React;
 
-import 'normalize.css/normalize.css';
-import './styles/main.scss';
+require('normalize.css/normalize.css');
+require('./styles/main.scss');
 
 Router.run(Routes, Router.HistoryLocation, function (Handler) {
   React.render(

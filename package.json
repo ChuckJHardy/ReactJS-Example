@@ -14,10 +14,9 @@
   "author": "Chuck J Hardy",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^5.1.9",
-    "babel-loader": "^5.0.0",
     "css-loader": "^0.10.1",
     "file-loader": "^0.8.1",
+    "jest-cli": "^0.4.0",
     "jsx-loader": "^0.13.1",
     "node-sass": "^2.1.1",
     "react-tools": "^0.13.1",
@@ -30,5 +29,25 @@
   "dependencies": {
     "react": "^0.13.1",
     "react-router": "^0.13.2"
+  },
+  "jest": {
+    "globals": {
+      "__DEV__": true
+    },
+    "scriptPreprocessor": "<rootDir>/preprocessor",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-tools"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "testFileExtensions": [
+      "js"
+    ],
+    "testPathDirs": [
+      "<rootDir>/app"
+    ]
   }
 }

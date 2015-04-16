@@ -1,19 +1,17 @@
 'use strict';
 
-import React from 'react';
-import Router from 'react-router';
+var React = require('react');
+var Router = require('react-router');
 
-import Cards from './cards';
+var Cards = require('./cards');
 
 var Link = Router.Link;
 var RouteHandler = Router.RouteHandler;
 
-export default class App extends React.Component {
-  constructor (props) {
-    super(props);
-  }
+module.exports = React.createClass({
+  displayName: 'Application',
 
-  render () {
+  render: function() {
     return (
       <div>
         <div className='header'>
@@ -30,6 +28,4 @@ export default class App extends React.Component {
       </div>
     );
   }
-}
-
-App.displayName = 'Application';
+});
