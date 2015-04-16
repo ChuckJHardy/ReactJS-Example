@@ -11,7 +11,7 @@ require('./styles/main.scss');
 
 Router.run(Routes, Router.HistoryLocation, function (Handler) {
   React.render(
-    <Handler/>, 
+    <Handler/>,
     document.getElementsByTagName('root')[0]
   );
 });
