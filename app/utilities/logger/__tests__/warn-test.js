@@ -43,5 +43,19 @@ describe('Logger/Warn', function() {
         expect(console.groupEnd).toBeCalled();
       });
     });
+
+    describe('#userCreateFail', function() {
+      beforeEach(function() {
+        Warn.users.createFail(email, password, error, true);
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Creation Failure');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
+        expect(console.log.mock.calls[2]).toEqual(['-> Error: ', error]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
   });
 });

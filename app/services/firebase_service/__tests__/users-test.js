@@ -64,7 +64,8 @@ describe('FirebaseService/Users', function() {
       });
 
       it('calls off to logger with correct args', function() {
-        expect(Logger.warn.users.emailTaken).toBeCalledWith(email, password, error);
+        expect(Logger.warn.users.emailTaken)
+          .toBeCalledWith(email, password, error);
       });
     });
 
@@ -81,15 +82,26 @@ describe('FirebaseService/Users', function() {
       });
 
       it('calls off to logger with correct args', function() {
-        expect(Logger.warn.users.invalidEmail).toBeCalledWith(email, password, error);
+        expect(Logger.warn.users.invalidEmail)
+          .toBeCalledWith(email, password, error);
       });
     });
 
     describe('Error', function() {
-      it('calls callback with email', function() {
-        var error = 'Oops';
+      var error = 'Oops';
+
+      beforeEach(function() {
+        Logger.warn.users.createFail = jest.genMockFunction();
         subject(error);
+      });
+
+      it('calls callback with email', function() {
         expect(asserts.errorCallback).toEqual(error);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.warn.users.createFail)
+          .toBeCalledWith(email, password, error);
       });
     });
   });

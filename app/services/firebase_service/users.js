@@ -24,6 +24,7 @@ var create = function(
           Logger.warn.users.invalidEmail(email, password, error);
           invalidEmailCallback(email); break;
         default:
+          Logger.warn.users.createFail(email, password, error);
           errorCallback(error);
       }
     } else {
