@@ -34,7 +34,8 @@
   },
   "jest": {
     "globals": {
-      "__DEV__": true,
+      "__DEV__": false,
+      "__TEST__": true,
       "__FIREBASE_URL__": "firebase-test-url"
     },
     "scriptPreprocessor": "<rootDir>/preprocessor",

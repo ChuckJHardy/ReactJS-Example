@@ -37,6 +37,7 @@ module.exports = {
     new webpack.DefinePlugin({
       VERSION: JSON.stringify('0.0.1'),
       __FIREBASE_URL__: JSON.stringify(env.FIREBASE_URL),
+      __DEV__: true,
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       }
