@@ -3,6 +3,7 @@
 jest.dontMock('../users');
 
 var Users = require('../users');
+var Logger = require('../../../utilities/logger');
 
 describe('FirebaseService/Users', function() {
   describe('#create', function() {
@@ -34,10 +35,19 @@ describe('FirebaseService/Users', function() {
     };
 
     describe('Success', function() {
-      it('calls callback with email', function() {
-        var data = { uid: 123 };
+      var data = { uid: 123 };
+
+      beforeEach(function() {
+        Logger.notice.users.created = jest.genMockFunction();
         subject(null, data)
+      });
+
+      it('calls callback with email', function() {
         expect(asserts.successCallback).toEqual(data);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.notice.users.created).toBeCalledWith(email, password, null);
       });
     });
 

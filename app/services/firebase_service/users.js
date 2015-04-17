@@ -1,5 +1,7 @@
 'use strict';
 
+var Logger = require('../../utilities/logger');
+
 var create = function(
   adapter,
   email,
@@ -23,6 +25,7 @@ var create = function(
           errorCallback(error);
       }
     } else {
+      Logger.notice.users.created(email, password, error);
       successCallback(data);
     }
   });
