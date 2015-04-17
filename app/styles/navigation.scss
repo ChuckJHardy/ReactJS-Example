@@ -1,0 +1,28 @@
+nav {
+	padding: 15px 30px;
+	border-bottom: $border-size solid #ddd;
+
+	&:after {
+		@include clearfix;
+	}
+}
+
+.header-logo {
+	@include hide-text;
+	background: transparent url(../assets/images/logo-main.png) no-repeat center center;
+	background-size: 173px 48px;
+	display: inline-block;
+	float: left;
+	margin: 0;
+	width: 173px;
+	height: 48px;
+}
+
+.header-text {
+	margin-right: 20px;
+}
+
+.header-nav {
+	float: right;
+	margin-top: 3px;
+}

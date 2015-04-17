@@ -1,16 +1,16 @@
 .btn {
-  @include rounded-corners;
-  background-color: transparent;
-  border: $border-size solid $main-color;
-  color: inherit;
-  display: inline-block;
-  line-height: $form-element-height;
-  padding: 0 20px;
-  text-decoration: none;
+	@include rounded-corners;
+	background-color: transparent;
+	border: $border-size solid $main-color;
+	color: inherit;
+	display: inline-block;
+	line-height: $form-element-height;
+	padding: 0 20px;
+	text-decoration: none;
 
-  &:hover {
-    background-color: $main-color;
-    color: $invert-color;
-    text-decoration: none;
-  }
+	&:hover {
+		background-color: $main-color;
+		color: $invert-color;
+		text-decoration: none;
+	}
 }
