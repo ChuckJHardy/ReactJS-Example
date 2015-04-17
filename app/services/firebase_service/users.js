@@ -21,6 +21,7 @@ var create = function(
           Logger.warn.users.emailTaken(email, password, error);
           emailTakenCallback(email); break;
         case 'INVALID_EMAIL':
+          Logger.warn.users.invalidEmail(email, password, error);
           invalidEmailCallback(email); break;
         default:
           errorCallback(error);

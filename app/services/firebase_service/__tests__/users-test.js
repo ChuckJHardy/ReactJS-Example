@@ -69,9 +69,19 @@ describe('FirebaseService/Users', function() {
     });
 
     describe('Invalid Email', function() {
+      var error = { code: 'INVALID_EMAIL' };
+
+      beforeEach(function() {
+        Logger.warn.users.invalidEmail = jest.genMockFunction();
+        subject(error);
+      });
+
       it('calls callback with email', function() {
-        subject({ code: 'INVALID_EMAIL' });
         expect(asserts.invalidEmailCallback).toEqual(email);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.warn.users.invalidEmail).toBeCalledWith(email, password, error);
       });
     });
 

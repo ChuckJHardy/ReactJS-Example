@@ -14,8 +14,19 @@ var userEmailTaken = function(email, password, error, forceRun) {
   });
 };
 
+var userInvalidEmail = function(email, password, error, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ User - Invalid Email');
+    console.log('-> Email: ', email);
+    console.log('-> Password: ', password);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   users: {
-    emailTaken: userEmailTaken
+    emailTaken: userEmailTaken,
+    invalidEmail: userInvalidEmail
   }
 };
