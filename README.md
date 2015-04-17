@@ -19,8 +19,8 @@ You will need the following things properly installed on your computer.
 
 ## Running / Development
 
-* `ember server`
-* Visit your app at [http://localhost:8080/webpack-dev-server/index.html](http://localhost:8080/webpack-dev-server/index.html).
+* `npm start`
+* Visit your app at [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/).
 
 ### Running Tests
 

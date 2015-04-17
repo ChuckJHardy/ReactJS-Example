@@ -45,6 +45,12 @@ if [ $? -ne 0 ]; then
   exit 69
 fi
 
+gem which bundler &> /dev/null
+if [ $? -ne 0 ]; then
+  warn "Bundler Missing: Try 'gem install bundler'."
+  exit 69
+fi
+
 set -e
 
 any_variable_missing=false
@@ -54,6 +60,7 @@ info "
 * Install Dependencies
 ------------------------------------"
 
+bundle install
 npm install webpack webpack-dev-server -g
 npm install
 
