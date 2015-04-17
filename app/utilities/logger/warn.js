@@ -4,17 +4,18 @@ var Runner = function(forceRun, block) {
   if (forceRun || __DEV__) { block(); }
 };
 
-var userCreated = function(email, password, forceRun) {
+var userEmailTaken = function(email, password, error, forceRun) {
   new Runner(forceRun, function() {
-    console.groupCollapsed('-> ✓ User - Created');
+    console.groupCollapsed('-> ✗ User - Email Taken');
     console.log('-> Email: ', email);
     console.log('-> Password: ', password);
+    console.log('-> Error: ', error);
     console.groupEnd();
   });
 };
 
 module.exports = {
   users: {
-    created: userCreated
+    emailTaken: userEmailTaken
   }
 };

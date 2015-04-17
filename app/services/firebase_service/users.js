@@ -18,6 +18,7 @@ var create = function(
     if (error) {
       switch (error.code) {
         case 'EMAIL_TAKEN':
+          Logger.warn.users.emailTaken(email, password, error);
           emailTakenCallback(email); break;
         case 'INVALID_EMAIL':
           invalidEmailCallback(email); break;
@@ -25,7 +26,7 @@ var create = function(
           errorCallback(error);
       }
     } else {
-      Logger.notice.users.created(email, password, error);
+      Logger.notice.users.created(email, password);
       successCallback(data);
     }
   });

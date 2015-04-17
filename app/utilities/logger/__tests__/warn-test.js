@@ -1,10 +1,10 @@
 'use strict';
 
-jest.dontMock('../notice');
+jest.dontMock('../warn');
 
-var Notice = require('../notice');
+var Warn = require('../warn');
 
-describe('Logger/Notice', function() {
+describe('Logger/Warn', function() {
   describe('#users', function() {
     describe('#created', function() {
       var email = 'test@example.com';
@@ -16,13 +16,14 @@ describe('Logger/Notice', function() {
         console.log = jest.genMockFunction();
         console.groupEnd = jest.genMockFunction();
 
-        Notice.users.created(email, password, true);
+        Warn.users.emailTaken(email, password, error, true);
       });
 
       it('outputs expected logs', function() {
-        expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Created');
+        expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Email Taken');
         expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
         expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
+        expect(console.log.mock.calls[2]).toEqual(['-> Error: ', error]);
         expect(console.groupEnd).toBeCalled();
       });
     });

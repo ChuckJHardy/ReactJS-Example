@@ -10,4 +10,10 @@ describe('Logger', function() {
       expect(Logger.notice).toBeDefined();
     });
   });
+
+  describe('.warn', function() {
+    it('returns function', function() {
+      expect(Logger.warn).toBeDefined();
+    });
+  });
 });

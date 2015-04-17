@@ -47,14 +47,24 @@ describe('FirebaseService/Users', function() {
       });
 
       it('calls off to logger with correct args', function() {
-        expect(Logger.notice.users.created).toBeCalledWith(email, password, null);
+        expect(Logger.notice.users.created).toBeCalledWith(email, password);
       });
     });
 
     describe('Email Taken', function() {
+      var error = { code: 'EMAIL_TAKEN' };
+
+      beforeEach(function() {
+        Logger.warn.users.emailTaken = jest.genMockFunction();
+        subject(error);
+      });
+
       it('calls callback with email', function() {
-        subject({ code: 'EMAIL_TAKEN' });
         expect(asserts.emailTakenCallback).toEqual(email);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.warn.users.emailTaken).toBeCalledWith(email, password, error);
       });
     });
 
