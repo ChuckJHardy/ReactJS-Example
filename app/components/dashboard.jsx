@@ -4,7 +4,7 @@ var React = require('react');
 
 var Authenticated = require('./authenticated');
 
-module.exports = Authenticated(React.createClass({
+module.exports = new Authenticated(React.createClass({
   displayName: 'Dashboard',
 
   render: function() {
