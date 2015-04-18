@@ -24,7 +24,6 @@ module.exports = React.createClass({
     );
   },
   sendToFirebase: function(email, password) {
-    console.log(email, password);
     FirebaseService.users.find(
       App.firebase,
       email,

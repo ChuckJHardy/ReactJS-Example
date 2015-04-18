@@ -6,6 +6,7 @@ var Firebase = require('firebase');
 
 var AuthenticationService = require('../services/authentication_service');
 var Cards = require('./cards');
+var Navigation = require('./navigation');
 
 var Link = Router.Link;
 var RouteHandler = Router.RouteHandler;
@@ -25,11 +26,8 @@ module.exports = React.createClass({
           <Link to='dashboard' className='header-text'>
             <h1 className='header-logo'>Smart Pickings</h1>
           </Link>
-          <div className='header-nav'>
-            <Link to='register' className='header-text'>Already have an account?</Link>
-            <Link to='login' className='btn'>Login</Link>
-            <Link to='logout' className='btn'>Logout</Link>
-          </div>
+
+          <Navigation />
         </nav>
         <div className='hero-container'>
           <RouteHandler />
