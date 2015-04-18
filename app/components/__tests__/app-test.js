@@ -22,6 +22,12 @@ describe('App', function () {
     );
   };
 
+  describe('.warden', function () {
+    it('returns warden instance', function() {
+      expect(App.warden).toBeDefined();
+    });
+  });
+
   describe('.firebase', function () {
     it('returns firebase instance', function() {
       expect(App.firebase).toBeDefined();

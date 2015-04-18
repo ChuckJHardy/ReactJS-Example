@@ -32,6 +32,7 @@ module.exports = React.createClass({
       function() {},
       function() {},
       function(data) {
+        App.warden.login(data.uid);
         this.context.router.replaceWith('dashboard');
       }.bind(this)
     );

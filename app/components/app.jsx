@@ -4,6 +4,7 @@ var React = require('react');
 var Router = require('react-router');
 var Firebase = require('firebase');
 
+var AuthenticationService = require('../services/authentication_service');
 var Cards = require('./cards');
 
 var Link = Router.Link;
@@ -13,6 +14,7 @@ module.exports = React.createClass({
   displayName: 'Application',
 
   statics: {
+    warden: AuthenticationService,
     firebase: new Firebase(__FIREBASE_URL__)
   },
 
