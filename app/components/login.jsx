@@ -51,6 +51,9 @@ module.exports = React.createClass({
             <input ref='password' type='text' required />
           </div>
           <div className='form-field'>
+            <a className="forgot-link">Forgot your password?</a>
+          </div>
+          <div className='form-field'>
             <input type='submit' value='Login' className='btn' />
           </div>
         </form>
