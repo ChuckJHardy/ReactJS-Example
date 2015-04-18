@@ -4,11 +4,16 @@ var React = require('react');
 
 var App = require('../components/app');
 var FirebaseService = require('../services/firebase_service');
+var Router = require('react-router');
 
 var logoImage = require('../assets/images/logo-big.png');
 
 module.exports = React.createClass({
   displayName: 'Register',
+
+  contextTypes: {
+    router: React.PropTypes.func
+  },
 
   handleSubmit: function(e) {
     e.preventDefault();
@@ -26,7 +31,9 @@ module.exports = React.createClass({
       function() {},
       function() {},
       function() {},
-      function() {}
+      function(data) {
+        this.context.router.replaceWith('dashboard');
+      }.bind(this)
     )
   },
 
