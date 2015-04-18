@@ -6,6 +6,16 @@ var Users = require('../users');
 var Logger = require('../../../utilities/logger');
 
 describe('FirebaseService/Users', function() {
+  var email = 'test@example.com';
+  var password = 'password';
+
+  var mockAdapter = function(error, data) {
+    return {
+      createUser: function(params, callback) { callback(error, data); },
+      authWithPassword: function(params, callback) { callback(error, data); }
+    };
+  };
+
   describe('#create', function() {
     var asserts = {};
     var callbacks = {
@@ -15,16 +25,9 @@ describe('FirebaseService/Users', function() {
       successCallback: function(data) { asserts['successCallback'] = data }
     };
 
-    var email = 'test@example.com';
-    var password = 'password';
-
     var subject = function(error, data) {
-      var mockAdapter = {
-        createUser: function(params, callback) { callback(error, data); }
-      };
-
       return Users.create(
-        mockAdapter,
+        mockAdapter(error, data),
         email,
         password,
         callbacks.emailTakenCallback,
@@ -47,7 +50,7 @@ describe('FirebaseService/Users', function() {
       });
 
       it('calls off to logger with correct args', function() {
-        expect(Logger.notice.users.created).toBeCalledWith(email, password);
+        expect(Logger.notice.users.created).toBeCalledWith(email, password, data);
       });
     });
 
@@ -101,6 +104,59 @@ describe('FirebaseService/Users', function() {
 
       it('calls off to logger with correct args', function() {
         expect(Logger.warn.users.createFail)
+          .toBeCalledWith(email, password, error);
+      });
+    });
+  });
+
+  describe('#find', function() {
+    var asserts = {};
+    var callbacks = {
+      errorCallback: function(error) { asserts['errorCallback'] = error },
+      successCallback: function(data) { asserts['successCallback'] = data }
+    };
+
+    var subject = function(error, data) {
+      return Users.find(
+        mockAdapter(error, data),
+        email,
+        password,
+        callbacks.errorCallback,
+        callbacks.successCallback
+      );
+    };
+
+    describe('Success', function() {
+      var data = { uid: 123 };
+
+      beforeEach(function() {
+        Logger.notice.users.found = jest.genMockFunction();
+        subject(null, data)
+      });
+
+      it('calls callback with email', function() {
+        expect(asserts.successCallback).toEqual(data);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.notice.users.found).toBeCalledWith(email, password, data);
+      });
+    });
+
+    describe('Error', function() {
+      var error = 'Oops';
+
+      beforeEach(function() {
+        Logger.warn.users.notFound = jest.genMockFunction();
+        subject(error);
+      });
+
+      it('calls callback with email', function() {
+        expect(asserts.errorCallback).toEqual(error);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.warn.users.notFound)
           .toBeCalledWith(email, password, error);
       });
     });
