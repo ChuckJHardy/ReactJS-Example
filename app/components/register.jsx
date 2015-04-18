@@ -15,6 +15,13 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
 
+  getInitialState: function() {
+    return {
+      invalidEmail: false,
+      emailTaken: false
+    };
+  },
+
   handleSubmit: function(e) {
     e.preventDefault();
 
@@ -28,8 +35,12 @@ module.exports = React.createClass({
       App.firebase,
       email,
       password,
-      function() {},
-      function() {},
+      function() {
+        this.setState({ emailTaken: true });
+      }.bind(this),
+      function() {
+        this.setState({ invalidEmail: true });
+      }.bind(this),
       function() {},
       function(data) {
         App.warden.login(data.uid);
@@ -38,15 +49,32 @@ module.exports = React.createClass({
     );
   },
 
+  renderErrorElement: function() {
+    if (this.state.emailTaken) {
+      return <div className="form-error-message">Email Taken</div>;
+    } else if (this.state.invalidEmail) {
+      return <div className="form-error-message">Invalid Email Address</div>;
+    }
+  },
+
+  formElementClassNames: function() {
+    if (this.state.emailTaken || this.state.invalidEmail) {
+      return 'form-field form-field-error';
+    } else {
+      return 'form-field';
+    }
+  },
+
   render: function() {
     return (
       <div>
         <img src={logoImage} alt='' className='hero-logo' />
         <div className='hero-title'>Register</div>
         <form className='hero-form' onSubmit={this.handleSubmit}>
-          <div className='form-field'>
+          <div className={this.formElementClassNames()}>
             <label>Email</label>
             <input ref='email' type='text' autofocus required />
+            {this.renderErrorElement()}
           </div>
           <div className='form-field'>
             <label>Password</label>

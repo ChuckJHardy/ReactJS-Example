@@ -48,6 +48,42 @@ describe('Register', function() {
     });
   });
 
+  describe('Errors', function() {
+    describe('When Email Taken', function() {
+      it('includes expected copy', function() {
+        var localSubject = subject();
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .not.toContain('form-field-error');
+
+        localSubject.setState({emailTaken: true});
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .toContain('Email Taken');
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .toContain('form-field form-field-error');
+      });
+    });
+
+    describe('When Invalid Email', function() {
+      it('includes expected copy', function() {
+        var localSubject = subject();
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .not.toContain('form-field-error');
+
+        localSubject.setState({invalidEmail: true});
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .toContain('Invalid Email Address');
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .toContain('form-field form-field-error');
+      });
+    });
+  });
+
   it('renders', function() {
     expect(subject().getDOMNode().textContent)
       .toContain('Email');
