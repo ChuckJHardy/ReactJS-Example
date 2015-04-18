@@ -44,11 +44,23 @@ var userNotFound = function(email, password, error, forceRun) {
   });
 };
 
+var userAccessDenied = function(email, password, error, accessKey, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ User - Access Denied');
+    console.log('-> Email: ', email);
+    console.log('-> Password: ', password);
+    console.log('-> Access Key: ', accessKey);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   users: {
     createFail: userCreateFail,
     emailTaken: userEmailTaken,
     invalidEmail: userInvalidEmail,
     notFound: userNotFound,
+    accessDenied: userAccessDenied,
   }
 };

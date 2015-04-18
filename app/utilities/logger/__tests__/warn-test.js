@@ -71,5 +71,22 @@ describe('Logger/Warn', function() {
         expect(console.groupEnd).toBeCalled();
       });
     });
+
+    describe('#userAccessDenied', function() {
+      var accessKey = 'access-key';
+
+      beforeEach(function() {
+        Warn.users.accessDenied(email, password, error, accessKey, true);
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Access Denied');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
+        expect(console.log.mock.calls[2]).toEqual(['-> Access Key: ', accessKey]);
+        expect(console.log.mock.calls[3]).toEqual(['-> Error: ', error]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
   });
 });

@@ -13,16 +13,14 @@ module.exports = React.createClass({
   },
 
   renderAuthLink: function() {
-    var routePath = this.context.router.getCurrentPathname()
+    var routePath = this.context.router.getCurrentPathname();
 
     switch(routePath) {
       case '/login':
         return <Link to='register' className='btn'>Register</Link>;
-        break;
       case '/register':
       case '/logout':
         return <Link to='login' className='btn'>Login</Link>;
-        break;
       default:
         return <Link to='logout' className='btn'>Logout</Link>;
     }  

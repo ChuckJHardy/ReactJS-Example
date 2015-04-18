@@ -38,7 +38,8 @@
       "__DEV__": false,
       "__TEST__": true,
       "__FIREBASE_URL__": "firebase-test-url",
-      "__LOCAL_STORAGE_KEY__": "localStorage-test-key"
+      "__LOCAL_STORAGE_KEY__": "localStorage-test-key",
+      "__LOCKDOWN_KEY__": "lockdown-test-key"
     },
     "scriptPreprocessor": "<rootDir>/preprocessor",
     "unmockedModulePathPatterns": [

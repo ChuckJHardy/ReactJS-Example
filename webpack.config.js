@@ -44,6 +44,7 @@ module.exports = {
       VERSION: JSON.stringify('0.0.1'),
       __FIREBASE_URL__: JSON.stringify(env.FIREBASE_URL),
       __LOCAL_STORAGE_KEY__: JSON.stringify(env.LOCAL_STORAGE_KEY),
+      __LOCKDOWN_KEY__: JSON.stringify(env.LOCKDOWN_KEY),
       __TEST__: false,
       __DEV__: true,
       'process.env': {

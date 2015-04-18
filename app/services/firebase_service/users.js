@@ -1,6 +1,7 @@
 'use strict';
 
 var Logger = require('../../utilities/logger');
+var Lockdown = require('../../utilities/lockdown');
 
 var create = function(
   adapter,
@@ -11,6 +12,18 @@ var create = function(
   errorCallback,
   successCallback
 ) {
+  if (!Lockdown.opened(email)) {
+    Logger.warn.users.accessDenied(
+      email,
+      password,
+      'Access Denied',
+      __LOCKDOWN_KEY__
+    );
+
+    errorCallback('Access Denied');
+    return;
+  };
+
   adapter.createUser({
     email: email,
     password: password

@@ -1,12 +1,13 @@
 'use strict';
 
 jest.dontMock('../users');
+jest.dontMock('../../../utilities/lockdown');
 
 var Users = require('../users');
 var Logger = require('../../../utilities/logger');
 
 describe('FirebaseService/Users', function() {
-  var email = 'test@example.com';
+  var email = __LOCKDOWN_KEY__ + '@example.com';
   var password = 'password';
 
   var mockAdapter = function(error, data) {
@@ -25,10 +26,10 @@ describe('FirebaseService/Users', function() {
       successCallback: function(data) { asserts['successCallback'] = data }
     };
 
-    var subject = function(error, data) {
+    var subject = function(error, data, emailOverride) {
       return Users.create(
         mockAdapter(error, data),
-        email,
+        emailOverride || email,
         password,
         callbacks.emailTakenCallback,
         callbacks.invalidEmailCallback,
@@ -105,6 +106,25 @@ describe('FirebaseService/Users', function() {
       it('calls off to logger with correct args', function() {
         expect(Logger.warn.users.createFail)
           .toBeCalledWith(email, password, error);
+      });
+    });
+
+    describe('Access Denied', function() {
+      var error = 'Access Denied';
+      var localEmail = 'test@example.com';
+
+      beforeEach(function() {
+        Logger.warn.users.accessDenied = jest.genMockFunction();
+        subject(error, null, localEmail);
+      });
+
+      it('calls callback with email', function() {
+        expect(asserts.errorCallback).toEqual(error);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.warn.users.accessDenied)
+          .toBeCalledWith(localEmail, password, error, __LOCKDOWN_KEY__);
       });
     });
   });
