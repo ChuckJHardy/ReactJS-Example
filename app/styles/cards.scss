@@ -55,7 +55,7 @@
   padding: 30px 20px;
 }
 
-.card-heading {
+.card-name a {
   @include text-overflow;
   color: $link-color;
   font-size: 18px;

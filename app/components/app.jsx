@@ -22,13 +22,13 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div>
-        <nav>
-          <Link to='dashboard' className='header-text'>
-            <h1 className='header-logo'>Smart Pickings</h1>
+        <header className="main-header">
+          <Link to='dashboard'>
+            <h1 className='main-logo'>Smart Pickings</h1>
           </Link>
 
           <Navigation />
-        </nav>
+        </header>
         <div className='hero-container'>
           <RouteHandler />
         </div>

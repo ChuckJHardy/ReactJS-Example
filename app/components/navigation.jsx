@@ -28,14 +28,14 @@ module.exports = React.createClass({
         break;
       default:
         return <Link to='logout' className='btn'>Logout</Link>;
-    }  
+    }
   },
 
   render: function() {
     return (
-      <div className='header-nav'>
+      <nav>
         {this.renderAuthLink()}
-      </div>
+      </nav>
     );
   }
 });
