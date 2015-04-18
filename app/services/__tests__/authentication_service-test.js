@@ -4,12 +4,37 @@ jest.dontMock('../authentication_service');
 
 describe('AuthenticationService', function() {
   var AuthenticationService = require('../authentication_service');
+  var localStorageAssets = {};
+
+  window.localStorage = {
+    setItem: function(key, value) {
+      localStorageAssets[key] = value;
+    },
+    removeItem: function(key) {
+      localStorageAssets[key] = null;
+    },
+    getItem: function(key) {
+      return localStorageAssets[key];
+    }
+  };
+
+  beforeEach(function() {
+    AuthenticationService.logout();
+  });
 
   describe('.getCachedUser', function() {
     var subject = AuthenticationService.getCachedUser();
 
     it('returns cachedUser', function() {
       expect(subject).toEqual(null);
+    });
+  });
+
+  describe('.getLocalStorageUser', function() {
+    var subject = AuthenticationService.getLocalStorageUser();
+
+    it('returns local storage users', function() {
+      expect(subject).toEqual(undefined);
     });
   });
 
@@ -29,6 +54,10 @@ describe('AuthenticationService', function() {
 
     it('sets the cachedUser', function() {
       expect(AuthenticationService.getCachedUser()).toEqual(uid);
+    });
+
+    it('sets the localstorage', function() {
+      expect(AuthenticationService.getLocalStorageUser()).toEqual(uid);
     });
 
     it('calls the onChangeListener', function() {
@@ -63,13 +92,24 @@ describe('AuthenticationService', function() {
       AuthenticationService.loggedIn();
     });
 
-    describe('Cached User', function() {
+    describe('From Cached User', function() {
       it('returns false when null', function() {
         expect(AuthenticationService.loggedIn()).toEqual(false);
       });
 
       it('returns true when assigned', function() {
         AuthenticationService.login(1);
+        expect(AuthenticationService.loggedIn()).toEqual(true);
+      });
+    });
+
+    describe('From Local Storage User', function() {
+      it('returns false when null', function() {
+        expect(AuthenticationService.loggedIn()).toEqual(false);
+      });
+
+      it('returns true when assigned', function() {
+        window.localStorage.setItem('localStorage-test-key', 1);
         expect(AuthenticationService.loggedIn()).toEqual(true);
       });
     });
