@@ -29,6 +29,7 @@ module.exports = React.createClass({
             <Link to='register' className='header-text'>Already have an account?</Link>
             <Link to='login' className='btn'>Login</Link>
             <Link to='logout' className='btn'>Logout</Link>
+            <Link to='dashboard' className='btn'>Dashboard</Link>
           </div>
         </nav>
         <div className='hero-container'>

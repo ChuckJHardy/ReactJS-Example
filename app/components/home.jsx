@@ -3,7 +3,7 @@
 var React = require('react');
 
 module.exports = React.createClass({
-  displayName: 'Name',
+  displayName: 'Home',
 
   render: function() {
     return (
