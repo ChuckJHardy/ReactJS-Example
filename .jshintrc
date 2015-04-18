@@ -1,0 +1,13 @@
+{
+    "jasmine" : true,
+    "node" : true,
+
+    "globals" : {
+      "window" : true,
+      "document" : true,
+      "jest" : true,
+      "__TEST__" : true,
+      "__DEV__" : true,
+      "__FIREBASE_URL__" : true
+    }
+}

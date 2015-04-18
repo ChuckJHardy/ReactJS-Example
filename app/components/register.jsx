@@ -34,7 +34,7 @@ module.exports = React.createClass({
       function(data) {
         this.context.router.replaceWith('dashboard');
       }.bind(this)
-    )
+    );
   },
 
   render: function() {

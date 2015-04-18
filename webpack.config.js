@@ -17,6 +17,12 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.jsx$/,
+        loader: 'jsxhint-loader'
+      }
+    ],
     loaders: [
       {
         test: /\.(jsx|js)?$/,
