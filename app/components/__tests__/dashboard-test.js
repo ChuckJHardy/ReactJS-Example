@@ -1,6 +1,7 @@
 'use strict';
 
 jest.dontMock('../dashboard');
+jest.dontMock('../authenticated');
 
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
