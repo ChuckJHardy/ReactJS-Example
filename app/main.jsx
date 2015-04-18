@@ -10,7 +10,7 @@ window.React = React;
 require('normalize.css/normalize.css');
 require('./styles/main.scss');
 
-Router.run(Routes, Router.HistoryLocation, function (Handler) {
+Router.run(Routes, function (Handler) {
   React.render(
     <Handler/>,
     document.getElementsByTagName('root')[0]

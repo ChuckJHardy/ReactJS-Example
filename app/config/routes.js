@@ -15,7 +15,7 @@ module.exports = (
   <Route handler={App} >
     <Route name='login' path='login' handler={Login} />
     <Route name='register' path='register' handler={Register} />
-    <Route name='dashboard' path='/' handler={Dashboard} />
+    <Route name='dashboard' handler={Dashboard} />
     <Route name='home' path='/' handler={Home} />
   </Route>    
 );
