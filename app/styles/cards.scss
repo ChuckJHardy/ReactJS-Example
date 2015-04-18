@@ -1,4 +1,4 @@
-lgrid-filter {
+.cards-filter {
   text-align: center;
 
   .filter {
@@ -16,7 +16,16 @@ lgrid-filter {
   }
 }
 
-.grid {
+.add-card {
+  padding: 10px 0;
+  text-align: center;
+
+  .btn {
+    width: 250px;
+  }
+}
+
+.cards {
   padding: 10px;
 
   &:after {
@@ -24,40 +33,60 @@ lgrid-filter {
   }
 }
 
-.grid-element {
+.card {
   float: left;
   width: 25%;
 }
 
-.grid-element-inner {
+.card-inner {
   display: block;
   margin: 10px;
 }
 
-.grid-element-image img {
+.card-image img {
   @include top-rounded-corners;
   display: block;
 }
 
-.grid-element-content {
+.card-content {
   @include bottom-rounded-corners;
   border: $border-size solid $subtle-border-color;
   border-top: 0;
   padding: 30px 20px;
 }
 
-.grid-element-heading {
+.card-heading {
   @include text-overflow;
   color: $link-color;
   font-size: 18px;
 }
 
-.grid-element-heading2 {
+.card-heading2 {
   font-size: 13px;
   margin-bottom: 10px;
 }
 
-.grid-element-heading3 {
+.card-heading3 {
   font-size: 24px;
   font-weight: bold;
+}
+
+.card-text {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+  .add-card {
+    padding-left: 10px;
+    padding-right: 10px;
+    .btn {
+      width: 100%;
+    }
+  }
+
+  .card {
+    float: none;
+    width: 100%;
+  }
 }

@@ -24,3 +24,13 @@
     width: 100%;
   }
 }
+
+@media only screen and (max-width: 480px) {
+  .hero-container {
+    padding: 30px;
+  }
+
+  .hero-title, .hero-form {
+    width: 100%;
+  }
+}

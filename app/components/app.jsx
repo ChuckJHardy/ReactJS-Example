@@ -19,14 +19,14 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div>
-        <div className='header'>
+        <nav>
           <Link to='home' className='header-text'>
             <h1 className='header-logo'>Smart Pickings</h1>
           </Link>
           <div className='header-nav'>
             <Link to='register' className='header-text'>Already have an account?</Link><Link to='login' className='btn'>Login</Link>
           </div>
-        </div>
+        </nav>
         <div className='hero-container'>
           <RouteHandler />
         </div>
