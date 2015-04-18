@@ -6,7 +6,6 @@ var Router = require('react-router');
 var App = require('../components/app');
 var Dashboard = require('../components/dashboard');
 var Home = require('../components/home');
-var LoggedOut = require('../components/logged_out');
 var LoggedIn = require('../components/logged_in');
 var Login = require('../components/login');
 var Logout = require('../components/logout');
