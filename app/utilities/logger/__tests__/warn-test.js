@@ -57,5 +57,19 @@ describe('Logger/Warn', function() {
         expect(console.groupEnd).toBeCalled();
       });
     });
+
+    describe('#userNotFound', function() {
+      beforeEach(function() {
+        Warn.users.notFound(email, password, error, true);
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Not Found');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
+        expect(console.log.mock.calls[2]).toEqual(['-> Error: ', error]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
   });
 });

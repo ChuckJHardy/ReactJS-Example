@@ -34,10 +34,21 @@ var userCreateFail = function(email, password, error, forceRun) {
   });
 };
 
+var userNotFound = function(email, password, error, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ User - Not Found');
+    console.log('-> Email: ', email);
+    console.log('-> Password: ', password);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   users: {
+    createFail: userCreateFail,
     emailTaken: userEmailTaken,
     invalidEmail: userInvalidEmail,
-    createFail: userCreateFail
+    notFound: userNotFound,
   }
 };
