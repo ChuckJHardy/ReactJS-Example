@@ -10,14 +10,14 @@ module.exports = function(WrappedComponent) {
 
     statics: {
       willTransitionTo: function(transition) {
-        if (false) {
+        if (!App.warden.loggedIn()) {
           transition.redirect('/login', {}, {'nextPath' : transition.path});
         }
       }
     },
 
     render: function() {
-      return (<WrappedComponent {...this.props} />)
+      return (<WrappedComponent {...this.props} />);
     }
   });
 };
