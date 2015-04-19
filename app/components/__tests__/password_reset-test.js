@@ -81,12 +81,24 @@ describe('PasswordReset', function() {
 
       localSubject.context = {
         router: StubRouterContent.stubber({
-          transitionTo: function(route) { assets['handlerSuccess'] = route; }
+          transitionTo: function(route, params, query) {
+            assets['handlerSuccess'] = {
+              route: route,
+              params: params,
+              query: query
+            };
+          }
         })
-      }
+      };
+
+      localSubject.refs.email.getDOMNode().value = email;
 
       localSubject.handlerSuccess();
-      expect(assets.handlerSuccess).toEqual('login')
+      expect(assets.handlerSuccess).toEqual({
+        route: 'login',
+        params: {},
+        query: { email: email }
+      })
     });
   });
 

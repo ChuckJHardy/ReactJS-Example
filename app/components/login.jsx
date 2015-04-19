@@ -15,6 +15,10 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
 
+  componentDidMount: function() {
+    this.populateFormValuesFromQuery();
+  },
+
   grabEmail: function() {
     return this.refs.email.getDOMNode().value.trim();
   },
@@ -32,6 +36,15 @@ module.exports = React.createClass({
   handlerSuccess: function(data) {
     App.warden.login(data.uid);
     this.context.router.replaceWith('dashboard');
+  },
+  populateFormValuesFromQuery: function() {
+    if (this.context.router) {
+      var passedEmail = this.context.router.getCurrentQuery().email;
+
+      if (passedEmail) {
+        this.refs.email.getDOMNode().value = passedEmail;
+      }
+    }
   },
   sendToFirebase: function(email, password) {
     FirebaseService.users.find(

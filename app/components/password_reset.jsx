@@ -19,6 +19,13 @@ module.exports = React.createClass({
     this.populateFormValuesFromQuery();
   },
 
+  grabEmail: function() {
+    return this.refs.email.getDOMNode().value.trim();
+  },
+  handleSubmit: function(e) {
+    e.preventDefault();
+    this.sendToFirebase(this.grabEmail());
+  },
   populateFormValuesFromQuery: function() {
     if (this.context.router) {
       var passedEmail = this.context.router.getCurrentQuery().email;
@@ -27,13 +34,6 @@ module.exports = React.createClass({
         this.refs.email.getDOMNode().value = passedEmail;
       }
     }
-  },
-  handleSubmit: function(e) {
-    e.preventDefault();
-
-    this.sendToFirebase(
-      this.refs.email.getDOMNode().value.trim()
-    );
   },
   sendToFirebase: function(email) {
     FirebaseService.users.resetPassword(
@@ -45,7 +45,7 @@ module.exports = React.createClass({
     );
   },
   handlerSuccess: function() {
-    this.context.router.transitionTo('login');
+    this.context.router.transitionTo('login', {}, { email: this.grabEmail() });
   },
 
   render: function() {

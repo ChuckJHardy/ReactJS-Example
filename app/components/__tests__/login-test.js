@@ -104,6 +104,33 @@ describe('Login', function() {
     });
   });
 
+  describe('#populateFormValuesFromQuery', function() {
+    describe('When Email Passed', function() {
+      it('sets the email input to the email address', function() {
+        var localSubject = subject();
+
+        localSubject.context = {
+          router: StubRouterContent.stubber({
+            getCurrentQuery: function() { return { email: email } }
+          })
+        }
+
+        localSubject.populateFormValuesFromQuery();
+        expect(localSubject.refs.email.getDOMNode().value).toEqual(email)
+      });
+    });
+
+    describe('When No Email was Passed', function() {
+      it('does not change the email input value', function() {
+        var localSubject = subject();
+        var currentEmailInputValue = localSubject.refs.email.getDOMNode().value;
+        localSubject.populateFormValuesFromQuery();
+        expect(localSubject.refs.email.getDOMNode().value).toEqual(currentEmailInputValue)
+      });
+    });
+  });
+
+
   it('renders', function() {
     expect(subject().getDOMNode().textContent)
       .toContain('Email');
