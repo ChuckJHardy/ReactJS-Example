@@ -24,11 +24,10 @@ var userFound = function(email, password, data, forceRun) {
   });
 };
 
-var userPasswordReset = function(email, data, forceRun) {
+var userPasswordReset = function(email, forceRun) {
   new Runner(forceRun, function() {
     console.groupCollapsed('-> ✓ User - Password Reset');
     console.log('-> Email: ', email);
-    console.log('-> Data: ', data);
     console.groupEnd();
   });
 };

@@ -210,11 +210,11 @@ describe('FirebaseService/Users', function() {
       });
 
       it('calls callback with email', function() {
-        expect(asserts.successCallback).toEqual(data);
+        expect(asserts.successCallback).toEqual(null);
       });
 
       it('calls off to logger with correct args', function() {
-        expect(Logger.notice.users.passwordReset).toBeCalledWith(email, data);
+        expect(Logger.notice.users.passwordReset).toBeCalledWith(email);
       });
     });
 

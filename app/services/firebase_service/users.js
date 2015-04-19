@@ -88,8 +88,8 @@ var resetPassword = function(
           errorCallback(error);
       }
     } else {
-      Logger.notice.users.passwordReset(email, data);
-      successCallback(data);
+      Logger.notice.users.passwordReset(email);
+      successCallback();
     }
   });
 };

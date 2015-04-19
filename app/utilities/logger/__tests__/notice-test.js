@@ -49,13 +49,12 @@ describe('Logger/Notice', function() {
 
     describe('#resetPassword', function() {
       beforeEach(function() {
-        Notice.users.passwordReset(email, data, true);
+        Notice.users.passwordReset(email, true);
       });
 
       it('outputs expected logs', function() {
         expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Password Reset');
         expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
-        expect(console.log.mock.calls[1]).toEqual(['-> Data: ', data]);
         expect(console.groupEnd).toBeCalled();
       });
     });
