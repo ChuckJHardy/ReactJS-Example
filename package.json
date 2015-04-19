@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --progress --colors --content-base dist/",
     "build:development": "webpack --config webpack.config.js",
     "build:production": "webpack --config webpack.config.production.js -p",
-    "deploy:dev": "npm run build:production; s3cmd sync --recursive dist/* s3://dev.smartpickings.com",
+    "deploy:dev": "npm run build:production; s3cmd sync -P --recursive dist/* s3://dev.smartpickings.com",
     "test": "jest --coverage"
   },
   "repository": {
