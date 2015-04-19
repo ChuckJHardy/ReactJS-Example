@@ -55,6 +55,24 @@ var userAccessDenied = function(email, password, error, accessKey, forceRun) {
   });
 };
 
+var userInvalid = function(email, error, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ User - Invalid');
+    console.log('-> Email: ', email);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
+
+var userPasswordResetFail = function(email, error, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ User - Password Reset Failure');
+    console.log('-> Email: ', email);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   users: {
     createFail: userCreateFail,
@@ -62,5 +80,7 @@ module.exports = {
     invalidEmail: userInvalidEmail,
     notFound: userNotFound,
     accessDenied: userAccessDenied,
+    invalidUser: userInvalid,
+    passwordResetFail: userPasswordResetFail,
   }
 };

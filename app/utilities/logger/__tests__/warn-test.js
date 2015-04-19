@@ -88,5 +88,31 @@ describe('Logger/Warn', function() {
         expect(console.groupEnd).toBeCalled();
       });
     });
+
+    describe('#userInvalid', function() {
+      beforeEach(function() {
+        Warn.users.invalidUser(email, error, true);
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Invalid');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Error: ', error]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
+
+    describe('#passwordResetFail', function() {
+      beforeEach(function() {
+        Warn.users.passwordResetFail(email, error, true);
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Password Reset Failure');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Error: ', error]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
   });
 });
