@@ -15,14 +15,17 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
 
+  grabEmail: function() {
+    return this.refs.email.getDOMNode().value.trim();
+  },
   handlePasswordReset: function(e) {
-    this.context.router.transitionTo('password_reset');
+    this.context.router.transitionTo('password_reset', {}, { email: this.grabEmail() });
   },
   handleSubmit: function(e) {
     e.preventDefault();
 
     this.sendToFirebase(
-      this.refs.email.getDOMNode().value.trim(),
+      this.grabEmail(),
       this.refs.password.getDOMNode().value.trim()
     );
   },
