@@ -224,12 +224,15 @@ nav {
 form {
   text-align: left; }
 
+.form-center {
+  max-width: 500px;
+  margin: 0 auto; }
+
 .form-action {
   clear: left; }
 
-.container .form-action {
-  padding-left: 15px;
-  padding-right: 15px; }
+.form-action-secondary {
+  float: right; }
 
 .form-field {
   margin-bottom: 15px; }
@@ -299,7 +302,10 @@ textarea {
 
 @media only screen and (max-width: 480px) {
   .form-action .btn {
-    width: 100%; } }
+    width: 100%; }
+
+  .form-action-secondary {
+    margin-top: 15px; } }
 .btn {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
