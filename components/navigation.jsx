@@ -24,14 +24,14 @@ module.exports = React.createClass({
         return <Link to='login' className='btn'>Login</Link>;
       default:
         return <Link to='logout' className='btn'>Logout</Link>;
-    }  
+    }
   },
 
   render: function() {
     return (
-      <div className='header-nav'>
+      <nav>
         {this.renderAuthLink()}
-      </div>
+      </nav>
     );
   }
 });

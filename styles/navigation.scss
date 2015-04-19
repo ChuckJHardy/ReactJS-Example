@@ -1,4 +1,4 @@
-nav {
+.main-header {
   padding: 15px 30px;
   border-bottom: $border-size solid #ddd;
 
@@ -7,7 +7,7 @@ nav {
   }
 }
 
-.header-logo {
+.main-logo {
   @include hide-text;
   background: transparent url(../assets/images/logo-main.png) no-repeat center center;
   background-size: 173px 48px;
@@ -22,7 +22,7 @@ nav {
   margin-right: 20px;
 }
 
-.header-nav {
+nav {
   float: right;
   margin-top: 3px;
 }
