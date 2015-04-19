@@ -24,9 +24,19 @@ var userFound = function(email, password, data, forceRun) {
   });
 };
 
+var userPasswordReset = function(email, data, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✓ User - Password Reset');
+    console.log('-> Email: ', email);
+    console.log('-> Data: ', data);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   users: {
     created: userCreated,
-    found: userFound
+    found: userFound,
+    passwordReset: userPasswordReset
   }
 };
