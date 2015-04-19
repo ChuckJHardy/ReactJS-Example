@@ -12,8 +12,9 @@ describe('FirebaseService/Users', function() {
 
   var mockAdapter = function(error, data) {
     return {
+      authWithPassword: function(params, callback) { callback(error, data); },
       createUser: function(params, callback) { callback(error, data); },
-      authWithPassword: function(params, callback) { callback(error, data); }
+      resetPassword: function(params, callback) { callback(error, data); }
     };
   };
 
@@ -178,6 +179,78 @@ describe('FirebaseService/Users', function() {
       it('calls off to logger with correct args', function() {
         expect(Logger.warn.users.notFound)
           .toBeCalledWith(email, password, error);
+      });
+    });
+  });
+
+  describe('#resetPassword', function() {
+    var asserts = {};
+    var callbacks = {
+      invalidUserCallback: function(error) { asserts['invalidUserCallback'] = error },
+      errorCallback: function(error) { asserts['errorCallback'] = error },
+      successCallback: function(data) { asserts['successCallback'] = data }
+    };
+
+    var subject = function(error, data) {
+      return Users.resetPassword(
+        mockAdapter(error, data),
+        email,
+        callbacks.invalidUserCallback,
+        callbacks.errorCallback,
+        callbacks.successCallback
+      );
+    };
+
+    describe('Success', function() {
+      var data = { uid: 123 };
+
+      beforeEach(function() {
+        Logger.notice.users.passwordReset = jest.genMockFunction();
+        subject(null, data)
+      });
+
+      it('calls callback with email', function() {
+        expect(asserts.successCallback).toEqual(data);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.notice.users.passwordReset).toBeCalledWith(email, data);
+      });
+    });
+
+    describe('Invalid Email', function() {
+      var error = { code: 'INVALID_USER' };
+
+      beforeEach(function() {
+        Logger.warn.users.invalidUser = jest.genMockFunction();
+        subject(error);
+      });
+
+      it('calls callback with email', function() {
+        expect(asserts.invalidUserCallback).toEqual(email);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.warn.users.invalidUser)
+          .toBeCalledWith(email, error);
+      });
+    });
+
+    describe('Error', function() {
+      var error = 'Oops';
+
+      beforeEach(function() {
+        Logger.warn.users.passwordResetFail = jest.genMockFunction();
+        subject(error);
+      });
+
+      it('calls callback with email', function() {
+        expect(asserts.errorCallback).toEqual(error);
+      });
+
+      it('calls off to logger with correct args', function() {
+        expect(Logger.warn.users.passwordResetFail)
+          .toBeCalledWith(email, error);
       });
     });
   });

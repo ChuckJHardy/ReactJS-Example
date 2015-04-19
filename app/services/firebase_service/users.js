@@ -68,7 +68,34 @@ var find = function(
   });
 };
 
+var resetPassword = function(
+  adapter,
+  email,
+  invalidUserCallback,
+  errorCallback,
+  successCallback
+) {
+  adapter.resetPassword({
+    email: email
+  }, function(error, data) {
+    if (error) {
+      switch (error.code) {
+        case 'INVALID_USER':
+          Logger.warn.users.invalidUser(email, error);
+          invalidUserCallback(email); break;
+        default:
+          Logger.warn.users.passwordResetFail(email, error);
+          errorCallback(error);
+      }
+    } else {
+      Logger.notice.users.passwordReset(email, data);
+      successCallback(data);
+    }
+  });
+};
+
 module.exports = {
   create: create,
-  find: find
+  find: find,
+  resetPassword: resetPassword,
 };
