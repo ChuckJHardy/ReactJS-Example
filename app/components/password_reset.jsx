@@ -15,6 +15,19 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
 
+  componentDidMount: function() {
+    this.populateFormValuesFromQuery();
+  },
+
+  populateFormValuesFromQuery: function() {
+    if (this.context.router) {
+      var passedEmail = this.context.router.getCurrentQuery().email;
+
+      if (passedEmail) {
+        this.refs.email.getDOMNode().value = passedEmail;
+      }
+    }
+  },
   handleSubmit: function(e) {
     e.preventDefault();
 

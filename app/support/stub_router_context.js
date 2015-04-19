@@ -15,7 +15,7 @@ var Stubber = function(stubs) {
     getCurrentRoutes: function() {},
     getCurrentPathname: function() {},
     getCurrentParams: function() {},
-    getCurrentQuery: function() {},
+    getCurrentQuery: function() { return {}; },
     isActive: function() {},
     getRouteAtDepth: function() {},
     setRouteComponentAtDepth: function() {}
