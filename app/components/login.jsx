@@ -26,16 +26,17 @@ module.exports = React.createClass({
       this.refs.password.getDOMNode().value.trim()
     );
   },
+  handlerSuccess: function(data) {
+    App.warden.login(data.uid);
+    this.context.router.replaceWith('dashboard');
+  },
   sendToFirebase: function(email, password) {
     FirebaseService.users.find(
       App.firebase,
       email,
       password,
       function() {},
-      function(data) {
-        App.warden.login(data.uid);
-        this.context.router.replaceWith('dashboard');
-      }.bind(this)
+      this.handlerSuccess
     );
   },
 

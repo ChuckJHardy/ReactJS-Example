@@ -28,10 +28,11 @@ module.exports = React.createClass({
       email,
       function() {},
       function() {},
-      function() {
-        this.context.router.transitionTo('login');
-      }.bind(this)
+      this.handlerSuccess
     );
+  },
+  handlerSuccess: function() {
+    this.context.router.transitionTo('login');
   },
 
   render: function() {

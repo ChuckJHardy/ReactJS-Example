@@ -30,22 +30,25 @@ module.exports = React.createClass({
       this.refs.password.getDOMNode().value.trim()
     );
   },
+  handlerEmailTaken: function() {
+    this.setState({ emailTaken: true });
+  },
+  handlerInvalidEmail: function() {
+    this.setState({ invalidEmail: true });
+  },
+  handlerSuccess: function(data) {
+    App.warden.login(data.uid);
+    this.context.router.replaceWith('dashboard');
+  },
   sendToFirebase: function(email, password) {
     FirebaseService.users.create(
       App.firebase,
       email,
       password,
-      function() {
-        this.setState({ emailTaken: true });
-      }.bind(this),
-      function() {
-        this.setState({ invalidEmail: true });
-      }.bind(this),
+      this.handlerEmailTaken,
+      this.handlerInvalidEmail,
       function() {},
-      function(data) {
-        App.warden.login(data.uid);
-        this.context.router.replaceWith('dashboard');
-      }.bind(this)
+      this.handlerSuccess
     );
   },
 

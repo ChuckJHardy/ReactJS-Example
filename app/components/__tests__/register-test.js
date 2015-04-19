@@ -1,9 +1,11 @@
 'use strict';
 
 jest.dontMock('../register');
+jest.dontMock('../../support/stub_router_context');
 
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
+var StubRouterContent = require('../../support/stub_router_context');
 
 var App = require('../../components/app');
 var FirebaseService = require('../../services/firebase_service');
@@ -45,6 +47,50 @@ describe('Register', function() {
         function() {},
         function() {}
       );
+    });
+  });
+
+  describe('#handlerEmailTaken', function() {
+    it('updates state', function() {
+      var localSubject = subject();
+      expect(localSubject.state.emailTaken).toEqual(false);
+      localSubject.handlerEmailTaken();
+      expect(localSubject.state.emailTaken).toEqual(true);
+    });
+  });
+
+  describe('#handlerInvalidEmail', function() {
+    it('updates state', function() {
+      var localSubject = subject();
+      expect(localSubject.state.invalidEmail).toEqual(false);
+      localSubject.handlerInvalidEmail();
+      expect(localSubject.state.invalidEmail).toEqual(true);
+    });
+  });
+
+  describe('#handlerSuccess', function() {
+    var assets = {};
+    var data = { uid: 123 };
+
+    beforeEach(function() {
+      App.warden = {
+        login: function(uid) { assets['warden'] = uid; }
+      };
+    });
+
+    it('calls off to warden for login and transitions to login', function() {
+      var localSubject = subject();
+
+      localSubject.context = {
+        router: StubRouterContent.stubber({
+          replaceWith: function(route) { assets['handlerSuccess'] = route; }
+        })
+      }
+
+      localSubject.handlerSuccess(data);
+
+      expect(assets.handlerSuccess).toEqual('dashboard');
+      expect(assets.warden).toEqual(data.uid);
     });
   });
 

@@ -65,6 +65,32 @@ describe('Login', function() {
     });
   });
 
+  describe('#handlerSuccess', function() {
+    var assets = {};
+    var data = { uid: 123 };
+
+    beforeEach(function() {
+      App.warden = {
+        login: function(uid) { assets['warden'] = uid; }
+      };
+    });
+
+    it('calls off to warden for login and transitions to login', function() {
+      var localSubject = subject();
+
+      localSubject.context = {
+        router: StubRouterContent.stubber({
+          replaceWith: function(route) { assets['handlerSuccess'] = route; }
+        })
+      }
+
+      localSubject.handlerSuccess(data);
+
+      expect(assets.handlerSuccess).toEqual('dashboard')
+      expect(assets.warden).toEqual(data.uid)
+    });
+  });
+
   it('renders', function() {
     expect(subject().getDOMNode().textContent)
       .toContain('Email');

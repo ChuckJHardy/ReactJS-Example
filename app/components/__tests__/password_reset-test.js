@@ -46,6 +46,23 @@ describe('PasswordReset', function() {
     });
   });
 
+  describe('#handlerSuccess', function() {
+    var assets = {};
+
+    it('transitions to login', function() {
+      var localSubject = subject();
+
+      localSubject.context = {
+        router: StubRouterContent.stubber({
+          transitionTo: function(route) { assets['handlerSuccess'] = route; }
+        })
+      }
+
+      localSubject.handlerSuccess();
+      expect(assets.handlerSuccess).toEqual('login')
+    });
+  });
+
   it('renders', function() {
     expect(subject().getDOMNode().textContent)
       .toContain('Reset');
