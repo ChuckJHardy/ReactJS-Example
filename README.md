@@ -19,12 +19,14 @@ You will need the following things properly installed on your computer.
 
 ## Running / Development
 
-* `ember server`
-* Visit your app at [http://localhost:8080/webpack-dev-server/index.html](http://localhost:8080/webpack-dev-server/index.html).
+* `npm start`
+* Visit your app at [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/).
 
 ### Running Tests
 
 * `npm test`
+
+[Test Coverage](./coverage/lcov-report/index.html)
 
 ### Building
 
@@ -33,11 +35,29 @@ You will need the following things properly installed on your computer.
 
 ### Deploying
 
-Set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+* Access Key: `...`
+* Secret Key: `...`
+* Default Region: `eu-west-1`
+* Encryption password: `None`
+* Path to GPG program: `None`
+* Use HTTPS protocol: `False`
+* HTTP Proxy server name: `None`
+* HTTP Proxy server port: 0
 
-Develoment
+Install `s3cmd`
 
-    $ ember deploy:s3
+	$ brew install s3cmd
+
+Configure `s3cmd` and follow the instructions
+
+	$ s3cmd --configure
+	
+Deploy to Live Development Servers
+
+	$ npm run deploy:dev
+	
+Visit	
+
     $ open dev.smartpickings.com
 
 ## Further Reading / Useful Links
