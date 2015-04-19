@@ -1,0 +1,20 @@
+.alert {
+	padding: 15px;
+	margin-bottom: 30px;
+	margin-top: -30px;
+}
+
+.alert-success {
+	background-color: $success-color;
+	color: $success-color-text;
+}
+
+.alert-info {
+	background-color: $info-color;
+	color: $info-color-text;
+}
+
+.alert-danger {
+	background-color: $danger-color;
+	color: $danger-color-text;
+}

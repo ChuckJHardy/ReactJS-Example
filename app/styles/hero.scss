@@ -1,0 +1,32 @@
+.hero-container {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.hero-title {
+  font-size: 32px;
+  letter-spacing: 1px;
+  line-height: 42px;
+  margin: 0 auto 20px auto;
+  width: 500px;
+}
+
+.hero-logo {
+  width: 91px;
+  margin-bottom: 20px;
+}
+
+.hero-form {
+  width: 250px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 480px) {
+  .hero-container {
+    padding: 30px;
+  }
+
+  .hero-title, .hero-form {
+    width: 100%;
+  }
+}

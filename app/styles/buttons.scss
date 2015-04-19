@@ -1,0 +1,26 @@
+.btn {
+  @include rounded-corners;
+  background-color: transparent;
+  color: inherit;
+  display: inline-block;
+  line-height: $form-element-height;
+  padding: 0 20px;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.btn-default {
+  border: $border-size solid $subtle-border-color;
+}
+
+.btn-primary {
+  border: $border-size solid $main-color;
+
+  &:hover {
+    background-color: $main-color;
+    color: $invert-color;
+  }
+}

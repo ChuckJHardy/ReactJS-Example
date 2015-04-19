@@ -1,0 +1,109 @@
+.cards-filter {
+  text-align: center;
+  margin-bottom: 15px;
+
+  .filter {
+    @include rounded-corners;
+    display: inline-block;
+    font-size: 13px;
+    border: $border-size solid $subtle-border-color;
+    padding: 5px 15px;
+    margin: 0 5px;
+
+    &:hover {
+      background-color: $subtle-color;
+      text-decoration: none;
+    }
+  }
+}
+
+.add-card {
+  margin-bottom: 10px;
+  text-align: center;
+
+  .btn {
+    width: 250px;
+  }
+}
+
+.cards-empty {
+  text-align: center;
+  margin-top: 50px;
+
+  img {
+    height: 173px;
+    width: 125px;
+  }
+}
+
+.cards-empty-message {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.cards {
+  padding: 10px;
+
+  &:after {
+    @include clearfix;
+  }
+}
+
+.card {
+  float: left;
+  width: 25%;
+}
+
+.card-inner {
+  display: block;
+  margin: 10px;
+}
+
+.card-image img {
+  @include top-rounded-corners;
+  display: block;
+}
+
+.card-content {
+  @include bottom-rounded-corners;
+  border: $border-size solid $subtle-border-color;
+  border-top: 0;
+  padding: 30px 20px;
+}
+
+.card-name a {
+  @include text-overflow;
+  color: $link-color;
+  font-size: 18px;
+}
+
+.card-heading2 {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.card-heading3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+  .add-card {
+    padding-left: 10px;
+    padding-right: 10px;
+    .btn {
+      width: 100%;
+    }
+  }
+
+  .card {
+    float: none;
+    width: 100%;
+  }
+}
