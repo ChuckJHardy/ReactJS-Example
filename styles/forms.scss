@@ -2,6 +2,17 @@ form {
   text-align: left;
 }
 
+.form-action {
+  clear: left;
+}
+
+.container {
+  .form-action {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 .form-field {
   margin-bottom: $form-element-gap;
 }
@@ -12,31 +23,67 @@ label {
 }
 
 input[type="text"] {
-  @include rounded-corners;
-  border: $border-size solid $subtle-border-color;
-  height: $form-element-height;
+  @include form-styles;
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.form-field-error {
-  label {
-    color: $danger-color;
-  }
-  input[type="text"] {
-    border: $border-size solid $danger-color;
+.checkbox, .radio {
+  margin-bottom: 5px;
+}
+
+.checkbox-label, .radio-label {
+  margin-left: 5px;
+}
+
+.select-menu {
+  @include form-styles;
+  background: transparent url(../assets/images/select-menu-arrow.png) 96% 50% no-repeat;
+  background-size: 14px 9px;
+
+  select {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    line-height: $form-element-height;
+    height: $form-element-height;
+    -webkit-appearance: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
   }
 }
 
+textarea {
+  @include form-styles;
+  height: auto;
+  width: 100%;
+  padding: 15px;
+}
+
 .forgot-link {
-  cursor: pointer;
   color: #666666;
   font-size: 13px;
 }
 
+.form-field-error {
+  label {
+    color: $danger-color-text;
+  }
+  input[type="text"] {
+    border: $border-size solid $danger-color-text;
+  }
+}
+
 .form-error-message {
-  color: $danger-color;
+  color: $danger-color-text;
   font-size: 12px;
   margin-top: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+  .form-action .btn {
+    width: 100%;
+  }
 }

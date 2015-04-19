@@ -1,7 +1,6 @@
 .btn {
   @include rounded-corners;
   background-color: transparent;
-  border: $border-size solid $main-color;
   color: inherit;
   display: inline-block;
   line-height: $form-element-height;
@@ -9,8 +8,19 @@
   text-decoration: none;
 
   &:hover {
+    text-decoration: none;
+  }
+}
+
+.btn-default {
+  border: $border-size solid $subtle-border-color;
+}
+
+.btn-primary {
+  border: $border-size solid $main-color;
+
+  &:hover {
     background-color: $main-color;
     color: $invert-color;
-    text-decoration: none;
   }
 }

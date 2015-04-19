@@ -3,10 +3,13 @@
 @import "general.scss";
 
 /*Components*/
+@import "layout.scss";
 @import "navigation.scss";
 @import "page-header.scss";
 @import "hero.scss";
 @import "cards.scss";
+@import "card-detail.scss";
 @import "forms.scss";
 @import "buttons.scss";
+@import "alert-messages.scss";
 @import "footer.scss";

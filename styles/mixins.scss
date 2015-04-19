@@ -45,6 +45,12 @@
   border-bottom-left-radius: 3px;
 }
 
+@mixin form-styles {
+  @include rounded-corners;
+  border: $border-size solid $subtle-border-color;
+  height: $form-element-height;
+}
+
 @mixin hide-text {
   text-indent: 100%;
   white-space: nowrap;

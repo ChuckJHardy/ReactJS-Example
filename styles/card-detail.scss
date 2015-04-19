@@ -1,0 +1,21 @@
+.card-detail-empty-image {
+  @include rounded-corners;
+  background-color: $subtle-color;
+  text-align: center;
+  height: 300px;
+  line-height: 300px;
+  margin-bottom: $form-element-gap;
+}
+
+.add-picture {
+  @include rounded-corners;
+  border: $border-size solid $subtle-border-color;
+  display: block;
+  text-align: center;
+  padding: 15px;
+
+  &:hover {
+    background-color: $subtle-color;
+    text-decoration: none;
+  }
+}

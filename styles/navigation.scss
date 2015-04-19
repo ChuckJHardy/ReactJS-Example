@@ -1,6 +1,6 @@
 .main-header {
   padding: 15px 30px;
-  border-bottom: $border-size solid #ddd;
+  border-bottom: $border-size solid $subtle-border-color;
 
   &:after {
     @include clearfix;

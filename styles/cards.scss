@@ -1,5 +1,6 @@
 .cards-filter {
   text-align: center;
+  margin-bottom: 15px;
 
   .filter {
     @include rounded-corners;
@@ -17,12 +18,28 @@
 }
 
 .add-card {
-  padding: 10px 0;
+  margin-bottom: 10px;
   text-align: center;
 
   .btn {
     width: 250px;
   }
+}
+
+.cards-empty {
+  text-align: center;
+  margin-top: 50px;
+
+  img {
+    height: 173px;
+    width: 125px;
+  }
+}
+
+.cards-empty-message {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .cards {
