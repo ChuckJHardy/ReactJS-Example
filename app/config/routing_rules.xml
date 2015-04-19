@@ -1,0 +1,10 @@
+<RoutingRules>
+  <RoutingRule>
+  <Condition>
+    <HttpErrorCodeReturnedEquals>404</HttpErrorCodeReturnedEquals>
+  </Condition>
+  <Redirect>
+    <ReplaceKeyWith>#!/</ReplaceKeyWith>
+  </Redirect>
+  </RoutingRule>
+</RoutingRules>
