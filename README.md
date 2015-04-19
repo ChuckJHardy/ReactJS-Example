@@ -35,11 +35,25 @@ You will need the following things properly installed on your computer.
 
 ### Deploying
 
-Set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` within `env.js`
+* Access Key: `...`
+* Secret Key: `...`
+* Default Region: `eu-west-1`
+* Encryption password: `None`
+* Path to GPG program: `None`
+* Use HTTPS protocol: `False`
+* HTTP Proxy server name: `None`
+* HTTP Proxy server port: 0
 
-Develoment
+Install `s3cmd`
 
-    $ ember deploy:s3
+	$ brew install s3cmd
+
+Configure `s3cmd` and follow the instructions
+
+	$ s3cmd --configure
+	
+Visit	
+
     $ open dev.smartpickings.com
 
 ## Further Reading / Useful Links

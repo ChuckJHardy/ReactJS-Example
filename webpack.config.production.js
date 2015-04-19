@@ -2,13 +2,9 @@ var webpack = require('webpack');
 var env = require('./env');
 
 module.exports = {
-  devtool: 'eval-source-map',
-  debug: true,
+  debug: false,
   context: __dirname + '/',
-  entry: [
-    'webpack/hot/dev-server',
-    './main.jsx'
-  ],
+  entry: [ './main.jsx' ],
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js'
@@ -46,9 +42,9 @@ module.exports = {
       __LOCAL_STORAGE_KEY__: JSON.stringify(env.LOCAL_STORAGE_KEY),
       __LOCKDOWN_KEY__: JSON.stringify(env.LOCKDOWN_KEY),
       __TEST__: false,
-      __DEV__: true,
+      __DEV__: false,
       'process.env': {
-        NODE_ENV: JSON.stringify('development')
+        NODE_ENV: JSON.stringify('production')
       }
     })
   ]

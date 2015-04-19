@@ -51,6 +51,12 @@ if [ $? -ne 0 ]; then
   exit 69
 fi
 
+which S3cmd &> /dev/null
+if [ $? -ne 0 ]; then
+  warn "S3cmd Missing: Try 'brew install S3cmd'"
+  exit 69
+fi
+
 set -e
 
 any_variable_missing=false
