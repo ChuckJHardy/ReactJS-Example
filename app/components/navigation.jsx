@@ -20,6 +20,7 @@ module.exports = React.createClass({
         return <Link to='register' className='btn'>Register</Link>;
       case '/register':
       case '/logout':
+      case '/password_reset':
         return <Link to='login' className='btn'>Login</Link>;
       default:
         return <Link to='logout' className='btn'>Logout</Link>;

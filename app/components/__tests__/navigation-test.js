@@ -39,6 +39,14 @@ describe('Navigation', function () {
     });
   });
 
+  describe('/password_reset', function () {
+    it('renders expected link', function() {
+      expect(subject({
+        getCurrentPathname: function() { return '/password_reset'; }
+      }).getDOMNode().textContent).toContain('Login');
+    });
+  });
+
   describe('/not_a_valid_path', function () {
     it('renders expected link', function() {
       expect(subject({
