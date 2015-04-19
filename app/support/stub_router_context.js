@@ -3,9 +3,8 @@
 var React = require('react');
 var Assign = require('react/lib/Object.assign');
 
-module.exports = function(Component, props, stubs) {
-  var RouterStub = function() {};
-
+var RouterStub = function() {};
+var Stubber = function(stubs) {
   Assign(RouterStub, {
     makePath: function() {},
     makeHref: function() {},
@@ -22,6 +21,10 @@ module.exports = function(Component, props, stubs) {
     setRouteComponentAtDepth: function() {}
   }, stubs);
 
+  return RouterStub;
+};
+
+var Wrapper = function(Component, props, stubs) {
   return React.createClass({
     childContextTypes: {
       router: React.PropTypes.func,
@@ -30,7 +33,7 @@ module.exports = function(Component, props, stubs) {
 
     getChildContext: function() {
       return {
-        router: RouterStub,
+        router: Stubber(stubs),
         routeDepth: 0
       };
     },
@@ -39,4 +42,9 @@ module.exports = function(Component, props, stubs) {
       return <Component {...props} />;
     }
   });
+};
+
+module.exports = {
+  stubber: Stubber,
+  wrapper: Wrapper
 };

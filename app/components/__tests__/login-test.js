@@ -1,9 +1,11 @@
 'use strict';
 
 jest.dontMock('../login');
+jest.dontMock('../../support/stub_router_context');
 
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
+var StubRouterContent = require('../../support/stub_router_context');
 
 var App = require('../../components/app');
 var FirebaseService = require('../../services/firebase_service');
@@ -19,6 +21,23 @@ describe('Login', function() {
 
   beforeEach(function() {
     FirebaseService.users.create = jest.genMockFunction();
+  });
+
+  describe('#handlePasswordReset', function() {
+    var assets = {};
+
+    it('transitions to password reset', function() {
+      var localSubject = subject();
+
+      localSubject.context = {
+        router: StubRouterContent.stubber({
+          transitionTo: function(route) { assets['handlePasswordReset'] = route; } 
+        })
+      }
+
+      localSubject.handlePasswordReset();
+      expect(assets.handlePasswordReset).toEqual('password_reset')
+    });
   });
 
   describe('#handleSubmit', function() {

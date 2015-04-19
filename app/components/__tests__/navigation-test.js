@@ -11,7 +11,7 @@ describe('Navigation', function () {
   var Navigation = require('../navigation');
 
   var subject = function(stub) {
-    var Wrapper = StubRouterContent(Navigation, {}, stub);
+    var Wrapper = StubRouterContent.wrapper(Navigation, {}, stub);
     return TestUtils.renderIntoDocument(<Wrapper />);
   };
 

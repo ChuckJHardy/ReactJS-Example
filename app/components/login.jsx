@@ -15,6 +15,9 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
 
+  handlePasswordReset: function(e) {
+    this.context.router.transitionTo('password_reset');
+  },
   handleSubmit: function(e) {
     e.preventDefault();
 
@@ -51,7 +54,7 @@ module.exports = React.createClass({
             <input ref='password' type='text' required />
           </div>
           <div className='form-field'>
-            <a className="forgot-link">Forgot your password?</a>
+            <a onClick={this.handlePasswordReset} className="forgot-link">Forgot your password?</a>
           </div>
           <div className='form-field'>
             <input type='submit' value='Login' className='btn' />
