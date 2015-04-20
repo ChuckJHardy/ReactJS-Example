@@ -32,6 +32,9 @@ module.exports = React.createClass({
     e.preventDefault();
     this.sendToFirebase(this.grabEmail());
   },
+  handlerError: function(error) {
+    this.props.setAlert('Something failed. Developers have been informed.');
+  },
   handlerInvalidUser: function() {
     this.setState({ invalidUser: true });
   },
@@ -52,7 +55,7 @@ module.exports = React.createClass({
       App.firebase,
       email,
       this.handlerInvalidUser,
-      function() {},
+      this.handlerError,
       this.handlerSuccess
     );
   },

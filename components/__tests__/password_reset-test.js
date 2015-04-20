@@ -13,11 +13,13 @@ var FirebaseService = require('../../services/firebase_service');
 describe('PasswordReset', function() {
   var PasswordReset = require('../password_reset');
 
+  var assets = {};
   var email = 'test@example.com';
+  var setAlert = function(message) { assets['setAlert'] = message; };
 
   var subject = function() {
     return TestUtils.renderIntoDocument(
-      <PasswordReset />
+      <PasswordReset setAlert={setAlert} />
     );
   };
 
@@ -41,6 +43,13 @@ describe('PasswordReset', function() {
         expect(localSubject.getDOMNode().innerHTML)
           .toContain('form-field form-field-error');
       });
+    });
+  });
+
+  describe('#handlerError', function() {
+    it('calls setAlert', function() {
+      subject().handlerError();
+      expect(assets.setAlert).toEqual('Something failed. Developers have been informed.');
     });
   });
 
@@ -102,8 +111,6 @@ describe('PasswordReset', function() {
   });
 
   describe('#handlerSuccess', function() {
-    var assets = {};
-
     it('transitions to login', function() {
       var localSubject = subject();
 
