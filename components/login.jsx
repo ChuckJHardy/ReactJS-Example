@@ -33,6 +33,9 @@ module.exports = React.createClass({
       this.refs.password.getDOMNode().value.trim()
     );
   },
+  handlerError: function(error) {
+    this.props.setAlert('Something failed. Developers have been informed.');
+  },
   handlerSuccess: function(data) {
     App.warden.login(data.uid);
     this.context.router.replaceWith('dashboard');
@@ -51,7 +54,7 @@ module.exports = React.createClass({
       App.firebase,
       email,
       password,
-      function() {},
+      this.handlerError,
       this.handlerSuccess
     );
   },
