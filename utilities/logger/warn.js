@@ -13,6 +13,16 @@ var Airbreak = function(error, component, params) {
   });
 };
 
+var general = function(name, error, params, forceRun) {
+  Airbreak(error, name, params);
+
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ General - ' + name);
+    console.log('-> Params: ', params);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
 
 var userEmailTaken = function(email, password, error, forceRun) {
   new Runner(forceRun, function() {
@@ -105,6 +115,7 @@ var userPasswordResetFail = function(email, error, forceRun) {
 };
 
 module.exports = {
+  general: general,
   users: {
     createFail: userCreateFail,
     emailTaken: userEmailTaken,
