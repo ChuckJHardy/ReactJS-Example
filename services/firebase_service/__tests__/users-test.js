@@ -24,7 +24,8 @@ describe('FirebaseService/Users', function() {
       emailTakenCallback: function(email) { asserts['emailTakenCallback'] = email },
       invalidEmailCallback: function(email) { asserts['invalidEmailCallback'] = email },
       errorCallback: function(error) { asserts['errorCallback'] = error },
-      successCallback: function(data) { asserts['successCallback'] = data }
+      successCallback: function(data) { asserts['successCallback'] = data },
+      lockdownCallback: function(error) { asserts['lockdownCallback'] = error }
     };
 
     var subject = function(error, data, emailOverride) {
@@ -35,7 +36,8 @@ describe('FirebaseService/Users', function() {
         callbacks.emailTakenCallback,
         callbacks.invalidEmailCallback,
         callbacks.errorCallback,
-        callbacks.successCallback
+        callbacks.successCallback,
+        callbacks.lockdownCallback
       );
     };
 
@@ -111,7 +113,7 @@ describe('FirebaseService/Users', function() {
     });
 
     describe('Access Denied', function() {
-      var error = 'Access Denied';
+      var error = 'Still in Alpha so Access Denied.';
       var localEmail = 'test@example.com';
 
       beforeEach(function() {
@@ -120,7 +122,7 @@ describe('FirebaseService/Users', function() {
       });
 
       it('calls callback with email', function() {
-        expect(asserts.errorCallback).toEqual(error);
+        expect(asserts.lockdownCallback).toEqual(error);
       });
 
       it('calls off to logger with correct args', function() {

@@ -10,17 +10,20 @@ var create = function(
   emailTakenCallback,
   invalidEmailCallback,
   errorCallback,
-  successCallback
+  successCallback,
+  lockdownCallback
 ) {
   if (!Lockdown.opened(email)) {
+    var message = 'Still in Alpha so Access Denied.';
+
     Logger.warn.users.accessDenied(
       email,
       password,
-      'Access Denied',
+      message,
       __LOCKDOWN_KEY__
     );
 
-    errorCallback('Access Denied');
+    lockdownCallback(message);
     return;
   };
 

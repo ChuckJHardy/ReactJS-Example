@@ -48,6 +48,7 @@ describe('Register', function() {
         function() {},
         function() {},
         function() {},
+        function() {},
         function() {}
       );
     });
@@ -75,6 +76,14 @@ describe('Register', function() {
     it('calls setAlert', function() {
       subject().handlerError();
       expect(assets.setAlert).toEqual('Something failed. Developers have been informed.');
+    });
+  });
+
+  describe('#handlerLockdown', function() {
+    it('calls setAlert', function() {
+      var message = 'Access Denied';
+      subject().handlerLockdown(message);
+      expect(assets.setAlert).toEqual(message);
     });
   });
 
