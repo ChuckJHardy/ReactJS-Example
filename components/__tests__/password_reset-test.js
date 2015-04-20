@@ -25,6 +25,34 @@ describe('PasswordReset', function() {
     FirebaseService.users.resetPassword = jest.genMockFunction();
   });
 
+  describe('Errors', function() {
+    describe('When Invalid User', function() {
+      it('includes expected copy', function() {
+        var localSubject = subject();
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .not.toContain('form-field-error');
+
+        localSubject.setState({invalidUser: true});
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .toContain('Invalid User');
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .toContain('form-field form-field-error');
+      });
+    });
+  });
+
+  describe('#handlerInvalidUser', function() {
+    it('updates state', function() {
+      var localSubject = subject();
+      expect(localSubject.state.invalidUser).toEqual(false);
+      localSubject.handlerInvalidUser();
+      expect(localSubject.state.invalidUser).toEqual(true);
+    });
+  });
+
   describe('#populateFormValuesFromQuery', function() {
     describe('When Email Passed', function() {
       it('sets the email input to the email address', function() {

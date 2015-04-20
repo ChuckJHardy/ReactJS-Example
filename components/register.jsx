@@ -54,7 +54,6 @@ module.exports = React.createClass({
       this.handlerSuccess
     );
   },
-
   renderErrorElement: function() {
     if (this.state.emailTaken) {
       return <div className="form-error-message">Email Taken</div>;
