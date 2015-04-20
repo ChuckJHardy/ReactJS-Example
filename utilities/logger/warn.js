@@ -4,8 +4,8 @@ var Runner = function(forceRun, block) {
   if (forceRun || __DEV__) { block(); }
 };
 
-var Airbreak = function(error, component, params) {
-  window.airbreak.push({
+var Airbrake = function(error, component, params) {
+  window.airbrake.push({
     error: error,
     context: { component: component },
     environment: { navigator_vendor: window.navigator.vendor },
@@ -14,7 +14,7 @@ var Airbreak = function(error, component, params) {
 };
 
 var general = function(name, error, params, forceRun) {
-  Airbreak(error, name, params);
+  Airbrake(error, name, params);
 
   new Runner(forceRun, function() {
     console.groupCollapsed('-> ✗ General - ' + name);
@@ -45,7 +45,7 @@ var userInvalidEmail = function(email, password, error, forceRun) {
 };
 
 var userCreateFail = function(email, password, error, forceRun) {
-  Airbreak(error, 'userCreateFail', {
+  Airbrake(error, 'userCreateFail', {
     email: email,
   });
 
@@ -59,7 +59,7 @@ var userCreateFail = function(email, password, error, forceRun) {
 };
 
 var userNotFound = function(email, password, error, forceRun) {
-  Airbreak(error, 'userNotFound', {
+  Airbrake(error, 'userNotFound', {
     email: email,
   });
 
@@ -73,7 +73,7 @@ var userNotFound = function(email, password, error, forceRun) {
 };
 
 var userAccessDenied = function(email, password, error, accessKey, forceRun) {
-  Airbreak(error, 'userAccessDenied', {
+  Airbrake(error, 'userAccessDenied', {
     email: email,
     accessKey: accessKey,
   });
@@ -89,7 +89,7 @@ var userAccessDenied = function(email, password, error, accessKey, forceRun) {
 };
 
 var userInvalid = function(email, error, forceRun) {
-  Airbreak(error, 'userInvalid', {
+  Airbrake(error, 'userInvalid', {
     email: email,
   });
 
@@ -102,7 +102,7 @@ var userInvalid = function(email, error, forceRun) {
 };
 
 var userPasswordResetFail = function(email, error, forceRun) {
-  Airbreak(error, 'userPasswordResetFail', {
+  Airbrake(error, 'userPasswordResetFail', {
     email: email,
   });
 

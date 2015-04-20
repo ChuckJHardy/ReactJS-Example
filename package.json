@@ -41,8 +41,8 @@
       "__DEV__": false,
       "__TEST__": true,
       "__FIREBASE_URL__": "firebase-test-url",
-      "__AIRBREAK_PRODUCT_ID__": "airbreak-test-project-id",
-      "__AIRBREAK_PRODUCT_KEY__": "airbreak-test-project-key",
+      "__AIRBRAKE_PRODUCT_ID__": "airbrake-test-project-id",
+      "__AIRBRAKE_PRODUCT_KEY__": "airbrake-test-project-key",
       "__LOCAL_STORAGE_KEY__": "localStorage-test-key",
       "__LOCKDOWN_KEY__": "lockdown-test-key"
     },

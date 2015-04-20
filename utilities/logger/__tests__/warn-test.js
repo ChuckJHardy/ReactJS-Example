@@ -14,7 +14,7 @@ describe('Logger/Warn', function() {
     console.log = jest.genMockFunction();
     console.groupEnd = jest.genMockFunction();
 
-    window.airbreak = {
+    window.airbrake = {
       push: jest.genMockFunction()
     };
   });
@@ -29,8 +29,8 @@ describe('Logger/Warn', function() {
       Warn.general(name, error, params, true);
     });
 
-    it('pushes to airbreak', function() {
-      expect(window.airbreak.push).toBeCalledWith({
+    it('pushes to airbrake', function() {
+      expect(window.airbrake.push).toBeCalledWith({
         error: error,
         context: { component: name },
         environment: { navigator_vendor: window.navigator.vendor },
@@ -80,8 +80,8 @@ describe('Logger/Warn', function() {
         Warn.users.createFail(email, password, error, true);
       });
 
-      it('pushes to airbreak', function() {
-        expect(window.airbreak.push).toBeCalledWith({
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
           error: error,
           context: { component: 'userCreateFail' },
           environment: { navigator_vendor: window.navigator.vendor },
@@ -105,8 +105,8 @@ describe('Logger/Warn', function() {
         Warn.users.notFound(email, password, error, true);
       });
 
-      it('pushes to airbreak', function() {
-        expect(window.airbreak.push).toBeCalledWith({
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
           error: error,
           context: { component: 'userNotFound' },
           environment: { navigator_vendor: window.navigator.vendor },
@@ -132,8 +132,8 @@ describe('Logger/Warn', function() {
         Warn.users.accessDenied(email, password, error, accessKey, true);
       });
 
-      it('pushes to airbreak', function() {
-        expect(window.airbreak.push).toBeCalledWith({
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
           error: error,
           context: { component: 'userAccessDenied' },
           environment: { navigator_vendor: window.navigator.vendor },
@@ -159,8 +159,8 @@ describe('Logger/Warn', function() {
         Warn.users.invalidUser(email, error, true);
       });
 
-      it('pushes to airbreak', function() {
-        expect(window.airbreak.push).toBeCalledWith({
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
           error: error,
           context: { component: 'userInvalid' },
           environment: { navigator_vendor: window.navigator.vendor },
@@ -183,8 +183,8 @@ describe('Logger/Warn', function() {
         Warn.users.passwordResetFail(email, error, true);
       });
 
-      it('pushes to airbreak', function() {
-        expect(window.airbreak.push).toBeCalledWith({
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
           error: error,
           context: { component: 'userPasswordResetFail' },
           environment: { navigator_vendor: window.navigator.vendor },
