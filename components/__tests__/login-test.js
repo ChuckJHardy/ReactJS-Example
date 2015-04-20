@@ -13,12 +13,14 @@ var FirebaseService = require('../../services/firebase_service');
 describe('Login', function() {
   var Login = require('../login');
 
+  var assets = {};
   var email = 'test@example.com';
   var password = 'password';
+  var setAlert = function(message) { assets['setAlert'] = message; };
 
   var subject = function() {
     return TestUtils.renderIntoDocument(
-      <Login />
+      <Login setAlert={setAlert} />
     );
   };
 
@@ -26,9 +28,14 @@ describe('Login', function() {
     FirebaseService.users.create = jest.genMockFunction();
   });
 
-  describe('#handlePasswordReset', function() {
-    var assets = {};
+  describe('#handlerError', function() {
+    it('calls setAlert', function() {
+      subject().handlerError();
+      expect(assets.setAlert).toEqual('Something failed. Developers have been informed.');
+    });
+  });
 
+  describe('#handlePasswordReset', function() {
     it('transitions to password reset', function() {
       var localSubject = subject();
 
@@ -79,7 +86,6 @@ describe('Login', function() {
   });
 
   describe('#handlerSuccess', function() {
-    var assets = {};
     var data = { uid: 123 };
 
     beforeEach(function() {

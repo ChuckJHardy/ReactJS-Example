@@ -15,6 +15,12 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
 
+  getInitialState: function() {
+    return {
+      invalidUser: false,
+    };
+  },
+
   componentDidMount: function() {
     this.populateFormValuesFromQuery();
   },
@@ -25,6 +31,15 @@ module.exports = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     this.sendToFirebase(this.grabEmail());
+  },
+  handlerError: function(error) {
+    this.props.setAlert('Something failed. Developers have been informed.');
+  },
+  handlerInvalidUser: function() {
+    this.setState({ invalidUser: true });
+  },
+  handlerSuccess: function() {
+    this.context.router.transitionTo('login', {}, { email: this.grabEmail() });
   },
   populateFormValuesFromQuery: function() {
     if (this.context.router) {
@@ -39,13 +54,22 @@ module.exports = React.createClass({
     FirebaseService.users.resetPassword(
       App.firebase,
       email,
-      function() {},
-      function() {},
+      this.handlerInvalidUser,
+      this.handlerError,
       this.handlerSuccess
     );
   },
-  handlerSuccess: function() {
-    this.context.router.transitionTo('login', {}, { email: this.grabEmail() });
+  renderErrorElement: function() {
+    if (this.state.invalidUser) {
+      return <div className="form-error-message">Invalid User</div>;
+    }
+  },
+  formElementClassNames: function() {
+    if (this.state.invalidUser) {
+      return 'form-field form-field-error';
+    } else {
+      return 'form-field';
+    }
   },
 
   render: function() {
@@ -54,9 +78,10 @@ module.exports = React.createClass({
         <img src={logoImage} alt='' className='hero-logo' />
         <div className='hero-title'>Password Reset</div>
         <form className='hero-form' onSubmit={this.handleSubmit}>
-          <div className='form-field'>
+          <div className={this.formElementClassNames()}>
             <label>Email</label>
             <input ref='email' type='text' autofocus required />
+            {this.renderErrorElement()}
           </div>
           <div className='form-field'>
             <input type='submit' value='Reset' className='btn btn-primary' />

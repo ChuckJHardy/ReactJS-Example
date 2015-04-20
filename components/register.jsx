@@ -36,6 +36,12 @@ module.exports = React.createClass({
   handlerInvalidEmail: function() {
     this.setState({ invalidEmail: true });
   },
+  handlerError: function(error) {
+    this.props.setAlert('Something failed. Developers have been informed.');
+  },
+  handlerLockdown: function(error) {
+    this.props.setAlert(error);
+  },
   handlerSuccess: function(data) {
     App.warden.login(data.uid);
     this.context.router.replaceWith('dashboard');
@@ -47,11 +53,11 @@ module.exports = React.createClass({
       password,
       this.handlerEmailTaken,
       this.handlerInvalidEmail,
-      function() {},
-      this.handlerSuccess
+      this.handlerError,
+      this.handlerSuccess,
+      this.handlerLockdown
     );
   },
-
   renderErrorElement: function() {
     if (this.state.emailTaken) {
       return <div className="form-error-message">Email Taken</div>;

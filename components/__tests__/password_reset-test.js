@@ -13,16 +13,53 @@ var FirebaseService = require('../../services/firebase_service');
 describe('PasswordReset', function() {
   var PasswordReset = require('../password_reset');
 
+  var assets = {};
   var email = 'test@example.com';
+  var setAlert = function(message) { assets['setAlert'] = message; };
 
   var subject = function() {
     return TestUtils.renderIntoDocument(
-      <PasswordReset />
+      <PasswordReset setAlert={setAlert} />
     );
   };
 
   beforeEach(function() {
     FirebaseService.users.resetPassword = jest.genMockFunction();
+  });
+
+  describe('Errors', function() {
+    describe('When Invalid User', function() {
+      it('includes expected copy', function() {
+        var localSubject = subject();
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .not.toContain('form-field-error');
+
+        localSubject.setState({invalidUser: true});
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .toContain('Invalid User');
+
+        expect(localSubject.getDOMNode().innerHTML)
+          .toContain('form-field form-field-error');
+      });
+    });
+  });
+
+  describe('#handlerError', function() {
+    it('calls setAlert', function() {
+      subject().handlerError();
+      expect(assets.setAlert).toEqual('Something failed. Developers have been informed.');
+    });
+  });
+
+  describe('#handlerInvalidUser', function() {
+    it('updates state', function() {
+      var localSubject = subject();
+      expect(localSubject.state.invalidUser).toEqual(false);
+      localSubject.handlerInvalidUser();
+      expect(localSubject.state.invalidUser).toEqual(true);
+    });
   });
 
   describe('#populateFormValuesFromQuery', function() {
@@ -74,8 +111,6 @@ describe('PasswordReset', function() {
   });
 
   describe('#handlerSuccess', function() {
-    var assets = {};
-
     it('transitions to login', function() {
       var localSubject = subject();
 

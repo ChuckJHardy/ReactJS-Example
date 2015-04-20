@@ -1,7 +1,6 @@
 .alert {
 	padding: 15px;
 	margin-bottom: 30px;
-	margin-top: -30px;
 }
 
 .alert-success {
@@ -17,4 +16,8 @@
 .alert-danger {
 	background-color: $danger-color;
 	color: $danger-color-text;
+}
+
+.alert-null {
+  display: none;
 }

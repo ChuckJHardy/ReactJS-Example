@@ -24,7 +24,9 @@ var Stubber = function(stubs) {
   return RouterStub;
 };
 
-var Wrapper = function(Component, props, stubs) {
+var Wrapper = function(Component, props, stubs, callback) {
+  callback = callback || function() {};
+
   return React.createClass({
     childContextTypes: {
       router: React.PropTypes.func,
@@ -38,8 +40,12 @@ var Wrapper = function(Component, props, stubs) {
       };
     },
 
+    componentDidMount: function() {
+      callback(this.refs.component)
+    },
+
     render: function() {
-      return <Component {...props} />;
+      return <Component {...props} ref='component' />;
     }
   });
 };
