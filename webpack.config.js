@@ -43,6 +43,8 @@ module.exports = {
     new webpack.DefinePlugin({
       VERSION: JSON.stringify('0.0.1'),
       __FIREBASE_URL__: JSON.stringify(env.FIREBASE_URL),
+      __AIRBRAKE_PRODUCT_ID__: JSON.stringify(env.AIRBRAKE_PRODUCT_ID),
+      __AIRBRAKE_PRODUCT_KEY__: JSON.stringify(env.AIRBRAKE_PRODUCT_KEY),
       __LOCAL_STORAGE_KEY__: JSON.stringify(env.LOCAL_STORAGE_KEY),
       __LOCKDOWN_KEY__: JSON.stringify(env.LOCKDOWN_KEY),
       __TEST__: false,

@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --progress --colors --content-base bundle/",
     "build:development": "webpack --config webpack.config.js",
     "build:production": "webpack --config webpack.config.production.js -p",
-    "deploy:dev": "npm run build:production; s3cmd sync -P --recursive bundle/* s3://dev.smartpickings.com",
+    "deploy:dev": "npm run build:production; s3cmd sync -P --recursive bundle/* --exclude bundle/sandbox s3://dev.smartpickings.com",
     "test": "jest --coverage"
   },
   "repository": {
@@ -30,6 +30,7 @@
     "webpack-dev-server": "^1.8.0"
   },
   "dependencies": {
+    "airbrake-js": "^0.4.0-alpha.2",
     "firebase": "^2.2.4",
     "normalize.css": "^3.0.3",
     "react": "^0.13.1",
@@ -40,6 +41,8 @@
       "__DEV__": false,
       "__TEST__": true,
       "__FIREBASE_URL__": "firebase-test-url",
+      "__AIRBRAKE_PRODUCT_ID__": "airbrake-test-project-id",
+      "__AIRBRAKE_PRODUCT_KEY__": "airbrake-test-project-key",
       "__LOCAL_STORAGE_KEY__": "localStorage-test-key",
       "__LOCKDOWN_KEY__": "lockdown-test-key"
     },

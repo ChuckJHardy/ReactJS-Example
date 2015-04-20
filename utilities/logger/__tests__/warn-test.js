@@ -5,17 +5,48 @@ jest.dontMock('../warn');
 var Warn = require('../warn');
 
 describe('Logger/Warn', function() {
-  describe('#users', function() {
-    var email = 'test@example.com';
-    var password = 'password';
-    var error = 'Oops';
+  var email = 'test@example.com';
+  var password = 'password';
+  var error = 'Oops';
+
+  beforeEach(function() {
+    console.groupCollapsed = jest.genMockFunction();
+    console.log = jest.genMockFunction();
+    console.groupEnd = jest.genMockFunction();
+
+    window.airbrake = {
+      push: jest.genMockFunction()
+    };
+  });
+
+  describe('#general', function() {
+    var name = 'general-error';
+    var params = {
+      email: email
+    };
 
     beforeEach(function() {
-      console.groupCollapsed = jest.genMockFunction();
-      console.log = jest.genMockFunction();
-      console.groupEnd = jest.genMockFunction();
+      Warn.general(name, error, params, true);
     });
 
+    it('pushes to airbrake', function() {
+      expect(window.airbrake.push).toBeCalledWith({
+        error: error,
+        context: { component: name },
+        environment: { navigator_vendor: window.navigator.vendor },
+        params: params
+      });
+    });
+
+    it('outputs expected logs', function() {
+      expect(console.groupCollapsed).toBeCalledWith('-> ✗ General - ' + name);
+      expect(console.log.mock.calls[0]).toEqual(['-> Params: ', params]);
+      expect(console.log.mock.calls[1]).toEqual(['-> Error: ', error]);
+      expect(console.groupEnd).toBeCalled();
+    });
+  });
+
+  describe('#users', function() {
     describe('#emailTaken', function() {
       beforeEach(function() {
         Warn.users.emailTaken(email, password, error, true);
@@ -49,6 +80,17 @@ describe('Logger/Warn', function() {
         Warn.users.createFail(email, password, error, true);
       });
 
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
+          error: error,
+          context: { component: 'userCreateFail' },
+          environment: { navigator_vendor: window.navigator.vendor },
+          params: {
+            email: email
+          }
+        });
+      });
+
       it('outputs expected logs', function() {
         expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Creation Failure');
         expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
@@ -61,6 +103,17 @@ describe('Logger/Warn', function() {
     describe('#userNotFound', function() {
       beforeEach(function() {
         Warn.users.notFound(email, password, error, true);
+      });
+
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
+          error: error,
+          context: { component: 'userNotFound' },
+          environment: { navigator_vendor: window.navigator.vendor },
+          params: {
+            email: email
+          }
+        });
       });
 
       it('outputs expected logs', function() {
@@ -79,6 +132,18 @@ describe('Logger/Warn', function() {
         Warn.users.accessDenied(email, password, error, accessKey, true);
       });
 
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
+          error: error,
+          context: { component: 'userAccessDenied' },
+          environment: { navigator_vendor: window.navigator.vendor },
+          params: {
+            email: email,
+            accessKey: accessKey
+          }
+        });
+      });
+
       it('outputs expected logs', function() {
         expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Access Denied');
         expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
@@ -94,6 +159,17 @@ describe('Logger/Warn', function() {
         Warn.users.invalidUser(email, error, true);
       });
 
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
+          error: error,
+          context: { component: 'userInvalid' },
+          environment: { navigator_vendor: window.navigator.vendor },
+          params: {
+            email: email
+          }
+        });
+      });
+
       it('outputs expected logs', function() {
         expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Invalid');
         expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
@@ -102,9 +178,20 @@ describe('Logger/Warn', function() {
       });
     });
 
-    describe('#passwordResetFail', function() {
+    describe('#userPasswordResetFail', function() {
       beforeEach(function() {
         Warn.users.passwordResetFail(email, error, true);
+      });
+
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
+          error: error,
+          context: { component: 'userPasswordResetFail' },
+          environment: { navigator_vendor: window.navigator.vendor },
+          params: {
+            email: email
+          }
+        });
       });
 
       it('outputs expected logs', function() {

@@ -24,6 +24,7 @@ var create = function(
     );
 
     lockdownCallback(message);
+
     return;
   };
 
