@@ -68,13 +68,13 @@ module.exports = React.createClass({
           </div>
           <div className='form-field'>
             <label>Password</label>
-            <input ref='password' type='text' required />
+            <input ref='password' type='password' required />
           </div>
           <div className='form-field'>
             <a onClick={this.handlePasswordReset} className="forgot-link">Forgot your password?</a>
           </div>
           <div className='form-field'>
-            <input type='submit' value='Login' className='btn' />
+            <input type='submit' value='Login' className='btn btn-primary' />
           </div>
         </form>
       </div>

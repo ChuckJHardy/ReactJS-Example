@@ -17,13 +17,13 @@ module.exports = React.createClass({
 
     switch(routePath) {
       case '/login':
-        return <Link to='register' className='btn'>Register</Link>;
+        return <Link to='register' className='btn btn-default'>Register</Link>;
       case '/register':
       case '/logout':
       case '/password_reset':
-        return <Link to='login' className='btn'>Login</Link>;
+        return <Link to='login' className='btn btn-default'>Login</Link>;
       default:
-        return <Link to='logout' className='btn'>Logout</Link>;
+        return <Link to='logout' className='btn btn-default'>Logout</Link>;
     }
   },
 

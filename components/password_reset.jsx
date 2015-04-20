@@ -59,7 +59,7 @@ module.exports = React.createClass({
             <input ref='email' type='text' autofocus required />
           </div>
           <div className='form-field'>
-            <input type='submit' value='Reset' className='btn' />
+            <input type='submit' value='Reset' className='btn btn-primary' />
           </div>
         </form>
       </div>
