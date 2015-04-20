@@ -36,6 +36,9 @@ module.exports = React.createClass({
   handlerInvalidEmail: function() {
     this.setState({ invalidEmail: true });
   },
+  handlerError: function(error) {
+    this.props.setAlert('Something failed. Developers have been informed.');
+  },
   handlerSuccess: function(data) {
     App.warden.login(data.uid);
     this.context.router.replaceWith('dashboard');
@@ -47,7 +50,7 @@ module.exports = React.createClass({
       password,
       this.handlerEmailTaken,
       this.handlerInvalidEmail,
-      function() {},
+      this.handlerError,
       this.handlerSuccess
     );
   },

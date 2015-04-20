@@ -50,7 +50,7 @@ module.exports = React.createClass({
         <Alert message={this.state.alerts.danger} />
 
         <div className='hero-container'>
-          <RouteHandler />
+          <RouteHandler setAlert={this.setAlert} />
         </div>
       </div>
     );
