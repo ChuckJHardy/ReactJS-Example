@@ -2,10 +2,16 @@
 
 var React = require('react');
 var Router = require('react-router');
+var Airbrake = require('airbrake-js');
 
 var Routes = require('./config/routes');
 
 window.React = React;
+
+window.airbreak = new Airbrake({
+  projectId: __AIRBREAK_PRODUCT_ID__,
+  projectKey: __AIRBREAK_PRODUCT_KEY__
+});
 
 require('normalize.css/normalize.css');
 require('./styles/main.scss');

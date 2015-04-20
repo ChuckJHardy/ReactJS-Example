@@ -3,7 +3,6 @@
 var React = require('react');
 var Router = require('react-router');
 var Firebase = require('firebase');
-var Airbrake = require('airbrake-js');
 
 var Alert = require('./alert');
 var AuthenticationService = require('../services/authentication_service');
@@ -17,10 +16,6 @@ module.exports = React.createClass({
   displayName: 'Application',
 
   statics: {
-    airbreak: new Airbrake({
-      projectId: __AIRBREAK_PRODUCT_ID__,
-      projectKey: __AIRBREAK_PRODUCT_KEY__
-    }),
     warden: AuthenticationService,
     firebase: new Firebase(__FIREBASE_URL__)
   },

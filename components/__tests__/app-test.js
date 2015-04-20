@@ -26,12 +26,6 @@ describe('App', function () {
     });
   });
 
-  describe('.airbreak', function () {
-    it('returns airbreak instance', function() {
-      expect(App.airbreak).toBeDefined();
-    });
-  });
-
   describe('.firebase', function () {
     it('returns firebase instance', function() {
       expect(App.firebase).toBeDefined();

@@ -8,6 +8,8 @@
       "jest" : true,
       "__TEST__" : true,
       "__DEV__" : true,
-      "__FIREBASE_URL__" : true
+      "__FIREBASE_URL__" : true,
+      "__AIRBREAK_PRODUCT_ID__" : true,
+      "__AIRBREAK_PRODUCT_KEY__" : true
     }
 }
