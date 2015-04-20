@@ -22,7 +22,7 @@ label {
   margin-bottom: 10px;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
   @include form-styles;
   width: 100%;
   padding-left: 15px;
