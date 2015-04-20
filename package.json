@@ -4,10 +4,10 @@
   "description": "Smart Pickings UI",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --content-base dist/",
+    "start": "webpack-dev-server --progress --colors --content-base bundle/",
     "build:development": "webpack --config webpack.config.js",
     "build:production": "webpack --config webpack.config.production.js -p",
-    "deploy:dev": "npm run build:production; s3cmd sync -P --recursive dist/* s3://dev.smartpickings.com",
+    "deploy:dev": "npm run build:production; s3cmd sync -P --recursive bundle/* s3://dev.smartpickings.com",
     "test": "jest --coverage"
   },
   "repository": {
@@ -22,9 +22,8 @@
     "jest-cli": "^0.4.0",
     "jsx-loader": "^0.13.1",
     "jsxhint-loader": "^0.2.0",
-    "node-sass": "^2.1.1",
     "react-tools": "^0.13.1",
-    "sass-loader": "^0.6.0",
+    "sass-loader": "0.3.0",
     "style-loader": "^0.10.1",
     "url-loader": "^0.5.5",
     "webpack": "^1.8.4",

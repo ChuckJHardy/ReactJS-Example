@@ -2,15 +2,17 @@ form {
   text-align: left;
 }
 
+.form-center {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 .form-action {
   clear: left;
 }
 
-.container {
-  .form-action {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
+.form-action-secondary {
+  float: right;
 }
 
 .form-field {
@@ -85,5 +87,9 @@ textarea {
 @media only screen and (max-width: 480px) {
   .form-action .btn {
     width: 100%;
+  }
+
+  .form-action-secondary {
+    margin-top: $form-element-gap;
   }
 }
