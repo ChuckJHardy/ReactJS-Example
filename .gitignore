@@ -1,5 +1,5 @@
 env.js
 node_modules
-dist/bundle.js
+bundle/bundle.js
 coverage
 *.log

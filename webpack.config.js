@@ -10,7 +10,7 @@ module.exports = {
     './main.jsx'
   ],
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/bundle',
     filename: 'bundle.js'
   },
   resolve: {

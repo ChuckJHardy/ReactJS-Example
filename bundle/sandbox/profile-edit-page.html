@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Smart Pickings</title>
-
-    <link href="css/normalize.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-
+    <script type="text/javascript" src="../bundle.js"></script>
   </head>
   <body>
     <header class="main-header">
@@ -18,20 +15,23 @@
         <span class="header-text">Already have an account?</span><a href="#" class="btn btn-primary">Login</a>
       </nav>
     </header>
-    <div class="hero-container">
-      <img src="assets/images/logo-big.png" alt="" class="hero-logo">
-      <div class="hero-title">Sign up</div>
-      <form class="hero-form">
+    <header class="page-header">Your profile</header>
+    <div class="container">
+      <form class="form-center">
         <div class="form-field">
           <label>Email</label>
-          <input type="text" autofocus required>
+          <input type="text" />
         </div>
         <div class="form-field">
-          <label>Password</label>
-          <input type="text" required>
+          <label>Reset password</label>
+          <input type="text" placeholder="New password" />
         </div>
-        <div class="form-action form-field">
-          <input type="submit" value="Sign up" class="btn btn-primary">
+        <div class="form-field">
+          <input type="text" placeholder="Retype new password" />
+        </div>
+        <div class="form-action">
+          <a href="#" class="btn btn-primary">Save</a>
+          <a href="#" class="btn btn-default form-action-secondary">Delete account</a>
         </div>
       </form>
     </div>
