@@ -4,6 +4,7 @@ var React = require('react');
 var Router = require('react-router');
 var Firebase = require('firebase');
 
+var Alert = require('./alert');
 var AuthenticationService = require('../services/authentication_service');
 var Cards = require('./cards');
 var Navigation = require('./navigation');
@@ -19,6 +20,22 @@ module.exports = React.createClass({
     firebase: new Firebase(__FIREBASE_URL__)
   },
 
+  getInitialState: function() {
+    return {
+      alerts: {
+        danger: null
+      }
+    };
+  },
+
+  setAlert: function(danger) {
+    this.setState({
+      alerts: {
+        danger: danger
+      }
+    });
+  },
+
   render: function() {
     return (
       <div>
@@ -29,6 +46,9 @@ module.exports = React.createClass({
 
           <Navigation />
         </header>
+
+        <Alert message={this.state.alerts.danger} />
+
         <div className='hero-container'>
           <RouteHandler />
         </div>
