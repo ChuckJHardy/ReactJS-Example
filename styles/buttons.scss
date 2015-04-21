@@ -14,6 +14,10 @@
 
 .btn-default {
   border: $border-size solid $subtle-border-color;
+
+  &:hover {
+    background-color: $subtle-color;
+  }
 }
 
 .btn-primary {
