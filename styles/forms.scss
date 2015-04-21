@@ -24,9 +24,18 @@ label {
 
 input[type="text"], input[type="password"] {
   @include form-styles;
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
+
+  &:focus {
+    box-shadow: 0 0 5px rgba(243, 156, 18, 1);
+    border: 1px solid $main-color;
+  }
 }
 
 .checkbox, .radio {
