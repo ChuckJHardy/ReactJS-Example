@@ -34,6 +34,10 @@ module.exports = React.createClass({
         danger: danger
       }
     });
+
+    setTimeout(function() {
+      this.setAlert(null);
+    }.bind(this), 3000);
   },
 
   render: function() {
