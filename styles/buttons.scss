@@ -1,5 +1,6 @@
 .btn {
   @include rounded-corners;
+  transition: background-color 0.4s ease;
   background-color: transparent;
   color: inherit;
   display: inline-block;
@@ -10,10 +11,18 @@
   &:hover {
     text-decoration: none;
   }
+
+  &:active {
+    box-shadow: inset 0px 1px 4px 0px rgba(0,0,0,0.25);
+  }
 }
 
 .btn-default {
   border: $border-size solid $subtle-border-color;
+
+  &:hover {
+    background-color: $subtle-color;
+  }
 }
 
 .btn-primary {
