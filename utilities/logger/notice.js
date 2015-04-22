@@ -32,10 +32,20 @@ var userPasswordReset = function(email, forceRun) {
   });
 };
 
+var userSubscribe = function(email, listId, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✓ User - Subscribed');
+    console.log('-> Email: ', email);
+    console.log('-> List ID: ', listId);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   users: {
     created: userCreated,
     found: userFound,
-    passwordReset: userPasswordReset
+    passwordReset: userPasswordReset,
+    subscribe: userSubscribe,
   }
 };

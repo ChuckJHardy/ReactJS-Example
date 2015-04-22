@@ -47,7 +47,7 @@ describe('Logger/Notice', function() {
       });
     });
 
-    describe('#resetPassword', function() {
+    describe('#userPasswordReset', function() {
       beforeEach(function() {
         Notice.users.passwordReset(email, true);
       });
@@ -55,6 +55,21 @@ describe('Logger/Notice', function() {
       it('outputs expected logs', function() {
         expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Password Reset');
         expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
+
+    describe('#userSubscribe', function() {
+      var listId = __MAILCHIMP_LIST_ID__;
+
+      beforeEach(function() {
+        Notice.users.subscribe(email, listId, true);
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Subscribed');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> List ID: ', listId]);
         expect(console.groupEnd).toBeCalled();
       });
     });
