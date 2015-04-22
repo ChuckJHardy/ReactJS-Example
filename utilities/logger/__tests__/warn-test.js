@@ -224,8 +224,7 @@ describe('Logger/Warn', function() {
       it('outputs expected logs', function() {
         expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Subscription Failure');
         expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
-        expect(console.log.mock.calls[1]).toEqual(['-> List ID: ', listId]);
-        expect(console.log.mock.calls[2]).toEqual(['-> Error: ', error]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Error: ', error]);
         expect(console.groupEnd).toBeCalled();
       });
     });

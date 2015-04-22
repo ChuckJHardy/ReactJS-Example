@@ -60,16 +60,16 @@ describe('Logger/Notice', function() {
     });
 
     describe('#userSubscribe', function() {
-      var listId = __MAILCHIMP_LIST_ID__;
+      var data = { uid: 123 };
 
       beforeEach(function() {
-        Notice.users.subscribe(email, listId, true);
+        Notice.users.subscribe(email, data, true);
       });
 
       it('outputs expected logs', function() {
         expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Subscribed');
         expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
-        expect(console.log.mock.calls[1]).toEqual(['-> List ID: ', listId]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Data: ', data]);
         expect(console.groupEnd).toBeCalled();
       });
     });

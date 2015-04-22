@@ -3,17 +3,12 @@
 jest.dontMock('../mailchimp_service');
 
 var MailchimpService = require('../mailchimp_service');
+var MailchimpDAO = require('../../dao/mailchimp_dao');
 var Logger = require('../../utilities/logger');
 
 describe('MailchimpService', function() {
+  var adapter = jest.genMockFunction();
   var email = 'test@example.com';
-  var listId = __MAILCHIMP_LIST_ID__;
-
-  var mockAdapter = function(error, data) {
-    return {
-      listSubscribe: function(params, callback) { callback(error, data); },
-    };
-  };
 
   describe('#subscribe', function() {
     var asserts = {};
@@ -23,9 +18,14 @@ describe('MailchimpService', function() {
     };
 
     var subject = function(error, data) {
+      var mockDAO = {
+        end: function(callback) { callback(error, data); },
+      };
+
+      MailchimpDAO.subscribe = jest.genMockFunction().mockReturnValue(mockDAO);
+
       return MailchimpService.subscribe(
-        mockAdapter(error, data),
-        listId,
+        adapter,
         email,
         callbacks.errorCallback,
         callbacks.successCallback
@@ -41,11 +41,11 @@ describe('MailchimpService', function() {
       });
 
       it('calls callback with email', function() {
-        expect(asserts.successCallback).toEqual(null);
+        expect(asserts.successCallback).toEqual(data);
       });
 
       it('calls off to logger with correct args', function() {
-        expect(Logger.notice.users.subscribe).toBeCalledWith(email, listId);
+        expect(Logger.notice.users.subscribe).toBeCalledWith(email, data);
       });
     });
 
@@ -63,7 +63,7 @@ describe('MailchimpService', function() {
 
       it('calls off to logger with correct args', function() {
         expect(Logger.warn.users.subscribe)
-          .toBeCalledWith(email, listId, error);
+          .toBeCalledWith(email, error);
       });
     });
   });

@@ -32,11 +32,11 @@ var userPasswordReset = function(email, forceRun) {
   });
 };
 
-var userSubscribe = function(email, listId, forceRun) {
+var userSubscribe = function(email, data, forceRun) {
   new Runner(forceRun, function() {
     console.groupCollapsed('-> ✓ User - Subscribed');
     console.log('-> Email: ', email);
-    console.log('-> List ID: ', listId);
+    console.log('-> Data: ', data);
     console.groupEnd();
   });
 };

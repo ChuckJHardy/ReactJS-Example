@@ -123,7 +123,6 @@ var userSubscribe = function(email, listId, error, forceRun) {
   new Runner(forceRun, function() {
     console.groupCollapsed('-> ✗ User - Subscription Failure');
     console.log('-> Email: ', email);
-    console.log('-> List ID: ', listId);
     console.log('-> Error: ', error);
     console.groupEnd();
   });
