@@ -17,7 +17,7 @@ module.exports = React.createClass({
 
   statics: {
     warden: AuthenticationService,
-    firebase: new Firebase(__FIREBASE_URL__)
+    firebase: new Firebase(__FIREBASE_URL__),
   },
 
   getInitialState: function() {
