@@ -32,6 +32,7 @@
   "dependencies": {
     "airbrake-js": "^0.4.0-alpha.2",
     "firebase": "^2.2.4",
+    "mailchimp": "^1.1.0",
     "normalize.css": "^3.0.3",
     "react": "^0.13.1",
     "react-router": "^0.13.2"
@@ -44,7 +45,8 @@
       "__AIRBRAKE_PRODUCT_ID__": "airbrake-test-project-id",
       "__AIRBRAKE_PRODUCT_KEY__": "airbrake-test-project-key",
       "__LOCAL_STORAGE_KEY__": "localStorage-test-key",
-      "__LOCKDOWN_KEY__": "lockdown-test-key"
+      "__LOCKDOWN_KEY__": "lockdown-test-key",
+      "__MAILCHIMP_LIST_ID__": "mailchimp-test-list-id"
     },
     "scriptPreprocessor": "<rootDir>/preprocessor",
     "unmockedModulePathPatterns": [

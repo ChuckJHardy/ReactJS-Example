@@ -47,6 +47,7 @@ module.exports = {
       __AIRBRAKE_PRODUCT_KEY__: JSON.stringify(env.AIRBRAKE_PRODUCT_KEY),
       __LOCAL_STORAGE_KEY__: JSON.stringify(env.LOCAL_STORAGE_KEY),
       __LOCKDOWN_KEY__: JSON.stringify(env.LOCKDOWN_KEY),
+      __MAILCHIMP_LIST_ID__: JSON.stringify(env.MAILCHIMP_LIST_ID),
       __TEST__: false,
       __DEV__: true,
       'process.env': {
