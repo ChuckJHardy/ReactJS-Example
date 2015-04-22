@@ -201,5 +201,33 @@ describe('Logger/Warn', function() {
         expect(console.groupEnd).toBeCalled();
       });
     });
+
+    describe('#userSubscribe', function() {
+      var listId = __MAILCHIMP_LIST_ID__;
+
+      beforeEach(function() {
+        Warn.users.subscribe(email, listId, error, true);
+      });
+
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
+          error: error,
+          context: { component: 'userSubscribe' },
+          environment: { navigator_vendor: window.navigator.vendor },
+          params: {
+            email: email,
+            listId: listId
+          }
+        });
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Subscription Failure');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> List ID: ', listId]);
+        expect(console.log.mock.calls[2]).toEqual(['-> Error: ', error]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
   });
 });
