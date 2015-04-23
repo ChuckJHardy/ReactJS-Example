@@ -16,6 +16,7 @@ module.exports = React.createClass({
     var routePath = this.context.router.getCurrentPathname();
 
     switch(routePath) {
+      case '/bye':
       case '/login':
         return <Link to='register' className='btn btn-default'>Register</Link>;
       case '/':
