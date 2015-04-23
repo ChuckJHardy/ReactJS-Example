@@ -4,10 +4,12 @@
   "description": "Smart Pickings UI",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --port 9293 --progress --colors --content-base bundle/",
+    "start": "webpack-dev-server --progress --colors --content-base dist/bundle/",
+    "start:design": "webpack-dev-server --port 9293 --progress --colors --content-base dist/design/",
     "build:development": "webpack --config webpack.config.js",
+    "build:design": "webpack --config webpack.config.design.js",
     "build:production": "webpack --config webpack.config.production.js -p",
-    "deploy:dev": "npm run build:production; s3cmd sync -P --verbose --delete-removed --exclude './bundle/sandbox/*' --recursive './bundle/*' s3://dev.smartpickings.com",
+    "deploy:dev": "s3cmd sync -P --verbose --delete-removed --recursive ./dist/bundle/* s3://dev.smartpickings.com",
     "test": "jest --coverage"
   },
   "repository": {

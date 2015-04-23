@@ -2,11 +2,15 @@ var webpack = require('webpack');
 var env = require('./env');
 
 module.exports = {
-  debug: false,
+  devtool: 'eval-source-map',
+  debug: true,
   context: __dirname + '/',
-  entry: [ './main.jsx' ],
+  entry: [
+    'webpack/hot/dev-server',
+    './main.jsx'
+  ],
   output: {
-    path: __dirname + '/dist/bundle',
+    path: __dirname + '/dist/design',
     filename: 'bundle.js'
   },
   resolve: {
@@ -46,9 +50,9 @@ module.exports = {
       __MAILCHIMP_API_KEY__: JSON.stringify(env.MAILCHIMP_API_KEY),
       __MAILCHIMP_LIST_ID__: JSON.stringify(env.MAILCHIMP_LIST_ID),
       __TEST__: false,
-      __DEV__: false,
+      __DEV__: true,
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('development')
       }
     })
   ]

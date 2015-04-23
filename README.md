@@ -22,6 +22,11 @@ You will need the following things properly installed on your computer.
 * `npm start`
 * Visit your app at [http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/).
 
+Design Sandbox
+
+* `npm run start:design`
+* Visit your app at [http://localhost:9293/webpack-dev-server/](http://localhost:9293/webpack-dev-server/).
+
 ### Running Tests
 
 * `npm test`
@@ -30,8 +35,9 @@ You will need the following things properly installed on your computer.
 
 ### Building
 
-* `webpack` (development)
-* `webpack -p --environment production` (production)
+* `npm run build:development` (development)
+* `npm run build:production` (production)
+* `npm run build:design` (design sandbox)
 
 ### Deploying
 
