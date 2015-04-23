@@ -31,10 +31,12 @@ module.exports = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
 
-    this.sendToFirebase(
-      this.refs.email.getDOMNode().value.trim(),
-      this.refs.password.getDOMNode().value.trim()
-    );
+    if (window.confirm('Are you sure?')) {
+      this.sendToFirebase(
+        this.refs.email.getDOMNode().value.trim(),
+        this.refs.password.getDOMNode().value.trim()
+      );
+    }
   },
   handlerInvalidUser: function() {
     this.props.setAlert('Nope, its confirmed, you dont exist');
@@ -46,8 +48,6 @@ module.exports = React.createClass({
     this.props.setAlert('Something failed. Developers have been informed.');
   },
   handlerSuccess: function(data) {
-    // Delete LocalStorage
-    // Leaving Us Page
     App.warden.logout();
     this.context.router.replaceWith('/bye');
   },

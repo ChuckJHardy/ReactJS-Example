@@ -31,25 +31,41 @@ describe('Deregister', function() {
     var email = 'test@example.com';
     var password = 'password';
 
-    it('calls sendToFirebase with expected arguments', function() {
-      App.firebase = jest.genMockFunction().mockReturnValue(adapter);
+    describe('When Cancelled', function() {
+      beforeEach(function() {
+        window.confirm = jest.genMockFunction().mockReturnValue(false);
+      });
 
-      var localSubject = subject();
+      it('does not call firebase', function() {
+        expect(FirebaseService.users.destroy).not.toBeCalled();
+      });
+    });
 
-      localSubject.refs.email.getDOMNode().value = email;
-      localSubject.refs.password.getDOMNode().value = password;
+    describe('When Confirmed', function() {
+      beforeEach(function() {
+        window.confirm = jest.genMockFunction().mockReturnValue(true);
+      });
 
-      localSubject.handleSubmit({preventDefault: jest.genMockFn()})
+      it('calls sendToFirebase with expected arguments', function() {
+        App.firebase = jest.genMockFunction().mockReturnValue(adapter);
 
-      expect(FirebaseService.users.destroy).toBeCalledWith(
-        adapter,
-        email,
-        password,
-        function() {},
-        function() {},
-        function() {},
-        function() {}
-      );
+        var localSubject = subject();
+
+        localSubject.refs.email.getDOMNode().value = email;
+        localSubject.refs.password.getDOMNode().value = password;
+
+        localSubject.handleSubmit({preventDefault: jest.genMockFn()})
+
+        expect(FirebaseService.users.destroy).toBeCalledWith(
+          adapter,
+          email,
+          password,
+          function() {},
+          function() {},
+          function() {},
+          function() {}
+        );
+      });
     });
   });
 
