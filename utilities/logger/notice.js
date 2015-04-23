@@ -14,6 +14,16 @@ var userCreated = function(email, password, data, forceRun) {
   });
 };
 
+var userDestroyed = function(email, password, data, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✓ User - Destoryed');
+    console.log('-> Email: ', email);
+    console.log('-> Password: ', password);
+    console.log('-> Data: ', data);
+    console.groupEnd();
+  });
+};
+
 var userFound = function(email, password, data, forceRun) {
   new Runner(forceRun, function() {
     console.groupCollapsed('-> ✓ User - Found');
@@ -44,6 +54,7 @@ var userSubscribe = function(email, data, forceRun) {
 module.exports = {
   users: {
     created: userCreated,
+    destroyed: userDestroyed,
     found: userFound,
     passwordReset: userPasswordReset,
     subscribe: userSubscribe,

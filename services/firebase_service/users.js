@@ -51,6 +51,38 @@ var create = function(
   });
 };
 
+var destroy = function(
+  adapter,
+  email,
+  password,
+  invalidUserCallback,
+  invalidPasswordCallback,
+  errorCallback,
+  successCallback
+) {
+  adapter.removeUser({
+    email: email,
+    password: password
+  }, function(error, data) {
+    if (error) {
+      switch (error.code) {
+        case 'INVALID_USER':
+          Logger.warn.users.invalidUser(email, error);
+          invalidUserCallback(email); break;
+        case 'INVALID_PASSWORD':
+          Logger.warn.users.invalidPassword(email, password, error);
+          invalidPasswordCallback(email); break;
+        default:
+          Logger.warn.users.destroyFail(email, password, error);
+          errorCallback(error);
+      }
+    } else {
+      Logger.notice.users.destroyed(email, password, data);
+      successCallback(data);
+    }
+  });
+};
+
 var find = function(
   adapter,
   email,
@@ -100,6 +132,7 @@ var resetPassword = function(
 
 module.exports = {
   create: create,
+  destroy: destroy,
   find: find,
   resetPassword: resetPassword,
 };

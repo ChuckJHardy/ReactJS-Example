@@ -15,6 +15,14 @@ describe('Navigation', function () {
     return TestUtils.renderIntoDocument(<Wrapper />);
   };
 
+  describe('/bye', function () {
+    it('renders expected link', function() {
+      expect(subject({
+        getCurrentPathname: function() { return '/bye'; }
+      }).getDOMNode().textContent).toContain('Register');
+    });
+  });
+
   describe('/login', function () {
     it('renders expected link', function() {
       expect(subject({
@@ -52,6 +60,14 @@ describe('Navigation', function () {
       expect(subject({
         getCurrentPathname: function() { return '/password_reset'; }
       }).getDOMNode().textContent).toContain('Login');
+    });
+  });
+
+  describe('/dashboard', function () {
+    it('renders expected link', function() {
+      expect(subject({
+        getCurrentPathname: function() { return '/dashboard'; }
+      }).getDOMNode().textContent).toContain('Account');
     });
   });
 

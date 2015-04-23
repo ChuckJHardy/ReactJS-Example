@@ -100,6 +100,31 @@ describe('Logger/Warn', function() {
       });
     });
 
+    describe('#userDestoryFail', function() {
+      beforeEach(function() {
+        Warn.users.destroyFail(email, password, error, true);
+      });
+
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
+          error: error,
+          context: { component: 'userDestoryFail' },
+          environment: { navigator_vendor: window.navigator.vendor },
+          params: {
+            email: email
+          }
+        });
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Destory Failure');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
+        expect(console.log.mock.calls[2]).toEqual(['-> Error: ', error]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
+
     describe('#userNotFound', function() {
       beforeEach(function() {
         Warn.users.notFound(email, password, error, true);
@@ -174,6 +199,31 @@ describe('Logger/Warn', function() {
         expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Invalid');
         expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
         expect(console.log.mock.calls[1]).toEqual(['-> Error: ', error]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
+
+    describe('#invalidPassword', function() {
+      beforeEach(function() {
+        Warn.users.invalidPassword(email, password, error, true);
+      });
+
+      it('pushes to airbrake', function() {
+        expect(window.airbrake.push).toBeCalledWith({
+          error: error,
+          context: { component: 'userInvalidPassword' },
+          environment: { navigator_vendor: window.navigator.vendor },
+          params: {
+            email: email
+          }
+        });
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✗ User - Invalid Password');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
+        expect(console.log.mock.calls[2]).toEqual(['-> Error: ', error]);
         expect(console.groupEnd).toBeCalled();
       });
     });
