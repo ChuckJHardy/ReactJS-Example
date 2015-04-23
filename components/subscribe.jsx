@@ -16,6 +16,12 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
 
+  getInitialState: function() {
+    return {
+      submitted: false,
+    };
+  },
+
   handleSubmit: function(e) {
     e.preventDefault();
 
@@ -27,7 +33,7 @@ module.exports = React.createClass({
     this.props.setAlert('Something failed. Developers have been informed.');
   },
   handlerSuccess: function(data) {
-    // Change Button Text
+    this.setState({ submitted: true });
   },
   sendToMailchimp: function(email) {
     MailchimpService.subscribe(
@@ -37,21 +43,34 @@ module.exports = React.createClass({
       this.handlerSuccess
     );
   },
+  renderContent: function() {
+    if (this.state.submitted) {
+      return (
+        <div className='hero-title'>Thanks</div>
+      );
+    } else {
+      return (
+        <div>
+          <div className='hero-title'>Subscribe</div>
+          <form className='hero-form' onSubmit={this.handleSubmit}>
+            <div className='form-field'>
+              <label>Email</label>
+              <input ref='email' type='text' autofocus required />
+            </div>
+            <div className='form-field'>
+              <input type='submit' value='Subscribe' className='btn btn-primary' />
+            </div>
+          </form>
+        </div>
+      );
+    }
+  },
 
   render: function() {
     return (
       <div>
         <img src={logoImage} alt='' className='hero-logo' />
-        <div className='hero-title'>Subscribe</div>
-        <form className='hero-form' onSubmit={this.handleSubmit}>
-          <div className='form-field'>
-            <label>Email</label>
-            <input ref='email' type='text' autofocus required />
-          </div>
-          <div className='form-field'>
-            <input type='submit' value='Subscribe' className='btn btn-primary' />
-          </div>
-        </form>
+        {this.renderContent()}
       </div>
     );
   }

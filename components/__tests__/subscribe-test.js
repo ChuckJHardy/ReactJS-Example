@@ -54,6 +54,13 @@ describe('Subscribe', function() {
   });
 
   describe('#handlerSuccess', function() {
+    var localSubject = subject();
+    localSubject.handlerSuccess();
+
+    it('renders', function() {
+      expect(localSubject.getDOMNode().textContent)
+        .toContain('Thanks');
+    });
   });
 
   it('renders', function() {
