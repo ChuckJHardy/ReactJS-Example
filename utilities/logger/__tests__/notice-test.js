@@ -33,6 +33,20 @@ describe('Logger/Notice', function() {
       });
     });
 
+    describe('#destroyed', function() {
+      beforeEach(function() {
+        Notice.users.destroyed(email, password, data, true);
+      });
+
+      it('outputs expected logs', function() {
+        expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Destoryed');
+        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
+        expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
+        expect(console.log.mock.calls[2]).toEqual(['-> Data: ', data]);
+        expect(console.groupEnd).toBeCalled();
+      });
+    });
+
     describe('#found', function() {
       beforeEach(function() {
         Notice.users.found(email, password, data, true);

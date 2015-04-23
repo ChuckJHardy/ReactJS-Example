@@ -58,6 +58,20 @@ var userCreateFail = function(email, password, error, forceRun) {
   });
 };
 
+var userDestoryFail = function(email, password, error, forceRun) {
+  Airbrake(error, 'userDestoryFail', {
+    email: email,
+  });
+
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ User - Destory Failure');
+    console.log('-> Email: ', email);
+    console.log('-> Password: ', password);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
+
 var userNotFound = function(email, password, error, forceRun) {
   Airbrake(error, 'userNotFound', {
     email: email,
@@ -101,6 +115,20 @@ var userInvalid = function(email, error, forceRun) {
   });
 };
 
+var userInvalidPassword = function(email, password, error, forceRun) {
+  Airbrake(error, 'userInvalidPassword', {
+    email: email,
+  });
+
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ User - Invalid Password');
+    console.log('-> Email: ', email);
+    console.log('-> Password: ', password);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
+
 var userPasswordResetFail = function(email, error, forceRun) {
   Airbrake(error, 'userPasswordResetFail', {
     email: email,
@@ -132,11 +160,13 @@ module.exports = {
   general: general,
   users: {
     createFail: userCreateFail,
+    destroyFail: userDestoryFail,
     emailTaken: userEmailTaken,
     invalidEmail: userInvalidEmail,
     notFound: userNotFound,
     accessDenied: userAccessDenied,
     invalidUser: userInvalid,
+    invalidPassword: userInvalidPassword,
     passwordResetFail: userPasswordResetFail,
     subscribe: userSubscribe,
   }

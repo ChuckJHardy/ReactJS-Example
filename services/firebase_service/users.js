@@ -100,6 +100,7 @@ var resetPassword = function(
 
 module.exports = {
   create: create,
+  destroy: destroy,
   find: find,
   resetPassword: resetPassword,
 };
