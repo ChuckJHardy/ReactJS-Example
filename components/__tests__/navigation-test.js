@@ -23,6 +23,14 @@ describe('Navigation', function () {
     });
   });
 
+  describe('/', function () {
+    it('renders expected link', function() {
+      expect(subject({
+        getCurrentPathname: function() { return '/'; }
+      }).getDOMNode().textContent).toContain('Login');
+    });
+  });
+
   describe('/register', function () {
     it('renders expected link', function() {
       expect(subject({

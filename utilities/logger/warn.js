@@ -114,6 +114,20 @@ var userPasswordResetFail = function(email, error, forceRun) {
   });
 };
 
+var userSubscribe = function(email, listId, error, forceRun) {
+  Airbrake(error, 'userSubscribe', {
+    email: email,
+    listId: listId
+  });
+
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ User - Subscription Failure');
+    console.log('-> Email: ', email);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   general: general,
   users: {
@@ -124,5 +138,6 @@ module.exports = {
     accessDenied: userAccessDenied,
     invalidUser: userInvalid,
     passwordResetFail: userPasswordResetFail,
+    subscribe: userSubscribe,
   }
 };

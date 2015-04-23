@@ -17,7 +17,7 @@ module.exports = React.createClass({
 
   statics: {
     warden: AuthenticationService,
-    firebase: new Firebase(__FIREBASE_URL__)
+    firebase: new Firebase(__FIREBASE_URL__),
   },
 
   getInitialState: function() {
@@ -44,7 +44,7 @@ module.exports = React.createClass({
     return (
       <div>
         <header className="main-header">
-          <Link to='dashboard'>
+          <Link to='/'>
             <h1 className='main-logo'>Smart Pickings</h1>
           </Link>
 

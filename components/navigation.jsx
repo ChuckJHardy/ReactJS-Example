@@ -18,6 +18,7 @@ module.exports = React.createClass({
     switch(routePath) {
       case '/login':
         return <Link to='register' className='btn btn-default'>Register</Link>;
+      case '/':
       case '/register':
       case '/logout':
       case '/password_reset':
