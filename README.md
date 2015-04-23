@@ -57,13 +57,10 @@ Install `s3cmd`
 Configure `s3cmd` and follow the instructions
 
 	$ s3cmd --configure
-	
-Deploy to Live Development Servers
 
-	$ npm run deploy:dev
-	
-Visit	
-
-    $ open dev.smartpickings.com
+|Environemnt|Deploy Command|URL|
+|---|---|---|
+|Development|`npm run deploy:development`|[dev.smartpickings.com](http://dev.smartpickings.com)|
+|Production|`npm run deploy:production`|[smartpickings.com](http://smartpickings.com)|
 
 ## Further Reading / Useful Links

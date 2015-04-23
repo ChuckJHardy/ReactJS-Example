@@ -9,7 +9,8 @@
     "build:development": "webpack --config webpack.config.js",
     "build:design": "webpack --config webpack.config.design.js",
     "build:production": "webpack --config webpack.config.production.js -p",
-    "deploy:dev": "s3cmd sync -P --verbose --delete-removed --recursive ./dist/bundle/* s3://dev.smartpickings.com",
+    "deploy:development": "./bin/development_deploy",
+    "deploy:production": "./bin/production_deploy",
     "test": "jest --coverage"
   },
   "repository": {
