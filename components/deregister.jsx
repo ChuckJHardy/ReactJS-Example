@@ -49,7 +49,7 @@ module.exports = React.createClass({
     // Delete LocalStorage
     // Leaving Us Page
     App.warden.logout();
-    this.context.router.replaceWith('/');
+    this.context.router.replaceWith('/bye');
   },
   sendToFirebase: function(email, password) {
     FirebaseService.users.destroy(

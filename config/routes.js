@@ -5,6 +5,8 @@ var Router = require('react-router');
 
 var Account = require('../components/account');
 var App = require('../components/app');
+var Bye = require('../components/bye');
+var Logout = require('../components/logout');
 var Dashboard = require('../components/dashboard');
 var Deregister = require('../components/deregister');
 var LoggedIn = require('../components/logged_in');
@@ -21,6 +23,7 @@ module.exports = (
     <Route name='subscribe' path='/' handler={Subscribe} />
     <Route name='login' path='login' handler={Login} />
     <Route name='logout' path='logout' handler={Logout} />
+    <Route name='bye' path='bye' handler={Bye} />
     <Route name='register' path='register' handler={Register} />
     <Route name='password_reset' path='password_reset' handler={PasswordReset} />
 

@@ -96,7 +96,7 @@ describe('Deregister', function() {
 
       localSubject.handlerSuccess(data);
 
-      expect(assets.handlerSuccess).toEqual('/');
+      expect(assets.handlerSuccess).toEqual('/bye');
       expect(assets.warden).toEqual('success');
     });
   });
