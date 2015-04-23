@@ -17,9 +17,9 @@ describe('MailchimpService', function() {
       successCallback: function(data) { asserts['successCallback'] = data },
     };
 
-    var subject = function(error, data) {
+    var subject = function(data, error) {
       var mockDAO = {
-        end: function(callback) { callback(error, data); },
+        then: function(callback) { callback(data); return mockDAO; },
       };
 
       MailchimpDAO.subscribe = jest.genMockFunction().mockReturnValue(mockDAO);
@@ -33,11 +33,15 @@ describe('MailchimpService', function() {
     };
 
     describe('Success', function() {
-      var data = { uid: 123 };
+      var error = 'Oops';
+      var data = {
+        result: 'success',
+        msg: error
+      };
 
       beforeEach(function() {
         Logger.notice.users.subscribe = jest.genMockFunction();
-        subject(null, data)
+        subject(data)
       });
 
       it('calls callback with email', function() {
@@ -51,6 +55,10 @@ describe('MailchimpService', function() {
 
     describe('Error', function() {
       var error = 'Oops';
+      var data = {
+        result: 'error',
+        msg: error
+      };
 
       beforeEach(function() {
         Logger.warn.users.subscribe = jest.genMockFunction();

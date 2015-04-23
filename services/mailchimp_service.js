@@ -9,15 +9,16 @@ var subscribe = function(
   errorCallback,
   successCallback
 ) {
-  MailchimpDAO.subscribe(adapter, email).end(function(error, data) {
-    if (error) {
-      Logger.warn.users.subscribe(email, error);
-      errorCallback(error);
-    } else {
-      Logger.notice.users.subscribe(email, data);
-      successCallback(data);
-    }
-  });
+  MailchimpDAO.subscribe(adapter, email)
+    .then(function(data) {
+      if (data.result === 'success') {
+        Logger.notice.users.subscribe(email, data);
+        successCallback(data);
+      } else {
+        Logger.warn.users.subscribe(email, data);
+        errorCallback(data);
+      }
+    });
 };
 
 module.exports = {

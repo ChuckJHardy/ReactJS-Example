@@ -1,20 +1,18 @@
 'use strict';
 
 var endpoints = {
-  subscribe: 'https://uk1.api.mailchimp.com/2.0/lists/subscribe.json',
+  subscribe: 'http://smartpickings.us9.list-manage.com/subscribe/post-json?u=' + __MAILCHIMP_API_KEY__ + '&id=' + __MAILCHIMP_LIST_ID__ + '&c=?'
 };
 
 var subscribe = function(adapter, email) {
-  return adapter
-    .post(endpoints.subscribe)
-    .set('Accept', 'application/json')
-    .send({
-      apikey: __MAILCHIMP_API_KEY__,
-      id: __MAILCHIMP_LIST_ID__,
-      email: {
-        email: email,
-      }
-    });
+  return adapter.ajax({
+    type: 'POST',
+    crossDomain: true,
+    dataType: 'jsonp',
+    timeout: 10000,
+    url: endpoints.subscribe,
+    data: { 'EMAIL': email }
+  });
 };
 
 module.exports = {
