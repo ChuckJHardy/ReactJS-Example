@@ -55,6 +55,14 @@ describe('Navigation', function () {
     });
   });
 
+  describe('/dashboard', function () {
+    it('renders expected link', function() {
+      expect(subject({
+        getCurrentPathname: function() { return '/dashboard'; }
+      }).getDOMNode().textContent).toContain('Account');
+    });
+  });
+
   describe('/not_a_valid_path', function () {
     it('renders expected link', function() {
       expect(subject({

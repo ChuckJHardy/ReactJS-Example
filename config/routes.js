@@ -3,6 +3,7 @@
 var React = require('react');
 var Router = require('react-router');
 
+var Account = require('../components/account');
 var App = require('../components/app');
 var Dashboard = require('../components/dashboard');
 var LoggedIn = require('../components/logged_in');
@@ -24,6 +25,7 @@ module.exports = (
 
     <Route handler={LoggedIn} >
       <Route name='dashboard' handler={Dashboard} />
+      <Route name='account' handler={Account} />
     </Route>
   </Route>
 );
