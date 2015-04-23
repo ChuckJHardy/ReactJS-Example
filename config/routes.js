@@ -26,9 +26,8 @@ module.exports = (
 
     <Route handler={LoggedIn} >
       <Route name='dashboard' handler={Dashboard} />
-      <Route name='account' handler={Account} >
-        <Route name='deregister' handler={Deregister} />
-      </Route>
+      <Route name='account' handler={Account} />
+      <Route name='deregister' handler={Deregister} />
     </Route>
   </Route>
 );
