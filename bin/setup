@@ -75,5 +75,6 @@ info "
 * Building Project
 ------------------------------------"
 
-webpack
+npm run build:development
+npm run build:design
 npm test
