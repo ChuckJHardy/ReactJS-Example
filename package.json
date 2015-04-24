@@ -11,6 +11,7 @@
     "build:production": "webpack --config webpack.config.production.js -p",
     "deploy:development": "./bin/development_deploy",
     "deploy:production": "./bin/production_deploy",
+    "test:live": "./bin/test_deploy",
     "test": "jest --coverage"
   },
   "repository": {

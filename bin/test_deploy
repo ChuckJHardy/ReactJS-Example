@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+
+blue="\033[34m"
+reset="\033[0m"
+red="\033[31m"
+green="\033[32m"
+
+function warn {
+  echo "$1" > /dev/stderr
+}
+
+function info {
+  warn "$green$1$reset"
+}
+
+function notice {
+  warn "$blue$1$reset"
+}
+
+set -e
+
+notice "
+------------------------------------
+* Test Deploy
+------------------------------------"
+
+read -p "Are you sure? (yes/n)? " CONT
+if [ "$CONT" == "yes" ]; then
+  info "Syncing..."
+  s3cmd sync -P --verbose --delete-removed --recursive ./dist/bundle/* s3://test.smartpickings.com
+else
+  warn "Bye :)"
+fi
