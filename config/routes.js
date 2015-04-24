@@ -20,17 +20,17 @@ var Route = Router.Route;
 
 module.exports = (
   <Route handler={App} >
-    <Route name='subscribe' path='/' handler={Subscribe} />
+    <Route handler={LoggedIn} >
+      <Route name='dashboard' path='/' handler={Dashboard} />
+      <Route name='account' handler={Account} />
+      <Route name='deregister' handler={Deregister} />
+    </Route>
+
     <Route name='login' path='login' handler={Login} />
     <Route name='logout' path='logout' handler={Logout} />
     <Route name='bye' path='bye' handler={Bye} />
     <Route name='register' path='register' handler={Register} />
     <Route name='password_reset' path='password_reset' handler={PasswordReset} />
-
-    <Route handler={LoggedIn} >
-      <Route name='dashboard' handler={Dashboard} />
-      <Route name='account' handler={Account} />
-      <Route name='deregister' handler={Deregister} />
-    </Route>
+    <Route name='subscribe' path='subscribe' handler={Subscribe} />
   </Route>
 );

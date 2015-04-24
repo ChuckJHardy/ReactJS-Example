@@ -31,14 +31,6 @@ describe('Navigation', function () {
     });
   });
 
-  describe('/', function () {
-    it('renders expected link', function() {
-      expect(subject({
-        getCurrentPathname: function() { return '/'; }
-      }).getDOMNode().textContent).toContain('Login');
-    });
-  });
-
   describe('/register', function () {
     it('renders expected link', function() {
       expect(subject({
@@ -63,11 +55,27 @@ describe('Navigation', function () {
     });
   });
 
+  describe('/', function () {
+    it('renders expected link', function() {
+      expect(subject({
+        getCurrentPathname: function() { return '/'; }
+      }).getDOMNode().textContent).toContain('Account');
+
+      expect(subject({
+        getCurrentPathname: function() { return '/'; }
+      }).getDOMNode().textContent).toContain('Logout');
+    });
+  });
+
   describe('/dashboard', function () {
     it('renders expected link', function() {
       expect(subject({
         getCurrentPathname: function() { return '/dashboard'; }
       }).getDOMNode().textContent).toContain('Account');
+
+      expect(subject({
+        getCurrentPathname: function() { return '/dashboard'; }
+      }).getDOMNode().textContent).toContain('Logout');
     });
   });
 

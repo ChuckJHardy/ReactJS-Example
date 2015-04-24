@@ -19,13 +19,16 @@ module.exports = React.createClass({
       case '/bye':
       case '/login':
         return <Link to='register' className='btn btn-default'>Register</Link>;
-      case '/':
       case '/register':
       case '/logout':
       case '/password_reset':
         return <Link to='login' className='btn btn-default'>Login</Link>;
+      case '/':
       case '/dashboard':
-        return <Link to='account' className='btn btn-default'>Account</Link>;
+        return <div>
+          <Link to='account' className='btn btn-default'>Account</Link>
+          <Link to='logout' className='btn btn-default'>Logout</Link>
+        </div>;
       default:
         return <Link to='logout' className='btn btn-default'>Logout</Link>;
     }
