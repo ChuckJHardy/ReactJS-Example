@@ -31,7 +31,7 @@ if [ "$CONT" == "yes" ]; then
   info "Building..."
   npm run build:production
   info "Syncing..."
-  s3cmd sync -P --verbose --delete-removed --recursive ./dist/bundle/* s3://smartpickings.com
+  s3cmd sync -P --verbose --delete-removed --recursive ./dist/bundle/* s3://app.smartpickings.com
 else
   warn "Bye :)"
 fi
