@@ -25,6 +25,7 @@ module.exports = React.createClass({
         return <Link to='login' className='btn btn-default'>Login</Link>;
       case '/':
       case '/dashboard':
+      case '/new_card':
         return <div>
           <Link to='account' className='btn btn-default'>Account</Link>
           <Link to='logout' className='btn btn-default'>Logout</Link>
