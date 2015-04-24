@@ -16,6 +16,6 @@ describe('Dashboard', function () {
 
   it('renders', function() {
     expect(subject().getDOMNode().textContent)
-      .toContain('Dashboard');
+      .toContain('Add a new property');
   });
 });
