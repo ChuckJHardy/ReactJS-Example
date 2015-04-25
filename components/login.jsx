@@ -4,7 +4,6 @@ var React = require('react');
 
 var App = require('../components/app');
 var FirebaseService = require('../services/firebase_service');
-var Router = require('react-router');
 
 var logoImage = require('../assets/images/logo-big.png');
 
