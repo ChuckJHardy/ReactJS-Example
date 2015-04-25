@@ -45,6 +45,7 @@
     "globals": {
       "__DEV__": false,
       "__TEST__": true,
+      "__GOOGLE_ANALYTICS_KEY__": "google-analytics-test-key",
       "__FIREBASE_URL__": "firebase-test-url",
       "__AIRBRAKE_PRODUCT_ID__": "airbrake-test-project-id",
       "__AIRBRAKE_PRODUCT_KEY__": "airbrake-test-project-key",

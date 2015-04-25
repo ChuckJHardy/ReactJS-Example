@@ -42,6 +42,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       VERSION: JSON.stringify('0.0.1'),
+      __GOOGLE_ANALYTICS_KEY__: JSON.stringify(env.GOOGLE_ANALYTICS_KEY),
       __FIREBASE_URL__: JSON.stringify(env.FIREBASE_URL),
       __AIRBRAKE_PRODUCT_ID__: JSON.stringify(env.AIRBRAKE_PRODUCT_ID),
       __AIRBRAKE_PRODUCT_KEY__: JSON.stringify(env.AIRBRAKE_PRODUCT_KEY),

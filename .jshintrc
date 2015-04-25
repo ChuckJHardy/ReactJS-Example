@@ -7,10 +7,15 @@
       "document" : true,
       "jest" : true,
       "$" : true,
-      "__TEST__" : true,
-      "__DEV__" : true,
-      "__FIREBASE_URL__" : true,
-      "__AIRBRAKE_PRODUCT_ID__" : true,
-      "__AIRBRAKE_PRODUCT_KEY__" : true
+      "__GOOGLE_ANALYTICS_KEY__": true,
+      "__FIREBASE_URL__": true,
+      "__AIRBRAKE_PRODUCT_ID__": true,
+      "__AIRBRAKE_PRODUCT_KEY__": true,
+      "__LOCAL_STORAGE_KEY__": true,
+      "__LOCKDOWN_KEY__": true,
+      "__MAILCHIMP_API_KEY__": true,
+      "__MAILCHIMP_LIST_ID__": true,
+      "__TEST__": false,
+      "__DEV__": true
     }
 }

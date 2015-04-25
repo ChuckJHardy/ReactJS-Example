@@ -7,6 +7,7 @@ var Airbrake = require('airbrake-js');
 var Routes = require('./config/routes');
 
 window.React = React;
+window.isProduction = process.env.NODE_ENV === 'production';
 
 window.airbrake = new Airbrake({
   projectId: __AIRBRAKE_PRODUCT_ID__,
@@ -22,3 +23,5 @@ Router.run(Routes, Router.HistoryLocation, function (Handler) {
     document.getElementsByTagName('root')[0]
   );
 });
+
+require('./support/google_analytics_tracking')(window.isProduction);
