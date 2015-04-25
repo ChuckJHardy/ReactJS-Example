@@ -60,6 +60,7 @@
       "<rootDir>/node_modules/react-tools"
     ],
     "modulePathIgnorePatterns": [
+      "<rootDir>/utilities/logger/airbrake",
       "<rootDir>/node_modules/jquery",
       "<rootDir>/node_modules/react",
       "<rootDir>/support/"
