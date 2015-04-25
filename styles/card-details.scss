@@ -1,0 +1,59 @@
+.card-detail-gallery {
+	background-color: $subtle-color;
+	height: 360px;
+}
+
+.card-detail-info {
+	margin-top: -50px;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 600px;
+}
+
+.card-detail-name {
+	font-size: 24px;
+	margin-right: 55px;
+	margin-bottom: 20px;
+}
+
+.card-detail-price {
+	background-color: rgba(#000000, .5);
+	color: white;
+	font-size: 30px;
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 30px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.card-detail-features {
+	font-size: 0;
+	list-style-type: none;
+	margin-bottom: 20px;
+	padding-left: 0;
+}
+
+.card-detail-feature {
+	font-size: 14px;
+	display: inline-block;
+	width: 50%;
+
+	& > span {
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+}
+
+.card-detail-descrip {
+	font-size: 14px;
+	line-height: 22px;
+}
+
+@media only screen and (max-width: 480px) {
+	.card-detail-info {
+		padding-right: 30px;
+		padding-bottom: 30px;
+		padding-left: 30px;
+	}
+}
