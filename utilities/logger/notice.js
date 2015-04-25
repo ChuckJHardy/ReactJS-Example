@@ -1,7 +1,9 @@
 'use strict';
 
+var Cards = require('./notice/cards');
 var Users = require('./notice/users');
 
 module.exports = {
-  users: Users
+  cards: Cards,
+  users: Users,
 };

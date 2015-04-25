@@ -2,6 +2,8 @@
 
 var Airbrake = require('./airbrake');
 var Runner = require('./runner');
+
+var Cards = require('./warn/cards');
 var Users = require('./warn/users');
 
 var general = function(name, error, params, forceRun) {
@@ -16,6 +18,7 @@ var general = function(name, error, params, forceRun) {
 };
 
 module.exports = {
+  cards: Cards,
   general: general,
   users: Users,
 };

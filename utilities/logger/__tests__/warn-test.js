@@ -17,6 +17,10 @@ describe('Warn', function() {
     console.groupEnd = jest.genMockFunction();
   });
 
+  it('cards is defined', function() {
+    expect(Warn.cards).toBeDefined();
+  });
+
   it('general is defined', function() {
     expect(Warn.general).toBeDefined();
   });
