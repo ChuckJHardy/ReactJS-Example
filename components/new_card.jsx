@@ -2,30 +2,55 @@
 
 var React = require('react');
 
+var App = require('../components/app');
+var FirebaseService = require('../services/firebase_service');
+var GetFormData = require('get-form-data');
+
 module.exports = React.createClass({
   displayName: 'NewCard',
+
+  handleSubmit: function(e) {
+    e.preventDefault();
+  
+    this.sendToFirebase(
+      GetFormData(this.refs.form.getDOMNode(), { trim: true })
+    );
+  },
+  handlerError: function(error) {
+  },
+  handlerSuccess: function(data) {
+  },
+  sendToFirebase: function(data) {
+    FirebaseService.cards.create(
+      App.firebase,
+      App.warden.getLocalStorageUser(),
+      data,
+      this.handlerError,
+      this.handlerSuccess
+    );
+  },
 
   render: function() {
     return (
       <div className="container">
-        <form>
+        <form ref='form' onSubmit={this.handleSubmit}>
           <div className="col-6">
             <div className="form-field">
               <label>Location</label>
-              <input type="text" autofocus required />
+              <input type="text" name='location' autofocus required />
             </div>
             <div className="form-field">
               <label>Price</label>
-              <input type="text" />
+              <input type="text" name='price' />
             </div>
             <div className="form-field">
               <label>Description</label>
-              <textarea></textarea>
+              <textarea name='description'></textarea>
             </div>
             <div className="form-field">
               <label>Rooms</label>
               <div className="select-menu">
-                <select>
+                <select name='rooms'>
                   <option>Select</option>
                   <option>1</option>
                   <option>2</option>
@@ -36,7 +61,7 @@ module.exports = React.createClass({
             <div className="form-field">
               <label>Bathrooms</label>
               <div className="select-menu">
-                <select>
+                <select name='bathrooms'>
                   <option>Select</option>
                   <option>1</option>
                   <option>2</option>
