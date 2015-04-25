@@ -58,6 +58,11 @@
       "<rootDir>/node_modules/react",
       "<rootDir>/node_modules/react-tools"
     ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/jquery",
+      "<rootDir>/node_modules/react",
+      "<rootDir>/support/"
+    ],
     "moduleFileExtensions": [
       "js",
       "jsx"
