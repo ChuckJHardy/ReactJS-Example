@@ -14,8 +14,8 @@ describe('Card', function () {
 
     var defaults = {
       record: {
-        id: 123,
-        town: 'testTown',
+        location: 'testLocation',
+        description: 'testDescription',
         price: '£5'
       }
     };
@@ -27,14 +27,14 @@ describe('Card', function () {
     );
   };
 
-  it('renders id', function() {
+  it('renders description', function() {
     expect(subject().getDOMNode().innerHTML)
-      .toContain(data.record.id);
+      .toContain(data.record.description);
   });
 
-  it('renders town', function() {
+  it('renders location', function() {
     expect(subject().getDOMNode().innerHTML)
-      .toContain(data.record.town);
+      .toContain(data.record.location);
   });
 
   it('renders price', function() {
