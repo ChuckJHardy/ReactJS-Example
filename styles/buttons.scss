@@ -18,6 +18,10 @@
   }
 }
 
+.btn+.btn {
+  margin-left: 10px;
+}
+
 .btn-mini {
   font-size: 0.813rem;
   line-height: $form-element-height*.75;
@@ -39,5 +43,12 @@
   &:hover {
     background-color: $main-color;
     color: $invert-color;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .btn+.btn {
+    margin-top: 10px;
+    margin-left: 0;
   }
 }
