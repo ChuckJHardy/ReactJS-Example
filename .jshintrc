@@ -7,6 +7,7 @@
       "document" : true,
       "jest" : true,
       "$" : true,
+      "_" : true,
       "__GOOGLE_ANALYTICS_KEY__": true,
       "__FIREBASE_URL__": true,
       "__AIRBRAKE_PRODUCT_ID__": true,
