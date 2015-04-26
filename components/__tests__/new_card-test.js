@@ -74,7 +74,7 @@ describe('NewCard', function() {
       expect(FirebaseService.cards.create).toBeCalledWith(
         adapter,
         '22',
-        undefined,
+        {},
         function() {},
         function() {}
       );

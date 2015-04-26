@@ -17,7 +17,7 @@ module.exports = React.createClass({
     e.preventDefault();
 
     this.sendToFirebase(
-      GetFormData(this.refs.form.getDOMNode(), { trim: true })
+      new GetFormData(this.refs.form.getDOMNode(), { trim: true })
     );
   },
   handlerError: function(error) {
