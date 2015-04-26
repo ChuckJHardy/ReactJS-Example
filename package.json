@@ -36,6 +36,7 @@
   "dependencies": {
     "airbrake-js": "^0.4.0-alpha.2",
     "firebase": "^2.2.4",
+    "flux": "^2.0.3",
     "get-form-data": "^1.2.1",
     "jquery": "^2.1.3",
     "normalize.css": "^3.0.3",
