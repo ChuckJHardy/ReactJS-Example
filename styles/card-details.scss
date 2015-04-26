@@ -11,7 +11,7 @@
 }
 
 .card-detail-name {
-	font-size: 24px;
+	font-size: 1.5rem;
 	margin-right: 55px;
 	margin-bottom: 20px;
 }
@@ -19,7 +19,7 @@
 .card-detail-price {
 	background-color: rgba(#000000, .5);
 	color: white;
-	font-size: 30px;
+	font-size: 1.875rem;
 	height: 50px;
 	line-height: 50px;
 	margin-bottom: 30px;
@@ -35,7 +35,7 @@
 }
 
 .card-detail-feature {
-	font-size: 14px;
+	font-size: 0.875rem;
 	display: inline-block;
 	width: 50%;
 
@@ -46,8 +46,8 @@
 }
 
 .card-detail-descrip {
-	font-size: 14px;
-	line-height: 22px;
+	font-size: 0.875rem;
+	line-height: 1.375rem;
 }
 
 @media only screen and (max-width: 480px) {

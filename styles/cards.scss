@@ -6,7 +6,7 @@
     @include rounded-corners;
     transition: background-color 0.4s ease;
     display: inline-block;
-    font-size: 13px;
+    font-size: 0.813rem;
     border: $border-size solid $subtle-border-color;
     padding: 5px 15px;
     margin: 0 5px;
@@ -38,7 +38,7 @@
 }
 
 .cards-empty-message {
-  font-size: 20px;
+  font-size: 1.25rem;
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -76,21 +76,21 @@
 .card-name a {
   @include text-overflow;
   color: $link-color;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .card-heading2 {
-  font-size: 13px;
+  font-size: 0.813rem;
   margin-bottom: 10px;
 }
 
 .card-heading3 {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .card-text {
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-top: 5px;
 }
 
