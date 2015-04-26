@@ -36,9 +36,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({
-      _: 'lodash',
-    }),
     new webpack.DefinePlugin({
       VERSION: JSON.stringify('0.0.1'),
       __GOOGLE_ANALYTICS_KEY__: JSON.stringify(env.GOOGLE_ANALYTICS_KEY),
