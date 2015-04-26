@@ -5,7 +5,8 @@
   color: inherit;
   display: inline-block;
   line-height: $form-element-height;
-  padding: 0 20px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   text-decoration: none;
 
   &:hover {
@@ -15,6 +16,17 @@
   &:active {
     box-shadow: inset 0px 1px 4px 0px rgba(0,0,0,0.25);
   }
+}
+
+.btn+.btn {
+  margin-left: 10px;
+}
+
+.btn-mini {
+  font-size: 0.813rem;
+  line-height: $form-element-height*.75;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
 }
 
 .btn-default {
@@ -31,5 +43,12 @@
   &:hover {
     background-color: $main-color;
     color: $invert-color;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .btn+.btn {
+    margin-top: 10px;
+    margin-left: 0;
   }
 }

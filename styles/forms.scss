@@ -6,12 +6,7 @@ form {
   clear: left;
 }
 
-.container {
-  .form-action {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
+
 
 .form-field {
   margin-bottom: $form-element-gap;
@@ -22,20 +17,23 @@ label {
   margin-bottom: 10px;
 }
 
-input[type="text"], input[type="password"] {
-  @include form-styles;
+input[type="text"], input[type="password"], select, textarea {
   -webkit-transition: all 0.30s ease-in-out;
   -moz-transition: all 0.30s ease-in-out;
   -ms-transition: all 0.30s ease-in-out;
   -o-transition: all 0.30s ease-in-out;
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
 
   &:focus {
     box-shadow: 0 0 5px rgba(243, 156, 18, 1);
     border: 1px solid $main-color;
   }
+}
+
+input[type="text"], input[type="password"] {
+  @include form-styles;
+  width: 100%;
+  padding-left: $form-element-padding;
+  padding-right: $form-element-padding;
 }
 
 .checkbox, .radio {
@@ -58,8 +56,8 @@ input[type="text"], input[type="password"] {
     line-height: $form-element-height;
     height: $form-element-height;
     -webkit-appearance: none;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: $form-element-padding;
+    padding-right: $form-element-padding;
     width: 100%;
   }
 }
@@ -68,12 +66,12 @@ textarea {
   @include form-styles;
   height: auto;
   width: 100%;
-  padding: 15px;
+  padding: $form-element-padding;
 }
 
 .forgot-link {
   color: #666666;
-  font-size: 13px;
+  font-size: 0.813rem;
 }
 
 .form-field-error {
@@ -87,7 +85,7 @@ textarea {
 
 .form-error-message {
   color: $danger-color-text;
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-top: 5px;
 }
 

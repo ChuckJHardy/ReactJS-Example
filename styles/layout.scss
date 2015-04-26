@@ -1,12 +1,13 @@
 .container {
-  margin: 0 auto;
-  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.938rem;
   max-width: 900px;
 }
 
 .col-6 {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0.938rem;
+  padding-right: 0.938rem;
   float: left;
   width: 50%;
 }
