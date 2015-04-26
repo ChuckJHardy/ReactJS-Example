@@ -5,8 +5,8 @@
   color: inherit;
   display: inline-block;
   line-height: $form-element-height;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   text-decoration: none;
 
   &:hover {
@@ -21,8 +21,8 @@
 .btn-mini {
   font-size: 0.813rem;
   line-height: $form-element-height*.75;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
 }
 
 .btn-default {

@@ -6,12 +6,7 @@ form {
   clear: left;
 }
 
-.container {
-  .form-action {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
+
 
 .form-field {
   margin-bottom: $form-element-gap;
@@ -37,8 +32,8 @@ input[type="text"], input[type="password"], select, textarea {
 input[type="text"], input[type="password"] {
   @include form-styles;
   width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: $form-element-padding;
+  padding-right: $form-element-padding;
 }
 
 .checkbox, .radio {
@@ -61,8 +56,8 @@ input[type="text"], input[type="password"] {
     line-height: $form-element-height;
     height: $form-element-height;
     -webkit-appearance: none;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: $form-element-padding;
+    padding-right: $form-element-padding;
     width: 100%;
   }
 }
@@ -71,7 +66,7 @@ textarea {
   @include form-styles;
   height: auto;
   width: 100%;
-  padding: 15px;
+  padding: $form-element-padding;
 }
 
 .forgot-link {

@@ -1,6 +1,6 @@
 .cards-filter {
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 0.938rem;
 
   .filter {
     @include rounded-corners;
@@ -8,8 +8,9 @@
     display: inline-block;
     font-size: 0.813rem;
     border: $border-size solid $subtle-border-color;
-    padding: 5px 15px;
-    margin: 0 5px;
+    padding: 0.313rem 0.938rem;
+    margin-left: 0.313rem;
+    margin-right: 0.313rem;
 
     &:hover {
       background-color: $subtle-color;
@@ -19,17 +20,17 @@
 }
 
 .add-card {
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
   text-align: center;
 
   .btn {
-    width: 250px;
+    max-width: 250px;
   }
 }
 
 .cards-empty {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 3.125rem;
 
   img {
     height: 173px;
@@ -39,12 +40,12 @@
 
 .cards-empty-message {
   font-size: 1.25rem;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 1.875rem;
+  margin-bottom: 1.875rem;
 }
 
 .cards {
-  padding: 10px;
+  padding: 0.625rem;
 
   &:after {
     @include clearfix;
@@ -58,7 +59,7 @@
 
 .card-inner {
   display: block;
-  margin: 10px;
+  margin: 0.625rem;
 }
 
 .card-image img {
@@ -70,7 +71,7 @@
   @include bottom-rounded-corners;
   border: $border-size solid $subtle-border-color;
   border-top: 0;
-  padding: 30px 20px;
+  padding: 1.875rem 1.25rem;
 }
 
 .card-name a {
@@ -81,7 +82,7 @@
 
 .card-heading2 {
   font-size: 0.813rem;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .card-heading3 {
@@ -91,13 +92,14 @@
 
 .card-text {
   font-size: 0.875rem;
-  margin-top: 5px;
+  margin-top: 0.313rem;
 }
 
 @media only screen and (max-width: 480px) {
   .add-card {
     padding-left: 10px;
     padding-right: 10px;
+
     .btn {
       width: 100%;
     }
