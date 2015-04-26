@@ -6,7 +6,6 @@ var Firebase = require('firebase');
 
 var Alert = require('./alert');
 var AuthenticationService = require('../services/authentication_service');
-var Cards = require('./cards');
 var Navigation = require('./navigation');
 
 var Link = Router.Link;
