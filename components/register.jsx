@@ -1,10 +1,11 @@
 'use strict';
 
 var React = require('react');
+var Router = require('react-router');
 
 var App = require('../components/app');
 var FirebaseService = require('../services/firebase_service');
-var Router = require('react-router');
+var TextInput = require('../helpers/text_input');
 
 var logoImage = require('../assets/images/logo-big.png');
 
@@ -58,20 +59,24 @@ module.exports = React.createClass({
       this.handlerLockdown
     );
   },
-  renderErrorElement: function() {
-    if (this.state.emailTaken) {
-      return <div className="form-error-message">Email Taken</div>;
-    } else if (this.state.invalidEmail) {
-      return <div className="form-error-message">Invalid Email Address</div>;
-    }
-  },
+  renderEmailElement: function() {
+    var error;
 
-  formElementClassNames: function() {
-    if (this.state.emailTaken || this.state.invalidEmail) {
-      return 'form-field form-field-error';
-    } else {
-      return 'form-field';
+    if (this.state.emailTaken) {
+      error = 'Email Taken';
+    } else if (this.state.invalidEmail) {
+      error = 'Invalid Email Address';
     }
+
+    return TextInput.render('Email', 'email', {
+      autofocus: true,
+      required: true
+    }, error);
+  },
+  renderPasswordElement: function() {
+    return TextInput.render('Password', 'password', {
+      required: true
+    });
   },
 
   render: function() {
@@ -80,15 +85,8 @@ module.exports = React.createClass({
         <img src={logoImage} alt='' className='hero-logo' />
         <div className='hero-title'>Register</div>
         <form className='hero-form' onSubmit={this.handleSubmit}>
-          <div className={this.formElementClassNames()}>
-            <label>Email</label>
-            <input ref='email' type='text' autofocus required />
-            {this.renderErrorElement()}
-          </div>
-          <div className='form-field'>
-            <label>Password</label>
-            <input ref='password' type='password' required />
-          </div>
+          {this.renderEmailElement()}
+          {this.renderPasswordElement()}
           <div className='form-field'>
             <input type='submit' value='Register' className='btn btn-primary' />
           </div>

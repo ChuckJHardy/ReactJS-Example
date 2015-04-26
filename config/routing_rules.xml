@@ -1,10 +1,18 @@
 <RoutingRules>
-  <RoutingRule>
-  <Condition>
-    <HttpErrorCodeReturnedEquals>404</HttpErrorCodeReturnedEquals>
-  </Condition>
-  <Redirect>
-    <ReplaceKeyWith>#!/</ReplaceKeyWith>
-  </Redirect>
-  </RoutingRule>
+    <RoutingRule>
+        <Condition>
+            <HttpErrorCodeReturnedEquals>404</HttpErrorCodeReturnedEquals>
+        </Condition>
+        <Redirect>
+            <ReplaceKeyWith>#!/</ReplaceKeyWith>
+        </Redirect>
+    </RoutingRule>
+    <RoutingRule>
+        <Condition>
+            <HttpErrorCodeReturnedEquals>403</HttpErrorCodeReturnedEquals>
+        </Condition>
+        <Redirect>
+            <ReplaceKeyWith>#!/</ReplaceKeyWith>
+        </Redirect>
+    </RoutingRule>
 </RoutingRules>

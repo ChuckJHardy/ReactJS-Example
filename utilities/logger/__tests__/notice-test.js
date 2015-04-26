@@ -4,88 +4,12 @@ jest.dontMock('../notice');
 
 var Notice = require('../notice');
 
-describe('Logger/Notice', function() {
-  var email = 'test@example.com';
-  var password = 'password';
-  var error = 'Oops';
-  var data = {
-    uid: 123
-  };
-
-  beforeEach(function() {
-    console.groupCollapsed = jest.genMockFunction();
-    console.log = jest.genMockFunction();
-    console.groupEnd = jest.genMockFunction();
+describe('Notice', function() {
+  it('cards is defined', function() {
+    expect(Notice.cards).toBeDefined();
   });
 
-  describe('#users', function() {
-    describe('#created', function() {
-      beforeEach(function() {
-        Notice.users.created(email, password, data, true);
-      });
-
-      it('outputs expected logs', function() {
-        expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Created');
-        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
-        expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
-        expect(console.log.mock.calls[2]).toEqual(['-> Data: ', data]);
-        expect(console.groupEnd).toBeCalled();
-      });
-    });
-
-    describe('#destroyed', function() {
-      beforeEach(function() {
-        Notice.users.destroyed(email, password, data, true);
-      });
-
-      it('outputs expected logs', function() {
-        expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Destoryed');
-        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
-        expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
-        expect(console.log.mock.calls[2]).toEqual(['-> Data: ', data]);
-        expect(console.groupEnd).toBeCalled();
-      });
-    });
-
-    describe('#found', function() {
-      beforeEach(function() {
-        Notice.users.found(email, password, data, true);
-      });
-
-      it('outputs expected logs', function() {
-        expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Found');
-        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
-        expect(console.log.mock.calls[1]).toEqual(['-> Password: ', password]);
-        expect(console.log.mock.calls[2]).toEqual(['-> Data: ', data]);
-        expect(console.groupEnd).toBeCalled();
-      });
-    });
-
-    describe('#userPasswordReset', function() {
-      beforeEach(function() {
-        Notice.users.passwordReset(email, true);
-      });
-
-      it('outputs expected logs', function() {
-        expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Password Reset');
-        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
-        expect(console.groupEnd).toBeCalled();
-      });
-    });
-
-    describe('#userSubscribe', function() {
-      var data = { uid: 123 };
-
-      beforeEach(function() {
-        Notice.users.subscribe(email, data, true);
-      });
-
-      it('outputs expected logs', function() {
-        expect(console.groupCollapsed).toBeCalledWith('-> ✓ User - Subscribed');
-        expect(console.log.mock.calls[0]).toEqual(['-> Email: ', email]);
-        expect(console.log.mock.calls[1]).toEqual(['-> Data: ', data]);
-        expect(console.groupEnd).toBeCalled();
-      });
-    });
+  it('users is defined', function() {
+    expect(Notice.users).toBeDefined();
   });
 });

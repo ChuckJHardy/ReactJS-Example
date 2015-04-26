@@ -36,6 +36,7 @@
   "dependencies": {
     "airbrake-js": "^0.4.0-alpha.2",
     "firebase": "^2.2.4",
+    "get-form-data": "^1.2.1",
     "jquery": "^2.1.3",
     "normalize.css": "^3.0.3",
     "react": "^0.13.1",
@@ -60,6 +61,7 @@
       "<rootDir>/node_modules/react-tools"
     ],
     "modulePathIgnorePatterns": [
+      "<rootDir>/utilities/logger/airbrake",
       "<rootDir>/node_modules/jquery",
       "<rootDir>/node_modules/react",
       "<rootDir>/support/"

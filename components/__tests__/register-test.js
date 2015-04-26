@@ -2,6 +2,7 @@
 
 jest.dontMock('../register');
 jest.dontMock('../../support/stub_router_context');
+jest.dontMock('../../helpers/text_input');
 
 var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
