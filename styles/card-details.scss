@@ -1,59 +1,59 @@
 .card-detail-gallery {
-	background-color: $subtle-color;
-	height: 360px;
+  background-color: $subtle-color;
+  height: 360px;
 }
 
 .card-detail-info {
-	margin-top: -3.125rem;
-	margin-right: auto;
-	margin-left: auto;
-	max-width: 600px;
+  margin-top: -3.125rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 600px;
 }
 
 .card-detail-name {
-	font-size: 1.5rem;
-	margin-right: 3.438rem;
-	margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+  margin-right: 3.438rem;
+  margin-bottom: 1.25rem;
 }
 
 .card-detail-price {
-	background-color: rgba(#000000, .5);
-	color: white;
-	font-size: 1.875rem;
-	height: 3.125rem;
-	line-height: 3.125rem;
-	margin-bottom: 1.875rem;
-	padding-left: 0.938rem;
-	padding-right: 0.938rem;
+  background-color: rgba(#000000, .5);
+  color: white;
+  font-size: 1.875rem;
+  height: 3.125rem;
+  line-height: 3.125rem;
+  margin-bottom: 1.875rem;
+  padding-left: 0.938rem;
+  padding-right: 0.938rem;
 }
 
 .card-detail-features {
-	font-size: 0;
-	list-style-type: none;
-	margin-bottom: 1.25rem;
-	padding-left: 0;
+  font-size: 0;
+  list-style-type: none;
+  margin-bottom: 1.25rem;
+  padding-left: 0;
 }
 
 .card-detail-feature {
-	font-size: 0.875rem;
-	display: inline-block;
-	width: 50%;
+  font-size: 0.875rem;
+  display: inline-block;
+  width: 50%;
 
-	& > span {
-		font-weight: bold;
-		text-transform: uppercase;
-	}
+  & > span {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 }
 
 .card-detail-descrip {
-	font-size: 0.875rem;
-	line-height: 1.375rem;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
 }
 
 @media only screen and (max-width: 480px) {
-	.card-detail-info {
-		padding-right: 30px;
-		padding-bottom: 30px;
-		padding-left: 30px;
-	}
+  .card-detail-info {
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+  }
 }
