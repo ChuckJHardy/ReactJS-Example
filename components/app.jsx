@@ -11,12 +11,17 @@ var Navigation = require('./navigation');
 var Link = Router.Link;
 var RouteHandler = Router.RouteHandler;
 
+var firebaseInstance = function(endpoint) {
+  endpoint = endpoint || '';
+  return new Firebase((__FIREBASE_URL__ + endpoint));
+};
+
 module.exports = React.createClass({
   displayName: 'Application',
 
   statics: {
     warden: AuthenticationService,
-    firebase: new Firebase(__FIREBASE_URL__),
+    firebase: firebaseInstance
   },
 
   getInitialState: function() {

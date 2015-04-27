@@ -53,7 +53,7 @@ module.exports = React.createClass({
   },
   sendToFirebase: function(email, password) {
     FirebaseService.users.destroy(
-      App.firebase,
+      App.firebase(),
       email,
       password,
       this.handlerInvalidUser,

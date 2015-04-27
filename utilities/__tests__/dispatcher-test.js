@@ -3,11 +3,7 @@
 jest.autoMockOff();
 
 describe('Dispatcher', function() {
-  var Dispatcher;
-
-  beforeEach(function() {
-    Dispatcher = require('../dispatcher');
-  });
+  var Dispatcher = require('../dispatcher');
 
   it('sends actions to subscribers', function() {
     var listener = jest.genMockFunction();

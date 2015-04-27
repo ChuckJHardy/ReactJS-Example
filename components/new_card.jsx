@@ -28,7 +28,7 @@ module.exports = React.createClass({
   },
   sendToFirebase: function(data) {
     FirebaseService.cards.create(
-      App.firebase,
+      App.firebase(),
       App.warden.getLocalStorageUser(),
       data,
       this.handlerError,

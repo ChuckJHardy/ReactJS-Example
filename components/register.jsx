@@ -49,7 +49,7 @@ module.exports = React.createClass({
   },
   sendToFirebase: function(email, password) {
     FirebaseService.users.create(
-      App.firebase,
+      App.firebase(),
       email,
       password,
       this.handlerEmailTaken,
