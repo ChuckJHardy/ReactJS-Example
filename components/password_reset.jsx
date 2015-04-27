@@ -52,7 +52,7 @@ module.exports = React.createClass({
   },
   sendToFirebase: function(email) {
     FirebaseService.users.resetPassword(
-      App.firebase,
+      App.firebase(),
       email,
       this.handlerInvalidUser,
       this.handlerError,

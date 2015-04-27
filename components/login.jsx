@@ -50,7 +50,7 @@ module.exports = React.createClass({
   },
   sendToFirebase: function(email, password) {
     FirebaseService.users.find(
-      App.firebase,
+      App.firebase(),
       email,
       password,
       this.handlerError,

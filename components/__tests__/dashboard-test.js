@@ -9,7 +9,7 @@ var StubRouterContent = require('../../support/stub_router_context');
 
 describe('Dashboard', function () {
   var Dashboard = require('../dashboard');
-  var Cards = require('../cards');
+  var CardsContainer = require('../cards_container');
 
   var subject = function(stub) {
     var Wrapper = StubRouterContent.wrapper(Dashboard, {}, stub);
@@ -17,7 +17,7 @@ describe('Dashboard', function () {
   };
 
   it('renders cards', function() {
-    var RC = TestUtils.scryRenderedComponentsWithType(subject(), Cards);
+    var RC = TestUtils.scryRenderedComponentsWithType(subject(), CardsContainer);
     expect(RC.length).toEqual(1);
   });
 });

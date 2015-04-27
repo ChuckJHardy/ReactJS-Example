@@ -1,5 +1,6 @@
 'use strict';
 
+jest.dontMock('lodash');
 jest.dontMock('../cards');
 jest.dontMock('../../support/stub_router_context');
 
@@ -12,8 +13,16 @@ describe('Cards', function() {
   var Cards = require('../cards');
   var Card = require('../card');
 
+  var props = {
+    cards: {
+      1: {},
+      2: {},
+      3: {},
+    }
+  };
+
   var subject = function(stub) {
-    var Wrapper = StubRouterContent.wrapper(Cards, {}, stub);
+    var Wrapper = StubRouterContent.wrapper(Cards, props, stub);
     return TestUtils.renderIntoDocument(<Wrapper />);
   };
 
