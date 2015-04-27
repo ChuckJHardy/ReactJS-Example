@@ -3,7 +3,7 @@
 var React = require('react');
 var Router = require('react-router');
 
-var Cards = require('./cards');
+var CardsContainer = require('./cards_container');
 
 var Link = Router.Link;
 
@@ -11,6 +11,6 @@ module.exports = React.createClass({
   displayName: 'Dashboard',
 
   render: function() {
-    return (<Cards />);
+    return (<CardsContainer />);
   }
 });
