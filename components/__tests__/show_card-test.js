@@ -8,11 +8,32 @@ var TestUtils = require('react/lib/ReactTestUtils')
 describe('ShowCard', function () {
   var ShowCard = require('../show_card');
 
-  var subject = function() {
-    return TestUtils.renderIntoDocument(<ShowCard />);
+  var card = {
+    price: 'testPrice',
+    location: 'testLocation',
+    bedrooms: 'testBedrooms',
+    bathrooms: 'testBathrooms'
   };
 
-  it('renders cards', function() {
-    expect(subject().getDOMNode().innerHTML).toContain('$200,000');
+  var subject = function() {
+    return TestUtils.renderIntoDocument(
+      <ShowCard card={card} />
+    );
+  };
+
+  it('renders price', function() {
+    expect(subject().getDOMNode().innerHTML).toContain(card.price);
+  });
+
+  it('renders location', function() {
+    expect(subject().getDOMNode().innerHTML).toContain(card.location);
+  });
+
+  it('renders bedrooms', function() {
+    expect(subject().getDOMNode().innerHTML).toContain(card.bedrooms);
+  });
+
+  it('renders bathrooms', function() {
+    expect(subject().getDOMNode().innerHTML).toContain(card.bathrooms);
   });
 });

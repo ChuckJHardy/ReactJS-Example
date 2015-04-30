@@ -21,7 +21,9 @@ module.exports = React.createClass({
           </div>
           <div className='card-content'>
             <header className='card-name'>
-              <Link to='show_card' params={{cardId: this.props.id}}>{this.props.record.price}</Link>
+              <Link to='show_card' params={{cardId: this.props.id}}>
+                {this.props.record.price}
+              </Link>
             </header>
             <div className='card-heading2'>{this.props.record.description}</div>
             <div className='card-heading3'>{this.props.record.location}</div>
