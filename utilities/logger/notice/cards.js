@@ -10,6 +10,15 @@ var created = function(data, forceRun) {
   });
 };
 
+var destroyed = function(cardId, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✓ Card - Destroyed');
+    console.log('-> Card ID: ', cardId);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   created: created,
+  destroyed: destroyed,
 };
