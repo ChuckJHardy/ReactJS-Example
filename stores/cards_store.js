@@ -8,9 +8,17 @@ var Assign = require('react/lib/Object.assign');
 
 var cardsRef = App.firebase('cards');
 
+var _card = {};
 var _cards = {};
 
+function isEmpty(object) {
+  return Object.keys(object).length === 0;
+}
+
 var Store = Assign({}, EventEmitter.prototype, {
+  card: function() {
+    return _card;
+  },
   list: function() {
     return _cards;
   },
@@ -26,6 +34,16 @@ var Store = Assign({}, EventEmitter.prototype, {
   }
 });
 
+function find(id) {
+  cardsRef.child(id).once('value', function(snapshot) {
+    if (isEmpty(_card)) {
+      _card = snapshot.val();
+    }
+
+    Store.emitChange();
+  });
+}
+
 function list() {
   cardsRef.on('child_added', function(snapshot) {
     if (!_cards[snapshot.key()]) {
@@ -38,6 +56,9 @@ function list() {
 
 Dispatcher.register(function(action) {
   switch(action.actionType) {
+    case Constants.CARDS_FIND:
+      find(action.id);
+      break;
     case Constants.CARDS_LIST:
       list();
       break;
