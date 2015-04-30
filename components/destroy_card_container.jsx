@@ -2,7 +2,9 @@
 
 var React = require('react');
 
+var App = require('../components/app');
 var DestroyCard = require('./destroy_card');
+var FirebaseService = require('../services/firebase_service');
 
 var confirmationText = 'confirm';
 
@@ -19,6 +21,30 @@ module.exports = React.createClass({
     setAlert: React.PropTypes.func.isRequired,
   },
 
+  destroy: function(typedText) {
+    if (canDestroy(typedText)) {
+      this.sendToFirebase();
+    } else {
+      this.setAlert(typedText);
+    }
+  },
+  getCardId: function() {
+    return this.context.router.getCurrentParams().cardId;
+  },
+  handlerError: function(error) {
+    this.props.setAlert('Something failed. Developers have been informed.');
+  },
+  handlerSuccess: function() {
+    this.context.router.replaceWith('dashboard');
+  },
+  sendToFirebase: function() {
+    FirebaseService.cards.destroy(
+      App.firebase(),
+      this.getCardId(),
+      this.handlerError,
+      this.handlerSuccess
+    );
+  },
   setAlert: function(typedText) {
     this.props.setAlert(
       'You typed ' +
@@ -27,16 +53,6 @@ module.exports = React.createClass({
       confirmationText +
       '.'
     );
-  },
-  getCardId: function() {
-    return this.context.router.getCurrentParams().cardId;
-  },
-  destroy: function(typedText) {
-    if (canDestroy(typedText)) {
-      this.context.router.replaceWith('dashboard');
-    } else {
-      this.setAlert(typedText);
-    }
   },
 
   render: function() {
