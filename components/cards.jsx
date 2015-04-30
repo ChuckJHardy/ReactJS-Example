@@ -12,7 +12,7 @@ module.exports = React.createClass({
   displayName: 'Cards',
 
   renderCard: function(record, key) {
-    return <Card key={key} record={record} />;
+    return <Card key={key} id={key} record={record} />;
   },
 
   render: function() {

@@ -16,6 +16,7 @@ var NewCard = require('../components/new_card');
 var Register = require('../components/register');
 var PasswordReset = require('../components/password_reset');
 var Subscribe = require('../components/subscribe');
+var ShowCardContainer = require('../components/show_card_container');
 
 var Route = Router.Route;
 
@@ -23,7 +24,8 @@ module.exports = (
   <Route handler={App} >
     <Route handler={LoggedIn} >
       <Route name='dashboard' path='/' handler={Dashboard} />
-      <Route name='new_card' handler={NewCard} />
+      <Route name='new_card' path='/cards/new' handler={NewCard} />
+      <Route name='show_card' path='/cards/:cardId' handler={ShowCardContainer} />
       <Route name='account' handler={Account} />
       <Route name='deregister' handler={Deregister} />
     </Route>
