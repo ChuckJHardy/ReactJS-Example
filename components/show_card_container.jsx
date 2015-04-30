@@ -26,18 +26,28 @@ module.exports = React.createClass({
   },
 
   componentWillMount: function() {
-    CardsAction.find(this.context.router.getCurrentParams().cardId);
+    CardsAction.find(this.getCardId());
     CardsStore.addChangeListener(this.onChange);
   },
   componentWillUnmount: function() {
     CardsStore.removeChangeListener(this.onChange);
   },
 
+  getCardId: function() {
+    return this.context.router.getCurrentParams().cardId;
+  },
+  destroy: function() {
+    this.context.router.transitionTo(
+      'destroy_card',
+      { cardId: this.getCardId() },
+      {}
+    );
+  },
   onChange: function() {
     this.setState(getStateFromStores());
   },
 
   render: function() {
-    return <ShowCard card={this.state.card} />;
+    return <ShowCard card={this.state.card} destroy={this.destroy} />;
   }
 });

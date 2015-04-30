@@ -17,6 +17,7 @@ var Register = require('../components/register');
 var PasswordReset = require('../components/password_reset');
 var Subscribe = require('../components/subscribe');
 var ShowCardContainer = require('../components/show_card_container');
+var DestroyCardContainer = require('../components/destroy_card_container');
 
 var Route = Router.Route;
 
@@ -26,6 +27,7 @@ module.exports = (
       <Route name='dashboard' path='/' handler={Dashboard} />
       <Route name='new_card' path='/cards/new' handler={NewCard} />
       <Route name='show_card' path='/cards/:cardId' handler={ShowCardContainer} />
+      <Route name='destroy_card' path='/cards/:cardId/destroy' handler={DestroyCardContainer} />
       <Route name='account' handler={Account} />
       <Route name='deregister' handler={Deregister} />
     </Route>

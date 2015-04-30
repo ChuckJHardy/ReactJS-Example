@@ -12,6 +12,7 @@ module.exports = React.createClass({
         <div className="card-detail-info">
           <div className="card-detail-price">{this.props.card.price}</div>
           <a href="#" className="btn btn-default btn-mini pull-right">edit</a>
+          <a onClick={this.props.destroy} className="btn btn-default btn-mini pull-right">delete</a>
           <header className="card-detail-name">{this.props.card.location}</header>
           <ul className="card-detail-features">
             <li className="card-detail-feature"><span>bedrooms</span> {this.props.card.bedrooms}</li>

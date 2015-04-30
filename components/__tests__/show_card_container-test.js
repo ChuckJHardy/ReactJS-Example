@@ -14,6 +14,7 @@ describe('ShowCard', function() {
   var CardsStore = require('../../stores/cards_store');
 
   var cardId = '-JnrJpdjoBsiL-aRq16l';
+  var assets = {};
 
   var subject = function(card) {
     CardsAction.find = jest.genMockFunction();
@@ -24,7 +25,11 @@ describe('ShowCard', function() {
         return {
           cardId: cardId,
         };
-      } 
+      },
+      transitionTo: function(name, args) {
+        assets['destroyName'] = name;
+        assets['destroyArgs'] = args;
+      }
     });
 
     return TestUtils.renderIntoDocument(<Wrapper />);
@@ -44,6 +49,14 @@ describe('ShowCard', function() {
     var localSubject = subject({});
     localSubject.refs.component.componentWillUnmount();
     expect(CardsStore.removeChangeListener).toBeCalledWith(localSubject.onChange);
+  });
+
+  it('transition to destroy card on destroy call', function() {
+    var localSubject = subject({});
+    localSubject.refs.component.destroy();
+
+    expect(assets.destroyName).toEqual('destroy_card');
+    expect(assets.destroyArgs).toEqual({ cardId: cardId });
   });
 
   it('sets cards state onChange', function() {
