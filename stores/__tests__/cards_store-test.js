@@ -3,7 +3,10 @@
 jest.autoMockOff();
 jest.mock('../../components/app');
 
-var asserts = {};
+var asserts = {
+  onName: []
+};
+
 var snapshot = {
   key: function() { return 'key'; },
   val: function() { return { 'something' : 'else' }; }
@@ -23,12 +26,9 @@ jest.setMock('../../components/app', {
         callback(snapshot);
       },
       on: function(name, callback) {
-        asserts['onName'] = name;
+        asserts['onName'].push(name);
         callback(snapshot);
       },
-      off: function() {
-        asserts['firebaseOff'] = 'called';
-      }
     };
 
     return reference;
@@ -50,11 +50,6 @@ describe('CardsStore', function() {
 
   it('sets firebase endpoint', function() {
     expect(asserts.endpoint).toEqual('cards');
-  });
-
-  it('remove firebase watch on removeChangeListener', function() {
-    CardsStore.removeChangeListener(changeListener) ;
-    expect(asserts.firebaseOff).toEqual('called');
   });
 
   describe('#find', function() {
@@ -83,11 +78,12 @@ describe('CardsStore', function() {
     });
 
     it('calls firebase on with expected name', function() {
-      expect(asserts.onName).toEqual('child_added');
+      expect(asserts.onName[0]).toEqual('child_added');
+      expect(asserts.onName[1]).toEqual('child_removed');
     });
 
     it('returns list', function() {
-      expect(CardsStore.list()).toEqual({ 'key' : { 'something': 'else' } });
+      expect(CardsStore.list()).toEqual({});
     });
   });
 });
