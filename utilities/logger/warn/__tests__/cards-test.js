@@ -35,4 +35,25 @@ describe('Cards', function() {
       expect(console.groupEnd).toBeCalled();
     });
   });
+
+  describe('#destroyFail', function() {
+    var cardId = '-JnrJpdjoBsiL-aRq16l';
+
+    beforeEach(function() {
+      Cards.destroyFail(cardId, error, true);
+    });
+
+    it('pushes to airbrake', function() {
+      expect(Airbrake).toBeCalledWith(
+        error, 'cardsDestroyFail', { cardId: cardId } 
+      );
+    });
+
+    it('outputs expected logs', function() {
+      expect(console.groupCollapsed).toBeCalledWith('-> ✗ Card - Destory Failure');
+      expect(console.log.mock.calls[0]).toEqual(['-> Card ID: ', cardId]);
+      expect(console.log.mock.calls[1]).toEqual(['-> Error: ', error]);
+      expect(console.groupEnd).toBeCalled();
+    });
+  });
 });

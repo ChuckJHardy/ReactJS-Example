@@ -16,7 +16,20 @@ var createFail = function(data, error, forceRun) {
   });
 };
 
+var destroyFail = function(cardId, error, forceRun) {
+  Airbrake(error, 'cardsDestroyFail', {
+    cardId: cardId
+  });
+
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ Card - Destory Failure');
+    console.log('-> Card ID: ', cardId);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
 
 module.exports = {
   createFail: createFail,
+  destroyFail: destroyFail,
 };

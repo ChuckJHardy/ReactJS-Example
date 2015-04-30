@@ -12,7 +12,7 @@ module.exports = new Authenticated(React.createClass({
 
   render: function() {
     return (
-      <RouteHandler />
+      <RouteHandler {...this.props} />
     );
   }
 }));

@@ -29,7 +29,6 @@ var Store = Assign({}, EventEmitter.prototype, {
     this.on('change', callback);
   },
   removeChangeListener: function(callback) {
-    cardsRef.off();
     this.removeListener('change', callback);
   }
 });
@@ -48,6 +47,14 @@ function list() {
   cardsRef.on('child_added', function(snapshot) {
     if (!_cards[snapshot.key()]) {
       _cards[snapshot.key()] = snapshot.val();
+    }
+
+    Store.emitChange();
+  });
+
+  cardsRef.on('child_removed', function(oldChildSnapshot) {
+    if (_cards[oldChildSnapshot.key()]) {
+      delete _cards[oldChildSnapshot.key()];
     }
 
     Store.emitChange();

@@ -28,4 +28,18 @@ describe('Cards', function() {
       expect(console.groupEnd).toBeCalled();
     });
   });
+
+  describe('#destroyed', function() {
+    var cardId = '-JnrJpdjoBsiL-aRq16l';
+
+    beforeEach(function() {
+      Cards.destroyed(cardId, true);
+    });
+
+    it('outputs expected logs', function() {
+      expect(console.groupCollapsed).toBeCalledWith('-> ✓ Card - Destroyed');
+      expect(console.log.mock.calls[0]).toEqual(['-> Card ID: ', cardId]);
+      expect(console.groupEnd).toBeCalled();
+    });
+  });
 });

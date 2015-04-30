@@ -66,7 +66,7 @@ describe('Create', function() {
     };
 
     beforeEach(function() {
-      Logger.notice.cards.created = jest.genMockFunction();
+      Logger.notice.cards.createFail = jest.genMockFunction();
       subject(error, {})
     });
 
