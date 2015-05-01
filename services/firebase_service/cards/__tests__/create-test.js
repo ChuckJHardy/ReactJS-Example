@@ -42,7 +42,6 @@ describe('Create', function() {
     };
 
     beforeEach(function() {
-      Logger.notice.users.created = jest.genMockFunction();
       subject(null, data)
     });
 
@@ -66,7 +65,6 @@ describe('Create', function() {
     };
 
     beforeEach(function() {
-      Logger.notice.cards.createFail = jest.genMockFunction();
       subject(error, {})
     });
 

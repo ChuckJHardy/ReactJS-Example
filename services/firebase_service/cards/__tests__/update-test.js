@@ -1,11 +1,11 @@
 'use strict';
 
-jest.dontMock('../destroy');
+jest.dontMock('../update');
 
-var Destroy = require('../destroy');
+var Update = require('../update');
 var Logger = require('../../../../utilities/logger');
 
-describe('Destroy', function() {
+describe('Update', function() {
   var asserts = {
     child: [] 
   };
@@ -15,7 +15,7 @@ describe('Destroy', function() {
   var mockAdapter = function(error) {
     var calls = {
       child: function(key) { asserts.child.push(key); return calls },
-      remove: function(callback) { callback(error); },
+      update: function(callback) { callback(error); },
     };
 
     return calls;
@@ -27,7 +27,7 @@ describe('Destroy', function() {
   };
 
   var subject = function(error) {
-    return Destroy(
+    return Update(
       mockAdapter(error),
       cardId,
       callbacks.errorCallback,
@@ -50,7 +50,7 @@ describe('Destroy', function() {
     });
 
     it('calls off to logger with correct args', function() {
-      expect(Logger.notice.cards.destroyed).toBeCalledWith(cardId);
+      expect(Logger.notice.cards.updated).toBeCalledWith(cardId);
     });
   });
 
@@ -66,7 +66,7 @@ describe('Destroy', function() {
     });
 
     it('calls off to logger with correct args', function() {
-      expect(Logger.warn.cards.destroyFail).toBeCalledWith(cardId, error);
+      expect(Logger.warn.cards.updateFail).toBeCalledWith(cardId, error);
     });
   });
 });
