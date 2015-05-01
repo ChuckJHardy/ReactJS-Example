@@ -25,8 +25,8 @@ module.exports = React.createClass({
   },
 
   componentWillMount: function() {
-    CardsAction.find(this.getCardId());
     CardsStore.addChangeListener(this.onChange);
+    CardsAction.find(this.getCardId());
   },
   componentWillUnmount: function() {
     CardsStore.removeChangeListener(this.onChange);

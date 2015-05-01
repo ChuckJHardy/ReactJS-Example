@@ -11,10 +11,6 @@ var cardsRef = App.firebase('cards');
 var _card = {};
 var _cards = {};
 
-function isEmpty(object) {
-  return Object.keys(object).length === 0;
-}
-
 var Store = Assign({}, EventEmitter.prototype, {
   card: function() {
     return _card;
@@ -35,9 +31,7 @@ var Store = Assign({}, EventEmitter.prototype, {
 
 function find(id) {
   cardsRef.child(id).once('value', function(snapshot) {
-    if (isEmpty(_card)) {
-      _card = snapshot.val();
-    }
+    _card = snapshot.val();
 
     Store.emitChange();
   });

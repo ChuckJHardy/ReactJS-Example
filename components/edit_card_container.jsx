@@ -34,8 +34,8 @@ module.exports = React.createClass({
   },
 
   componentWillMount: function() {
-    CardsAction.find(this.getCardId());
     CardsStore.addChangeListener(this.onChange);
+    CardsAction.find(this.getCardId());
   },
   componentDidMount: function() {
     this.setDefaultValues();

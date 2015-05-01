@@ -6,6 +6,7 @@ module.exports = React.createClass({
   displayName: 'ShowCard',
 
   propTypes: {
+    card: React.PropTypes.object.isRequired,
     destroy: React.PropTypes.func.isRequired,
     edit: React.PropTypes.func.isRequired,
   },
