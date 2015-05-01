@@ -5,7 +5,6 @@ var Router = require('react-router');
 
 var CardsAction = require('../actions/cards_action');
 var CardsStore = require('../stores/cards_store');
-
 var ShowCard = require('./show_card');
 
 function getStateFromStores() {

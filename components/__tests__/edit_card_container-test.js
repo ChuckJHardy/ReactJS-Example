@@ -13,6 +13,8 @@ var FirebaseService = require('../../services/firebase_service');
 describe('EditCardContainer', function() {
   var EditCardContainer = require('../edit_card_container');
   var CardForm = require('../card_form');
+  var CardsAction = require('../../actions/cards_action');
+  var CardsStore = require('../../stores/cards_store');
 
   var asserts = {};
   var adapter = jest.genMockFn();
@@ -46,9 +48,29 @@ describe('EditCardContainer', function() {
     App.firebase = jest.genMockFunction().mockReturnValue(adapter);
   });
 
-  it('renders cards', function() {
-    var RC = TestUtils.scryRenderedComponentsWithType(subject(), CardForm);
-    expect(RC.length).toEqual(1);
+  it('sets cards state onChange', function() {
+    var localSubject = subject({});
+    localSubject.refs.component.onChange();
+
+    expect(CardsStore.card.mock.calls.length).toEqual(2);
+  });
+
+  it('calls CardsAction on mount', function() {
+    subject({});
+    expect(CardsAction.find).toBeCalledWith(cardId);
+  });
+
+  it('addChangeListener is assigned on mount', function() {
+    var localSubject = subject({});
+    expect(CardsStore.addChangeListener)
+      .toBeCalledWith(localSubject.refs.component.onChange);
+  });
+
+  it('removeChangeListener is assigned on unmount', function() {
+    var localSubject = subject({});
+    localSubject.refs.component.componentWillUnmount();
+    expect(CardsStore.removeChangeListener)
+      .toBeCalledWith(localSubject.refs.component.onChange);
   });
 
   describe('#handlerError', function() {
@@ -97,5 +119,10 @@ describe('EditCardContainer', function() {
         query: {}
       });
     });
+  });
+
+  it('renders cards', function() {
+    var RC = TestUtils.scryRenderedComponentsWithType(subject(), CardForm);
+    expect(RC.length).toEqual(1);
   });
 });

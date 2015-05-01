@@ -3,8 +3,16 @@
 var React = require('react');
 
 var App = require('../components/app');
-var FirebaseService = require('../services/firebase_service');
 var CardForm = require('../components/card_form');
+var CardsAction = require('../actions/cards_action');
+var CardsStore = require('../stores/cards_store');
+var FirebaseService = require('../services/firebase_service');
+
+function getStateFromStores() {
+  return {
+    card: CardsStore.card(),
+  };
+}
 
 module.exports = React.createClass({
   displayName: 'EditCardContainer',
@@ -17,6 +25,18 @@ module.exports = React.createClass({
     setAlert: React.PropTypes.func.isRequired,
   },
 
+  getInitialState: function() {
+    return getStateFromStores();
+  },
+
+  componentWillMount: function() {
+    CardsAction.find(this.getCardId());
+    CardsStore.addChangeListener(this.onChange);
+  },
+  componentWillUnmount: function() {
+    CardsStore.removeChangeListener(this.onChange);
+  },
+
   getCardId: function() {
     return this.context.router.getCurrentParams().cardId;
   },
@@ -25,6 +45,9 @@ module.exports = React.createClass({
   },
   handlerSuccess: function() {
     this.context.router.replaceWith('show_card', { cardId: this.getCardId() }, {});
+  },
+  onChange: function() {
+    this.setState(getStateFromStores());
   },
   update: function(data) {
     FirebaseService.cards.update(
