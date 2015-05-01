@@ -12,7 +12,7 @@ var Deregister = require('../components/deregister');
 var LoggedIn = require('../components/logged_in');
 var Login = require('../components/login');
 var Logout = require('../components/logout');
-var NewCard = require('../components/new_card');
+var NewCardContainer = require('../components/new_card_container');
 var Register = require('../components/register');
 var PasswordReset = require('../components/password_reset');
 var Subscribe = require('../components/subscribe');
@@ -25,7 +25,7 @@ module.exports = (
   <Route handler={App} >
     <Route handler={LoggedIn} >
       <Route name='dashboard' path='/' handler={Dashboard} />
-      <Route name='new_card' path='/cards/new' handler={NewCard} />
+      <Route name='new_card' path='/cards/new' handler={NewCardContainer} />
       <Route name='show_card' path='/cards/:cardId' handler={ShowCardContainer} />
       <Route name='destroy_card' path='/cards/:cardId/destroy' handler={DestroyCardContainer} />
       <Route name='account' handler={Account} />

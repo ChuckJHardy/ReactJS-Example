@@ -1,6 +1,6 @@
 'use strict';
 
-jest.dontMock('../new_card');
+jest.dontMock('../new_card_container');
 jest.dontMock('../../support/stub_router_context');
 
 var React = require('react');
@@ -10,23 +10,17 @@ var StubRouterContent = require('../../support/stub_router_context');
 var App = require('../../components/app');
 var FirebaseService = require('../../services/firebase_service');
 
-describe('NewCard', function() {
-  var NewCard = require('../new_card');
+describe('NewCardContainer', function() {
+  var NewCardContainer = require('../new_card_container');
 
   var assets = {};
   var adapter = jest.genMockFn();
-
-  var address = 'Address';
-  var price = 'Price';
-  var description = 'Description';
-  var bedrooms = '4';
-  var bathrooms = '6';
 
   var setAlert = function(message) { assets['setAlert'] = message; };
 
   var subject = function() {
     return TestUtils.renderIntoDocument(
-      <NewCard setAlert={setAlert} />
+      <NewCardContainer setAlert={setAlert} />
     );
   };
 
@@ -68,21 +62,17 @@ describe('NewCard', function() {
   describe('#handleSubmit', function() {
     it('calls sendToFirebase with expected arguments', function() {
       var localSubject = subject();
+      var data = { 'something' : 'else' };
 
-      localSubject.handleSubmit({preventDefault: jest.genMockFn()})
+      localSubject.handleSubmit(data)
 
       expect(FirebaseService.cards.create).toBeCalledWith(
         adapter,
         '22',
-        {},
+        data,
         function() {},
         function() {}
       );
     });
-  });
-
-  it('renders', function() {
-    expect(subject().getDOMNode().textContent)
-      .toContain('Add');
   });
 });

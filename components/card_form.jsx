@@ -2,37 +2,20 @@
 
 var React = require('react');
 
-var App = require('../components/app');
-var FirebaseService = require('../services/firebase_service');
 var GetFormData = require('get-form-data');
 
 module.exports = React.createClass({
-  displayName: 'NewCard',
+  displayName: 'CardForm',
 
-  contextTypes: {
-    router: React.PropTypes.func
+  propTypes: {
+    handleSubmit: React.PropTypes.func.isRequired,
   },
 
   handleSubmit: function(e) {
     e.preventDefault();
 
-    this.sendToFirebase(
+    this.props.handleSubmit(
       new GetFormData(this.refs.form.getDOMNode(), { trim: true })
-    );
-  },
-  handlerError: function(error) {
-    this.props.setAlert('Something failed. Developers have been informed.');
-  },
-  handlerSuccess: function(data) {
-    this.context.router.transitionTo('/');
-  },
-  sendToFirebase: function(data) {
-    FirebaseService.cards.create(
-      App.firebase(),
-      App.warden.getLocalStorageUser(),
-      data,
-      this.handlerError,
-      this.handlerSuccess
     );
   },
 
@@ -43,20 +26,20 @@ module.exports = React.createClass({
           <div className='col-6'>
             <div className='form-field'>
               <label>Location</label>
-              <input type='text' name='location' autofocus required />
+              <input ref='location' type='text' name='location' autofocus required />
             </div>
             <div className='form-field'>
               <label>Price</label>
-              <input type='text' name='price' required />
+              <input ref='price' type='text' name='price' required />
             </div>
             <div className='form-field'>
               <label>Description</label>
-              <textarea name='description'></textarea>
+              <textarea ref='description' name='description'></textarea>
             </div>
             <div className='form-field'>
               <label>Rooms</label>
               <div className='select-menu'>
-                <select name='rooms'>
+                <select ref='bedrooms' name='bedrooms'>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -73,7 +56,7 @@ module.exports = React.createClass({
             <div className='form-field'>
               <label>Bathrooms</label>
               <div className='select-menu'>
-                <select name='bathrooms'>
+                <select ref='bathrooms' name='bathrooms'>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -95,7 +78,7 @@ module.exports = React.createClass({
             </div>
           </div>
           <div className='form-action'>
-            <input type='submit' value='Add' className='btn btn-primary' />
+            <input ref='submit' type='submit' value='Add' className='btn btn-primary' />
           </div>
         </form>
       </div>
