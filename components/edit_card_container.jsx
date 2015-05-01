@@ -76,6 +76,12 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    return (<CardForm ref='form' handleSubmit={this.update} />);
+    return (
+      <CardForm
+        ref='form'
+        submitLabel='Edit'
+        handleSubmit={this.update}
+      />
+    );
   }
 });

@@ -8,6 +8,7 @@ module.exports = React.createClass({
   displayName: 'CardForm',
 
   propTypes: {
+    submitLabel: React.PropTypes.string.isRequired,
     handleSubmit: React.PropTypes.func.isRequired,
   },
 
@@ -78,7 +79,7 @@ module.exports = React.createClass({
             </div>
           </div>
           <div className='form-action'>
-            <input ref='submit' type='submit' value='Add' className='btn btn-primary' />
+            <input ref='submit' type='submit' value={this.props.submitLabel} className='btn btn-primary' />
           </div>
         </form>
       </div>

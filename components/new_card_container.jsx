@@ -34,6 +34,11 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    return (<CardForm handleSubmit={this.create} />);
+    return (
+      <CardForm
+        submitLabel='Add'
+        handleSubmit={this.create}
+      />
+    );
   }
 });
