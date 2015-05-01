@@ -18,7 +18,16 @@ var destroyed = function(cardId, forceRun) {
   });
 };
 
+var updated = function(cardId, forceRun) {
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✓ Card - Updated');
+    console.log('-> Card ID: ', cardId);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   created: created,
   destroyed: destroyed,
+  updated: updated,
 };

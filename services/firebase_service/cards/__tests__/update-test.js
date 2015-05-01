@@ -1,21 +1,24 @@
 'use strict';
 
-jest.dontMock('../destroy');
+jest.dontMock('../update');
 
-var Destroy = require('../destroy');
+var Update = require('../update');
 var Logger = require('../../../../utilities/logger');
 
-describe('Destroy', function() {
+describe('Update', function() {
   var asserts = {
     child: []
   };
 
   var cardId = 123;
 
-  var mockAdapter = function(error) {
+  var mockAdapter = function(error, data) {
     var calls = {
       child: function(key) { asserts.child.push(key); return calls },
-      remove: function(callback) { callback(error); },
+      update: function(data, callback) {
+        asserts['updateData'] = data;
+        callback(error);
+      },
     };
 
     return calls;
@@ -26,18 +29,21 @@ describe('Destroy', function() {
     successCallback: function(data) { asserts['successCallback'] = 'called' },
   };
 
-  var subject = function(error) {
-    return Destroy(
-      mockAdapter(error),
+  var subject = function(error, data) {
+    return Update(
+      mockAdapter(error, data),
       cardId,
+      data,
       callbacks.errorCallback,
       callbacks.successCallback
     );
   };
 
   describe('Success', function() {
+    var data = { 'something' : 'else' };
+
     beforeEach(function() {
-      subject(null)
+      subject(null, data)
     });
 
     it('created child node', function() {
@@ -45,12 +51,16 @@ describe('Destroy', function() {
       expect(asserts.child[1]).toEqual(cardId);
     });
 
+    it('passes data', function() {
+      expect(asserts.updateData).toEqual(data);
+    });
+
     it('calls callback', function() {
       expect(asserts.successCallback).toEqual('called');
     });
 
     it('calls off to logger with correct args', function() {
-      expect(Logger.notice.cards.destroyed).toBeCalledWith(cardId);
+      expect(Logger.notice.cards.updated).toBeCalledWith(cardId);
     });
   });
 
@@ -58,7 +68,7 @@ describe('Destroy', function() {
     var error = 'Oops';
 
     beforeEach(function() {
-      subject(error)
+      subject(error, {})
     });
 
     it('calls callback with email', function() {
@@ -66,7 +76,7 @@ describe('Destroy', function() {
     });
 
     it('calls off to logger with correct args', function() {
-      expect(Logger.warn.cards.destroyFail).toBeCalledWith(cardId, error);
+      expect(Logger.warn.cards.updateFail).toBeCalledWith(cardId, error);
     });
   });
 });

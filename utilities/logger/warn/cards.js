@@ -29,7 +29,21 @@ var destroyFail = function(cardId, error, forceRun) {
   });
 };
 
+var updateFail = function(cardId, error, forceRun) {
+  Airbrake(error, 'cardsUpdateFail', {
+    cardId: cardId
+  });
+
+  new Runner(forceRun, function() {
+    console.groupCollapsed('-> ✗ Card - Update Failure');
+    console.log('-> Card ID: ', cardId);
+    console.log('-> Error: ', error);
+    console.groupEnd();
+  });
+};
+
 module.exports = {
   createFail: createFail,
   destroyFail: destroyFail,
+  updateFail: updateFail,
 };

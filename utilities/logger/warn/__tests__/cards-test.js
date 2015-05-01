@@ -24,7 +24,7 @@ describe('Cards', function() {
 
     it('pushes to airbrake', function() {
       expect(Airbrake).toBeCalledWith(
-        error, 'cardsCreateFail', { data: data } 
+        error, 'cardsCreateFail', { data: data }
       );
     });
 
@@ -45,12 +45,33 @@ describe('Cards', function() {
 
     it('pushes to airbrake', function() {
       expect(Airbrake).toBeCalledWith(
-        error, 'cardsDestroyFail', { cardId: cardId } 
+        error, 'cardsDestroyFail', { cardId: cardId }
       );
     });
 
     it('outputs expected logs', function() {
       expect(console.groupCollapsed).toBeCalledWith('-> ✗ Card - Destory Failure');
+      expect(console.log.mock.calls[0]).toEqual(['-> Card ID: ', cardId]);
+      expect(console.log.mock.calls[1]).toEqual(['-> Error: ', error]);
+      expect(console.groupEnd).toBeCalled();
+    });
+  });
+
+  describe('#updateFail', function() {
+    var cardId = '-JnrJpdjoBsiL-aRq16l';
+
+    beforeEach(function() {
+      Cards.updateFail(cardId, error, true);
+    });
+
+    it('pushes to airbrake', function() {
+      expect(Airbrake).toBeCalledWith(
+        error, 'cardsUpdateFail', { cardId: cardId }
+      );
+    });
+
+    it('outputs expected logs', function() {
+      expect(console.groupCollapsed).toBeCalledWith('-> ✗ Card - Update Failure');
       expect(console.log.mock.calls[0]).toEqual(['-> Card ID: ', cardId]);
       expect(console.log.mock.calls[1]).toEqual(['-> Error: ', error]);
       expect(console.groupEnd).toBeCalled();

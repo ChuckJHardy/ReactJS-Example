@@ -12,4 +12,8 @@ describe('Cards', function() {
   it('destroy is defined', function() {
     expect(Cards.destroy).toBeDefined();
   });
+
+  it('update is defined', function() {
+    expect(Cards.update).toBeDefined();
+  });
 });

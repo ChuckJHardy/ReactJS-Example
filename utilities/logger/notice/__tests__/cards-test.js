@@ -42,4 +42,18 @@ describe('Cards', function() {
       expect(console.groupEnd).toBeCalled();
     });
   });
+
+  describe('#updated', function() {
+    var cardId = '-JnrJpdjoBsiL-aRq16l';
+
+    beforeEach(function() {
+      Cards.updated(cardId, true);
+    });
+
+    it('outputs expected logs', function() {
+      expect(console.groupCollapsed).toBeCalledWith('-> ✓ Card - Updated');
+      expect(console.log.mock.calls[0]).toEqual(['-> Card ID: ', cardId]);
+      expect(console.groupEnd).toBeCalled();
+    });
+  });
 });
