@@ -14,6 +14,10 @@ function getStateFromStores() {
   };
 }
 
+function populateField(ref, state, value) {
+  ref[value].getDOMNode().value = state[value];
+}
+
 module.exports = React.createClass({
   displayName: 'EditCardContainer',
 
@@ -32,6 +36,9 @@ module.exports = React.createClass({
   componentWillMount: function() {
     CardsAction.find(this.getCardId());
     CardsStore.addChangeListener(this.onChange);
+  },
+  componentDidMount: function() {
+    this.setDefaultValues();
   },
   componentWillUnmount: function() {
     CardsStore.removeChangeListener(this.onChange);
@@ -58,8 +65,17 @@ module.exports = React.createClass({
       this.handlerSuccess
     );
   },
+  setDefaultValues: function() {
+    var formRefs = this.refs.form.refs;
+
+    populateField(formRefs, this.state.card, 'location');
+    populateField(formRefs, this.state.card, 'price');
+    populateField(formRefs, this.state.card, 'description');
+    populateField(formRefs, this.state.card, 'bedrooms');
+    populateField(formRefs, this.state.card, 'bathrooms');
+  },
 
   render: function() {
-    return (<CardForm handleSubmit={this.update} />);
+    return (<CardForm ref='form' handleSubmit={this.update} />);
   }
 });

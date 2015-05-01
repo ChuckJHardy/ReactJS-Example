@@ -1,6 +1,7 @@
 'use strict';
 
 jest.dontMock('../edit_card_container');
+jest.dontMock('../card_form');
 jest.dontMock('../../support/stub_router_context');
 
 var React = require('react');
@@ -19,6 +20,13 @@ describe('EditCardContainer', function() {
   var asserts = {};
   var adapter = jest.genMockFn();
   var cardId = '-JnrJpdjoBsiL-aRq16l';
+  var card = {
+    location: 'testLocation',
+    price: 'testPrice',
+    description: 'testDescription',
+    bedrooms: '9',
+    bathrooms: '10',
+  };
 
   var subject = function() {
     var Wrapper = StubRouterContent.wrapper(EditCardContainer, {
@@ -46,6 +54,7 @@ describe('EditCardContainer', function() {
   beforeEach(function() {
     FirebaseService.cards.update = jest.genMockFunction();
     App.firebase = jest.genMockFunction().mockReturnValue(adapter);
+    CardsStore.card = jest.genMockFunction().mockReturnValue(card);
   });
 
   it('sets cards state onChange', function() {
@@ -124,5 +133,15 @@ describe('EditCardContainer', function() {
   it('renders cards', function() {
     var RC = TestUtils.scryRenderedComponentsWithType(subject(), CardForm);
     expect(RC.length).toEqual(1);
+  });
+
+  it('populates fields', function() {
+    localSubject = subject();
+
+    expect(localSubject.getDOMNode().innerHTML).toContain(card.location);
+    expect(localSubject.getDOMNode().innerHTML).toContain(card.price);
+    expect(localSubject.getDOMNode().innerHTML).toContain(card.description);
+    expect(localSubject.getDOMNode().innerHTML).toContain(card.bedrooms);
+    expect(localSubject.getDOMNode().innerHTML).toContain(card.bathrooms);
   });
 });

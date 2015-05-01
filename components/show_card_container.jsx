@@ -54,6 +54,10 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    return <ShowCard card={this.state.card} destroy={this.destroy} />;
+    return <ShowCard
+      card={this.state.card}
+      destroy={this.destroy}
+      edit={this.edit}
+    />;
   }
 });
