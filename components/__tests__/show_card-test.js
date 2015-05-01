@@ -17,7 +17,11 @@ describe('ShowCard', function () {
 
   var subject = function() {
     return TestUtils.renderIntoDocument(
-      <ShowCard card={card} />
+      <ShowCard
+        card={card}
+        edit={jest.genMockFn()}
+        destroy={jest.genMockFn()}
+      />
     );
   };
 

@@ -51,6 +51,14 @@ describe('ShowCard', function() {
     expect(CardsStore.removeChangeListener).toBeCalledWith(localSubject.onChange);
   });
 
+  it('transition to edit card on edit call', function() {
+    var localSubject = subject({});
+    localSubject.refs.component.edit();
+
+    expect(assets.destroyName).toEqual('edit_card');
+    expect(assets.destroyArgs).toEqual({ cardId: cardId });
+  });
+
   it('transition to destroy card on destroy call', function() {
     var localSubject = subject({});
     localSubject.refs.component.destroy();

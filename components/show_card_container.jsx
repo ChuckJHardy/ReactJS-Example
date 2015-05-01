@@ -33,6 +33,13 @@ module.exports = React.createClass({
     CardsStore.removeChangeListener(this.onChange);
   },
 
+  edit: function() {
+    this.context.router.transitionTo(
+      'edit_card',
+      { cardId: this.getCardId() },
+      {}
+    );
+  },
   getCardId: function() {
     return this.context.router.getCurrentParams().cardId;
   },
