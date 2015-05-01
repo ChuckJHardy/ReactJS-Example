@@ -7,15 +7,18 @@ var Logger = require('../../../../utilities/logger');
 
 describe('Update', function() {
   var asserts = {
-    child: [] 
+    child: []
   };
 
   var cardId = 123;
 
-  var mockAdapter = function(error) {
+  var mockAdapter = function(error, data) {
     var calls = {
       child: function(key) { asserts.child.push(key); return calls },
-      update: function(callback) { callback(error); },
+      update: function(data, callback) {
+        asserts['updateData'] = data;
+        callback(error);
+      },
     };
 
     return calls;
@@ -26,18 +29,21 @@ describe('Update', function() {
     successCallback: function(data) { asserts['successCallback'] = 'called' },
   };
 
-  var subject = function(error) {
+  var subject = function(error, data) {
     return Update(
-      mockAdapter(error),
+      mockAdapter(error, data),
       cardId,
+      data,
       callbacks.errorCallback,
       callbacks.successCallback
     );
   };
 
   describe('Success', function() {
+    var data = { 'something' : 'else' };
+
     beforeEach(function() {
-      subject(null)
+      subject(null, data)
     });
 
     it('created child node', function() {
@@ -45,7 +51,11 @@ describe('Update', function() {
       expect(asserts.child[1]).toEqual(cardId);
     });
 
-    it('calls callback with email', function() {
+    it('passes data', function() {
+      expect(asserts.updateData).toEqual(data);
+    });
+
+    it('calls callback', function() {
       expect(asserts.successCallback).toEqual('called');
     });
 
@@ -58,7 +68,7 @@ describe('Update', function() {
     var error = 'Oops';
 
     beforeEach(function() {
-      subject(error)
+      subject(error, {})
     });
 
     it('calls callback with email', function() {

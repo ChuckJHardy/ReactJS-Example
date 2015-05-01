@@ -7,7 +7,7 @@ var Logger = require('../../../../utilities/logger');
 
 describe('Destroy', function() {
   var asserts = {
-    child: [] 
+    child: []
   };
 
   var cardId = 123;
@@ -45,7 +45,7 @@ describe('Destroy', function() {
       expect(asserts.child[1]).toEqual(cardId);
     });
 
-    it('calls callback with email', function() {
+    it('calls callback', function() {
       expect(asserts.successCallback).toEqual('called');
     });
 
