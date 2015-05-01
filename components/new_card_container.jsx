@@ -17,7 +17,7 @@ module.exports = React.createClass({
     setAlert: React.PropTypes.func.isRequired,
   },
 
-  handleSubmit: function(data) {
+  create: function(data) {
     FirebaseService.cards.create(
       App.firebase(),
       App.warden.getLocalStorageUser(),
@@ -34,6 +34,6 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    return (<CardForm handleSubmit={this.handleSubmit} />);
+    return (<CardForm handleSubmit={this.create} />);
   }
 });
