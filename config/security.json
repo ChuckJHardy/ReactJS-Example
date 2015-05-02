@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "$user" : {
+      ".write": "auth.uid == $user"
+    },
+    "cards" : {
+      "$card" : {
+        ".read": "auth != null && auth.uid == data.child('userId').val()",
+        ".write": "auth !== null",
+        ".validate" : "newData.hasChildren(['userId']) && auth.uid === newData.child('userId').val()"
+      }
+    }
+  }
+}

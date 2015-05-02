@@ -10,9 +10,10 @@ module.exports = {
       id: id
     });
   },
-  list: function() {
+  list: function(userId) {
     Dispatcher.dispatch({
-      actionType: Constants.CARDS_LIST
+      actionType: Constants.CARDS_LIST,
+      userId: userId
     });
   },
 };

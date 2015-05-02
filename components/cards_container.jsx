@@ -2,6 +2,7 @@
 
 var React = require('react');
 
+var App = require('../components/app');
 var CardsAction = require('../actions/cards_action');
 var CardsStore = require('../stores/cards_store');
 
@@ -26,7 +27,7 @@ module.exports = React.createClass({
   },
 
   componentWillMount: function() {
-    CardsAction.list();
+    CardsAction.list(App.warden.getLocalStorageUser());
     CardsStore.addChangeListener(this.onChange);
   },
   componentWillUnmount: function() {

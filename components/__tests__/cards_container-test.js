@@ -6,6 +6,7 @@ var React = require('react');
 var TestUtils = require('react/lib/ReactTestUtils')
 
 describe('Cards', function() {
+  var App = require('../app');
   var CardsContainer = require('../cards_container');
   var Cards = require('../cards');
   var NoCards = require('../no_cards');
@@ -15,6 +16,9 @@ describe('Cards', function() {
   var subject = function(cards) {
     CardsAction.list = jest.genMockFunction();
     CardsStore.list = jest.genMockFunction().mockReturnValue(cards);
+    App.warden = {
+      getLocalStorageUser: function() { return '22'; }
+    };
 
     return TestUtils.renderIntoDocument(
       <CardsContainer />
@@ -23,7 +27,7 @@ describe('Cards', function() {
 
   it('calls CardsAction on mount', function() {
     subject({});
-    expect(CardsAction.list).toBeCalled();
+    expect(CardsAction.list).toBeCalledWith(App.warden.getLocalStorageUser());
   });
 
   it('addChangeListener is assigned on mount', function() {

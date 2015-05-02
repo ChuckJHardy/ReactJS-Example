@@ -21,6 +21,18 @@ jest.setMock('../../components/app', {
         asserts['childName'] = name;
         return reference;
       },
+      orderByChild: function(name) {
+        asserts['orderByChild'] = name;
+        return reference;
+      },
+      startAt: function(name) {
+        asserts['startAt'] = name;
+        return reference;
+      },
+      endAt: function(name) {
+        asserts['endAt'] = name;
+        return reference;
+      },
       once: function(name, callback) {
         asserts['onceName'] = name;
         callback(snapshot);
@@ -74,7 +86,19 @@ describe('CardsStore', function() {
 
   describe('#list', function() {
     beforeEach(function() {
-      CardsAction.list();
+      CardsAction.list('123');
+    });
+
+    it('calls firebase with expected order key', function() {
+      expect(asserts.orderByChild).toEqual('userId');
+    });
+
+    it('calls firebase with expected start at', function() {
+      expect(asserts.startAt).toEqual('123');
+    });
+
+    it('calls firebase with expected end at', function() {
+      expect(asserts.endAt).toEqual('123');
     });
 
     it('calls firebase on with expected name', function() {

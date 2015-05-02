@@ -37,8 +37,8 @@ function find(id) {
   });
 }
 
-function list() {
-  cardsRef.on('child_added', function(snapshot) {
+function list(userId) {
+  cardsRef.orderByChild('userId').startAt(userId).endAt(userId).on('child_added', function(snapshot) {
     if (!_cards[snapshot.key()]) {
       _cards[snapshot.key()] = snapshot.val();
     }
@@ -61,7 +61,7 @@ Dispatcher.register(function(action) {
       find(action.id);
       break;
     case Constants.CARDS_LIST:
-      list();
+      list(action.userId);
       break;
     default:
   }
